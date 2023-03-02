@@ -1,7 +1,4 @@
-import {ExampleFeature} from "@/features/exampleFeature";
-import {ExampleEntity} from "@/entities/exampleEntity";
-import ExampleImage from "@/shared/images/exampleImages/exampleImage.png";
-import {ExampleText} from "@/shared/ui/exampleText";
+import {Input} from "@/shared/ui/input";
 
 interface ExampleWidgetProps {
     className?: string;
@@ -10,9 +7,13 @@ interface ExampleWidgetProps {
 export const ExampleWidget = ({className}: ExampleWidgetProps) => {
     return (
         <div className={className}>
-            <ExampleText>I am widget with input feature and text entity</ExampleText>
-            <ExampleEntity image={{src: ExampleImage, alt: "Example image"}} text="I am example text in entity"/>
-            <ExampleFeature label="I am label in feature"/>
+            <Input
+                label="Поле ввода телефона"
+                hint="Телефон должен содержать 11 цифр"
+                type="phone"
+                placeholder="999-111-11-11"/>
+            <Input label="Обычное поле ввода" hint="Имя, например"/>
+            <Input label="Поле ввода пароля" hint="Придумайте сложный пароль" type="password"/>
         </div>
     );
 };
