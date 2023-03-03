@@ -65,7 +65,7 @@ export const PhoneInputStyled = styled(DefaultInput)`
   }
 
   & input {
-    padding-left: 0;
+    padding-left: 0 !important;
     ::placeholder {
       color: ${colors.colorSecondary50}
     }
