@@ -8,6 +8,7 @@ export const colors = {
     colorAccent: "#BBF077",
     colorAccent50: "rgba(187, 240, 119, .5)",
 
+    colorTransparent: "transparent"
 };
 
 type ValueOf<T> = T[keyof T]

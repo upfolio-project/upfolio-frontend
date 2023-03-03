@@ -15,6 +15,8 @@ export interface InputProps {
 
 
 export const DefaultInput = styled(TextField)`
+  width: 100%;
+  
   & label {
     transition: color .3s;
     display: block;

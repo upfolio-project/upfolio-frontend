@@ -45,6 +45,8 @@ export const PhoneInput = (props: InputProps) => {
 };
 
 export const PhoneInputStyled = styled(DefaultInput)`
+  width: 100%;
+  
   & div p {
     margin: 0;
     font: ${fonts.m()} !important;
