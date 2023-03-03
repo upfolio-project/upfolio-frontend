@@ -12,7 +12,7 @@ export const InputStyled = (props: InputProps) => {
                 {...props}
                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
                 type={props.type}
-                helperText={<Text size="s" type="defaultLight">{props.hint}</Text>}
+                helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
                 label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"
@@ -39,7 +39,7 @@ export const InputStyled = (props: InputProps) => {
                 {...props}
                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
                 type={props.type}
-                helperText={<Text size="s" type="defaultLight">{props.hint}</Text>}
+                helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
                 label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"

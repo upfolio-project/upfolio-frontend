@@ -34,7 +34,7 @@ export const PhoneInput = (props: InputProps) => {
             }}
             onChange={undefined}
             onInput={() => props.onChange && props.onChange(unmaskedValue)}
-            helperText={<Text size="s" type="defaultLight">{props.hint}</Text>}
+            helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
             label={<Text size="m">{props.label}</Text>}
 
             placeholder={props.placeholder}
