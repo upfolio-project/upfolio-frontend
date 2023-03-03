@@ -2,7 +2,8 @@ import {Input} from "@/shared/ui/input";
 import {Button} from "@/shared/ui/button";
 import {Header, Text} from "@/shared/ui/text";
 
-import {Box} from "@mui/material";
+import {Box, Grid} from "@mui/material";
+import {Link} from "@/shared/ui/link";
 
 interface ExampleWidgetProps {
     className?: string;
@@ -10,7 +11,7 @@ interface ExampleWidgetProps {
 
 export const ExampleWidget = ({className}: ExampleWidgetProps) => {
     return (
-        <Box display="grid" gridTemplateColumns="2fr 2fr" gap={2} className={className}>
+        <Grid container columns={{xs: 1, md: 2}} gap={2} className={className}>
             <Box display="flex" flexDirection="column" gap={2}>
                 <Box display="flex" gap={2} flexWrap="wrap">
                     <Button type="default">Кнопка</Button>
@@ -20,7 +21,6 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                 </Box>
                 <Box display="flex" gap={2} justifyContent="space-between" flexDirection="column">
                     <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
-
                         <Header size="l">Text</Header>
                         <Header size="l" type="defaultLight">Text</Header>
                         <Header size="l" type="success">Text</Header>
@@ -50,22 +50,34 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                     <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
                         <Text size="s">Text</Text>
                         <Text size="s" type="defaultLight">Text</Text>
-                        <Text size="s" type="success">Text</Text>                    </Box>
+                        <Text size="s" type="success">Text</Text>
+                    </Box>
                 </Box>
             </Box>
-            <Box display="flex" flexDirection="column" gap={2}>
-                <Input
-                    label="Поле ввода телефона"
-                    hint="Телефон должен содержать 11 цифр"
-                    type="phone"
-                    placeholder="999-111-11-11"/>
-                <Input label="Обычное поле ввода" hint="Имя, например" placeholder="Иван"/>
-                <Input label="Поле ввода пароля" hint="Придумайте сложный пароль" type="password"
-                       placeholder="Пароль"/>
-            </Box>
+            <Box>
+                <Box display="flex" flexDirection="column" gap={2} width="max-content">
+                    <Input
+                        label="Поле ввода телефона"
+                        hint="Телефон должен содержать 11 цифр"
+                        type="phone"
+                        placeholder="999-111-11-11"/>
+                    <Input label="Обычное поле ввода" hint="Имя, например" placeholder="Иван"/>
+                    <Input label="Поле ввода пароля" hint="Придумайте сложный пароль" type="password"
+                           placeholder="Пароль"/>
 
-        </Box>
-    )
-        ;
+                    <Box display="flex" gap={1} alignItems="baseline">
+                        <Link href="#" size="l">Ссылка</Link>
+                        <Link href="#">Ссылка</Link>
+                        <Link href="#" size="s">Ссылка</Link>
+                    </Box>
+                    <Box display="flex" gap={1} alignItems="baseline">
+                        <Link href="#" size="l" type="defaultLight">Ссылка</Link>
+                        <Link href="#" type="defaultLight">Ссылка</Link>
+                        <Link href="#" size="s" type="defaultLight">Ссылка</Link>
+                    </Box>
+                </Box>
+            </Box>
+        </Grid>
+    );
 };
 

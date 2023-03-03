@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {fonts, colors} from "@/styles/variables";
 
 
-interface TextProps {
+export interface TextProps {
     size?: "s" | "m" | "l";
     type?: "default" | "defaultLight" | "success" | "successLight";
     style?: "normal" | "italic" | "bold";
@@ -10,6 +10,7 @@ interface TextProps {
 
 function getFont({size, style}: TextProps) {
     style = !style ? "normal" : style;
+    size = !size ? "m" : size;
     switch (true) {
         case (size === "l"):
             return fonts.l({style: style});
