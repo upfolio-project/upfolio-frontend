@@ -12,18 +12,23 @@ interface ButtonProps {
 
 interface InnerButtonProps extends ButtonMUIProps {
     t?: "default" | "success";
-    fill?: boolean;
+    fill?: "0" | "1";
 }
 
 export const Button = (props: ButtonProps) => {
     return (
-        <ButtonUI t={props.type} fill={props.fill === undefined ? true : props.fill}>{<Text size="m">{props.children}</Text>}</ButtonUI>
+        <ButtonUI
+            t={props.type}
+            fill={(props.fill === undefined || props.fill) ? "1" : "0"}
+        >
+            {<Text size="m">{props.children}</Text>}
+        </ButtonUI>
     );
 };
 
 
 function getBackgroundColor({t, fill}: InnerButtonProps) {
-    if (fill === false) return "transparent";
+    if (fill === "0") return "transparent";
     switch (t) {
         case undefined:
         case "default":
@@ -34,7 +39,7 @@ function getBackgroundColor({t, fill}: InnerButtonProps) {
 }
 
 function getTextColor({t, fill}: InnerButtonProps) {
-    if (fill === false) return colors.colorSecondary;
+    if (fill === "0") return colors.colorSecondary;
     switch (t) {
         case undefined:
         case "default":
@@ -87,21 +92,33 @@ export const ButtonUI = styled(ButtonMUI)<InnerButtonProps>`
   background-color: ${props => getBackgroundColor(props)};
   padding: 10px 26px;
   height: max-content;
+
+  span {
+    visibility: hidden;
+  }
   
-  & p {
+  &:focus {
+    opacity: .7;
+  }
+
+  &:active {
+    opacity: .2 !important;
+  }
+  
+  p {
     transition: all .3s;
     color: ${props => getTextColor(props)};
-    
+
   }
 
   &:hover {
     opacity: 1;
     background-color: ${props => getBackgroundColorHover(props)};
     border: ${borders.width2px(colors.colorTransparent)};
-    
-    & p {
+
+    p {
       color: ${props => getTextColorHover(props)} !important;
-      
+
     }
   }
 `;
