@@ -6,6 +6,6 @@ export const ExampleWidgetStyled = styled(ExampleWidget)`
   border: 1px solid black;
   padding: 16px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 16px;
 `;

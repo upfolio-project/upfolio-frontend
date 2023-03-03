@@ -17,14 +17,33 @@ export const borders = {
     radius10: "10px"
 };
 
-export const fonts = {
-    // {small|medium|large|etc...}{normal|italic|bold}
-    sn: "normal 400 12px/16px Rubik, sans-serif",
-    mn: "normal 400 18px/22px Rubik, sans-serif",
-    ln: "normal 400 24px/28px Rubik, sans-serif",
+interface FontProps {
+    style: "normal" | "italic" | "bold";
+}
 
-    h3n: "normal 400 32px/38px Rubik, sans-serif",
-    h2n: "normal 400 48px/56px Rubik, sans-serif",
-    h1n: "normal 400 18px/76px Rubik, sans-serif",
+const defaultFont: FontProps = {
+    style: "normal"
+};
+
+function getFontStyle({style}: FontProps) {
+    switch(style) {
+        case undefined:
+        case "normal":
+            return "normal 400";
+        case "italic":
+            return "italic 400";
+        case "bold":
+            return "normal 600";
+    }
+}
+
+export const fonts = {
+    s: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 12px/16px Rubik, sans-serif`,
+    m: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 18px/22px Rubik, sans-serif`,
+    l: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 24px/28px Rubik, sans-serif`,
+
+    h3: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 32px/38px Rubik, sans-serif`,
+    h2: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 48px/56px Rubik, sans-serif`,
+    h1: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 18px/76px Rubik, sans-serif`,
 
 };
