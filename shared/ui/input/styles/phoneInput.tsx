@@ -3,6 +3,7 @@ import {useIMask} from "react-imask";
 import styled from "styled-components";
 import {borders, colors, fonts} from "@/styles/variables";
 import {DefaultInput, InputProps} from "./inputBase";
+import {Text} from "@/shared/ui/text";
 
 const PhoneStart = () => (
     <InputAdornment position="start">
@@ -24,14 +25,18 @@ export const PhoneInput = (props: InputProps) => {
     return (
         <PhoneInputStyled
             {...props}
+            InputLabelProps={{
+                shrink: true,
+            }}
             InputProps={{
                 inputRef: setRefs,
                 startAdornment: <PhoneStart/>
             }}
             onChange={undefined}
             onInput={() => props.onChange && props.onChange(unmaskedValue)}
-            helperText={props.hint}
-            label={props.label}
+            helperText={<Text size="s" type="defaultLight">{props.hint}</Text>}
+            label={<Text size="m">{props.label}</Text>}
+
             placeholder={props.placeholder}
             type="default"
             variant="outlined"
@@ -42,7 +47,7 @@ export const PhoneInput = (props: InputProps) => {
 export const PhoneInputStyled = styled(DefaultInput)`
   & div p {
     margin: 0;
-    font: ${fonts.mn} !important;
+    font: ${fonts.m()} !important;
     color: ${colors.colorSecondary};
   }
 
@@ -59,5 +64,8 @@ export const PhoneInputStyled = styled(DefaultInput)`
 
   & input {
     padding-left: 0;
+    ::placeholder {
+      color: ${colors.colorSecondary50}
+    }
   }
 `;

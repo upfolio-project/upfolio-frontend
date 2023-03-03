@@ -12,8 +12,8 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                 hint="Телефон должен содержать 11 цифр"
                 type="phone"
                 placeholder="999-111-11-11"/>
-            <Input label="Обычное поле ввода" hint="Имя, например"/>
-            <Input label="Поле ввода пароля" hint="Придумайте сложный пароль" type="password"/>
+            <Input label="Обычное поле ввода" hint="Имя, например" placeholder="Иван"/>
+            <Input label="Поле ввода пароля" hint="Придумайте сложный пароль" type="password" placeholder="Пароль"/>
         </div>
     );
 };

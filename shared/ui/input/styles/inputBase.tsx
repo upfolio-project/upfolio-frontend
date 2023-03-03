@@ -22,7 +22,7 @@ export const DefaultInput = styled(TextField)`
     margin: 0 0 5px;
     transform: none;
     color: ${colors.colorSecondary} !important;
-    font: ${fonts.mn};
+    font: ${fonts.m()};
   }
 
   & fieldset {
@@ -43,16 +43,26 @@ export const DefaultInput = styled(TextField)`
     height: 40px;
     box-sizing: border-box;
     padding: 0 18px;
-    font: ${fonts.mn};
+    font: ${fonts.m()};
+    
+    ::placeholder,
+    ::-webkit-input-placeholder {
+      opacity: 1 !important;
+      color: ${colors.colorSecondary50}
+
+    }
+    :-ms-input-placeholder {
+      opacity: 1 !important;
+      color: ${colors.colorSecondary50}
+
+    }
 
     &:hover ~ fieldset, &:focus ~ fieldset {
       border: ${borders.width2px(colors.colorAccent50)} !important;
     }
   }
 
-  & p {
-    color: ${colors.colorSecondary50};
+  & > p {
     margin: 3px 0 0;
-    font: ${fonts.sn}
   }
 `;

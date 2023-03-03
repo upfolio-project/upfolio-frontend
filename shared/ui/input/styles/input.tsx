@@ -1,5 +1,6 @@
 import {DefaultInput, InputProps} from "./inputBase";
 import {PhoneInput} from "./phoneInput";
+import {Text} from "@/shared/ui/text";
 
 
 export const InputStyled = (props: InputProps) => {
@@ -11,10 +12,13 @@ export const InputStyled = (props: InputProps) => {
                 {...props}
                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
                 type={props.type}
-                helperText={props.hint}
-                label={props.label}
+                helperText={<Text size="s" type="defaultLight">{props.hint}</Text>}
+                label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                }}
                 InputProps={{
                     inputRef: props.inputRef
                 }}
@@ -35,10 +39,13 @@ export const InputStyled = (props: InputProps) => {
                 {...props}
                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
                 type={props.type}
-                helperText={props.hint}
-                label={props.label}
+                helperText={<Text size="s" type="defaultLight">{props.hint}</Text>}
+                label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"
+                InputLabelProps={{
+                    shrink: true,
+                }}
                 InputProps={{
                     inputRef: props.inputRef
                 }}
