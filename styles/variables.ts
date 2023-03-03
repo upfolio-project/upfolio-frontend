@@ -15,7 +15,9 @@ type ValueOf<T> = T[keyof T]
 
 export const borders = {
     width2px: (color: ValueOf<typeof colors>) => `2px solid ${color}`,
-    radius10: "10px"
+    width1px: (color: ValueOf<typeof colors>) => `1px solid ${color}`,
+    radius10: "10px",
+    radius4: "4px"
 };
 
 interface FontProps {
