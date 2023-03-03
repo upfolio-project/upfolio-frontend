@@ -45,6 +45,6 @@ export const fonts = {
 
     h3: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 32px/38px Rubik, sans-serif`,
     h2: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 48px/56px Rubik, sans-serif`,
-    h1: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 18px/76px Rubik, sans-serif`,
+    h1: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 64px/76px Rubik, sans-serif`,
 
 };
