@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import {fonts, colors} from "@/styles/variables";
+import React from "react";
 
 
-interface HeaderProps {
+interface HeaderProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>, "size" | "type" | "style"> {
     size?: "s" | "m" | "l";
     type?: "default" | "defaultLight" | "success" | "successLight";
     style?: "normal" | "italic" | "bold";
+    children?: React.ReactNode | React.ReactNode[]
 }
 
 function getFont({size, style}: HeaderProps) {
@@ -36,7 +38,22 @@ function getColor({type}: HeaderProps) {
     }
 }
 
-export const Header = styled.p<HeaderProps>`
+export const Header = ({size, type, style, children}: HeaderProps) => {
+    switch (size) {
+        case "l":
+            return <HeaderStyled size={size} type={type} style={style} as="h1">{children}</HeaderStyled>;
+        case undefined:
+        case "m":
+            return <HeaderStyled size={size} type={type} style={style} as="h2">{children}</HeaderStyled>;
+        case "s":
+            return <HeaderStyled size={size} type={type} style={style} as="h3">{children}</HeaderStyled>;
+    }
+};
+
+export const HeaderStyled = styled.h1<HeaderProps>`
   font: ${props => getFont({size: props.size, style: props.style})};
   color: ${props => getColor({type: props.type})};
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
 `;
