@@ -8,3 +8,6 @@ export const HomeStyled = styled(Home)`
   align-items: center;
   justify-content: center;
 `;
+
+const _ = () => <></>;
+export default _;
