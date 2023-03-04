@@ -30,15 +30,22 @@ export const PhoneInput = (props: InputProps) => {
             }}
             InputProps={{
                 inputRef: setRefs,
-                startAdornment: <PhoneStart/>
+                startAdornment: <PhoneStart/>,
+                inputProps: {
+                    inputMode: "tel",
+                    autoComplete: "tel-national",
+                    type: "tel"
+                }
+
             }}
             onChange={undefined}
             onInput={() => props.onChange && props.onChange(unmaskedValue)}
             helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
             label={<Text size="m">{props.label}</Text>}
-
             placeholder={props.placeholder}
-            type="default"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel-national"
             variant="outlined"
         />
     );
@@ -46,6 +53,7 @@ export const PhoneInput = (props: InputProps) => {
 
 export const PhoneInputStyled = styled(DefaultInput)`
   width: 100%;
+  overflow: hidden;
   
   & div p {
     margin: 0;
@@ -59,9 +67,14 @@ export const PhoneInputStyled = styled(DefaultInput)`
   }
 
   & > div {
+    background-color: ${colors.colorDominant};
+    
     &:hover fieldset, &:focus fieldset {
       border: ${borders.width2px(colors.colorAccent50)} !important;
     }
+
+    overflow: hidden;
+    border-radius: ${borders.radius10};
   }
 
   & input {
