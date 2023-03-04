@@ -16,6 +16,7 @@ export interface InputProps {
 
 export const DefaultInput = styled(TextField)`
   width: 100%;
+  overflow: hidden;
   
   & label {
     transition: color .3s;
@@ -42,6 +43,7 @@ export const DefaultInput = styled(TextField)`
   }
 
   & input {
+    width: 100%;
     height: 40px;
     box-sizing: border-box;
     padding: 0 18px;
@@ -66,5 +68,11 @@ export const DefaultInput = styled(TextField)`
 
   & > p {
     margin: 3px 0 0;
+  }
+  
+  & > div {
+    overflow: hidden;
+    border-radius: ${borders.radius10};
+    background-color: ${colors.colorDominant};
   }
 `;

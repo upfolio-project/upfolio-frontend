@@ -28,7 +28,7 @@ export const Button = (props: ButtonProps) => {
 
 
 function getBackgroundColor({t, fill}: InnerButtonProps) {
-    if (fill === "0") return "transparent";
+    if (fill === "0") return colors.colorDominant;
     switch (t) {
         case undefined:
         case "default":
