@@ -18,15 +18,15 @@ export const InnerCheckbox = ({size, type, style, ...props}: CheckboxProps) => {
             <input
                 {...props}
                 type="checkbox"/>
-            <span/>
-            <Text size={size} type={type} style={style}>text</Text>
+
+            <Text size={size} type={type} style={style}><span/>text</Text>
         </StyledCheckbox>
     );
 };
 
 const StyledCheckbox = styled.label`
-
   position: relative;
+  display: block;
 
   input {
     width: 1px;
@@ -36,10 +36,12 @@ const StyledCheckbox = styled.label`
   }
 
   span {
+    margin-left: -1.1em;
     transition: border .3s;
     position: absolute;
     display: block;
-    height: 80%;
+    height: .9em;
+    width: .9em;
     aspect-ratio: 1 / 1;
     margin-top: auto;
     margin-bottom: auto;
@@ -67,19 +69,19 @@ const StyledCheckbox = styled.label`
     opacity: 0;
   }
 
-  input:focus-visible + span {
+  input:focus-visible +* span {
     outline: 2px solid red;
   }
 
-  input:checked + span {
+  input:checked +* span {
     border: ${borders.width1px(colors.colorAccent)};
   }
 
-  input:checked + span:before {
+  input:checked +* span:before {
     opacity: 1;
   }
 
   p {
-    margin-left: 1.2em;
+    padding-left: 1.1em;
   }
 `;
