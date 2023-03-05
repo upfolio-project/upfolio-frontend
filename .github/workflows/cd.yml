@@ -1,0 +1,25 @@
+name: NodeJS DEV CD
+
+on:
+  push:
+    branches: [ dev ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /opt/upfolio-frontend
+          git checkout -- *
+          git checkout dev
+          git pull
+          sed -i 's/<tag>/${{ github.sha }}/' docker-compose.yml
+          docker build . --tag upfolio-dev:${{ github.sha }}
+          docker-compose up -d
