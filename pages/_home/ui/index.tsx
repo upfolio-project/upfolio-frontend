@@ -5,7 +5,7 @@ interface HomeProps {
     className?: string
 }
 
-export default function Home({className}: HomeProps) {
+export default function UiKit({className}: HomeProps) {
     return (
         <>
             <Head>

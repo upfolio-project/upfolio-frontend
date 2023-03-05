@@ -1,3 +1,7 @@
-import {HomeStyled} from "./_home/ui/styles";
+function Home() {
+    return (
+        <></>
+    );
+}
 
-export default HomeStyled;
+export default Home;
