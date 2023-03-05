@@ -17,7 +17,7 @@ jobs:
         port: 22
         script: |
           cd /opt/upfolio-frontend
-          git reset –hard HEAD
+          git checkout -- *
           git checkout dev
           git pull
           sed -i 's/<tag>/${{ github.sha }}/' docker-compose.yml
