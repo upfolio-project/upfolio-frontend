@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {commonApi} from "@/shared/api";
 import login from "@/shared/store/authSlice/login";
+import register from "@/shared/store/authSlice/register";
 
 const rootReducer = combineReducers({
     login,
+    register,
     [commonApi.reducerPath]: commonApi.reducer,
 });
 

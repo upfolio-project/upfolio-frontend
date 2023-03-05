@@ -3,6 +3,8 @@ import {AuthorizeByPasswordRequest, JWTSuccessAuthResponse} from "@/shared/api/e
 import {loginSlice} from "@/shared/store/authSlice/login";
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 import {GetValidationPassword, GetValidationPhone} from "@/shared/api/services/getValidation";
+import {QueryReturnValue} from "@reduxjs/toolkit/dist/query/baseQueryTypes";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 export const Login = commonApi.injectEndpoints({
     endpoints: build => ({
