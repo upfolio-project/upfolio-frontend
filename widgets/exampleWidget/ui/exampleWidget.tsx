@@ -1,6 +1,6 @@
 import {Input} from "@/shared/ui/input";
 import {Button} from "@/shared/ui/button";
-import {Header, Text} from "@/shared/ui/text";
+import {Header, Text, Title} from "@/shared/ui/text";
 
 import {Box, Grid} from "@mui/material";
 import {Link} from "@/shared/ui/link";
@@ -32,6 +32,20 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                     </Grid>
                 </Box>
 
+                {/* Titles */}
+                <Box
+                    display="grid"
+                    gap={2}
+                    gridTemplateRows="2fr 2fr 1fr"
+                    alignItems="end"
+                >
+                    <Box display="grid" gridTemplateColumns="1fr" gap={1}>
+                        <Title>Акцентный</Title>
+                        <Title type="defaultLight">Акцентный</Title>
+                        <Title type="success">Акцентный</Title>
+                    </Box>
+                </Box>
+
                 {/* Headers */}
                 <Box
                     display="grid"
@@ -56,7 +70,7 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                     </Box>
                 </Box>
 
-                {/* Text */}
+                {/* Texts */}
                 <Box
                     display="grid"
                     gap={2}
@@ -64,7 +78,6 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                     alignItems="end"
                 >
                     <Box display="flex" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
-
                         <Text size="l">Text</Text>
                         <Text size="l" type="defaultLight">Text</Text>
                         <Text size="l" type="success">Text</Text>

@@ -49,4 +49,7 @@ export const fonts = {
     h2: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 48px/56px Rubik, sans-serif`,
     h1: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 64px/76px Rubik, sans-serif`,
 
+    title: () => `normal 900 40px/50px Unbounded, sans-serif`,
+    // future
+    // subtitle: `normal 900 40px/50px Unbounded, sans-serif`,
 };
