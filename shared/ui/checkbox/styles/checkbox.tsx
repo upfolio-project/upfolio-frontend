@@ -9,17 +9,17 @@ interface CheckboxProps extends
     size?: "s" | "m" | "l";
     type?: "default" | "defaultLight" | "success" | "successLight";
     style?: "normal" | "italic" | "bold";
+    children?: React.ReactNode
 }
 
 
-export const InnerCheckbox = ({size, type, style, ...props}: CheckboxProps) => {
+export const InnerCheckbox = ({size, type, style, children, ...props}: CheckboxProps) => {
     return (
         <StyledCheckbox>
             <input
                 {...props}
                 type="checkbox"/>
-
-            <Text size={size} type={type} style={style}><span/>text</Text>
+            <Text size={size} type={type} style={style}><span/>{children || <wbr/>}</Text>
         </StyledCheckbox>
     );
 };
