@@ -35,15 +35,17 @@ interface Props {
 }
 
 interface Context extends ParsedUrlQuery {
-    user?: string
+    user?: string;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext<Context>) => {
     const username = context.params?.user || "";
 
-    function getUserData(user: string): null | {username: string, description: string, user: string} {
-       return {user: user, username: "Пупкин Иван", description: "Самое крутое описание пользователя"};
-        // return null;
+    function getUserData(user: string): null | { username: string, description: string, user: string } {
+        // return {user: user, username: "Пупкин Иван", description: "Самое крутое описание пользователя"};
+
+        // user; need to avoid `unused-vars` error
+        user; return null;
     }
 
     // this data from specific API handler that return name and description
