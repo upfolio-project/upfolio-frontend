@@ -8,11 +8,13 @@ interface ButtonProps {
     type?: "default" | "success";
     fill?: boolean;
     children?: React.ReactNode;
+    width?: "content" | "container"
 }
 
 interface InnerButtonProps extends ButtonMUIProps {
     t?: "default" | "success";
     fill?: "0" | "1";
+    w?: "content" | "container"
 }
 
 export const Button = (props: ButtonProps) => {
@@ -20,6 +22,7 @@ export const Button = (props: ButtonProps) => {
         <ButtonUI
             t={props.type}
             fill={(props.fill === undefined || props.fill) ? "1" : "0"}
+            w={props.width}
         >
             {<Text size="m">{props.children}</Text>}
         </ButtonUI>
@@ -92,6 +95,7 @@ export const ButtonUI = styled(ButtonMUI)<InnerButtonProps>`
   background-color: ${props => getBackgroundColor(props)};
   padding: 10px 26px;
   height: max-content;
+  width: ${props => props.w === "container" ? "100%" : "max-content"};
 
   span {
     visibility: hidden;
