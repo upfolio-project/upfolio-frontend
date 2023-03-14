@@ -25,7 +25,7 @@ export default function Error404() {
                         устарела,
                         была удалена, или был введён неверный адрес в адресной строке.
                     </Text>
-                    <LinkButton href='\' type="success">Вернуться на главную</LinkButton>
+                    <LinkButton href='/' type="success">Вернуться на главную</LinkButton>
                 </RootStyled>
             </Box>
         </>
