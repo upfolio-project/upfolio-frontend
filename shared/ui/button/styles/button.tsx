@@ -4,7 +4,7 @@ import React from "react";
 import {borders, colors} from "@/styles/variables";
 import {Text} from "@/shared/ui/text";
 
-interface ButtonProps {
+export interface ButtonProps {
     type?: "default" | "success";
     fill?: boolean;
     children?: React.ReactNode;
@@ -96,19 +96,32 @@ export const ButtonUI = styled(ButtonMUI)<InnerButtonProps>`
   padding: 10px 26px;
   height: max-content;
   width: ${props => props.w === "container" ? "100%" : "max-content"};
+  text-decoration: none;
 
   span {
     visibility: hidden;
   }
-  
+
   &:focus {
-    opacity: .7;
+    animation: opacity 0.3s ease;
   }
 
   &:active {
     opacity: .2 !important;
   }
-  
+
+  @keyframes opacity {
+    from {
+      opacity: .7;
+    }
+    50% {
+      opacity: .2;
+    }
+    to {
+      opacity: .7;
+    }
+  }
+
   p {
     transition: all .3s;
     color: ${props => getTextColor(props)};
