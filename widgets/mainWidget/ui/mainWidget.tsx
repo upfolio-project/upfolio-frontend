@@ -1,11 +1,9 @@
 import {Container} from "@mui/material";
 import {Text, Title} from "@/shared/ui/text";
 import {Box} from "@mui/system";
-import {Button} from "@/shared/ui/button";
+import {LinkButton} from "@/shared/ui/button";
 import styled from "styled-components";
-import {BackHome} from "@/entities/backHome";
 import {Logo} from "@/shared/ui/logo";
-
 
 
 export const ContainerStyled = styled(Container)`
@@ -38,16 +36,12 @@ export const MainWidget = () => {
                     между студентами и IT-компаниями
                 </Text>
                 <Box display='flex' gap='20px' justifyContent='center'>
-                    <BackHome url='#'>
-                        <Button type='success'>
-                            Зарегистрироваться
-                        </Button>
-                    </BackHome>
-                    <BackHome url='#'>
-                        <Button type='default'>
-                            Войти
-                        </Button>
-                    </BackHome>
+                    <LinkButton href='#' type='success'>
+                        Зарегистрироваться
+                    </LinkButton>
+                    <LinkButton href='#' type='default'>
+                        Войти
+                    </LinkButton>
                 </Box>
             </Box>
         </ContainerStyled>
