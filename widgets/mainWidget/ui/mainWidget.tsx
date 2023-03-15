@@ -9,7 +9,7 @@ import {Logo} from "@/shared/ui/logo";
 export const ContainerStyled = styled(Container)`
   display: flex;
   flex-direction: column;
-  gap: 40.04px;
+  gap: 20px;
   text-align: center;
   align-items: center;
 `;
@@ -30,7 +30,7 @@ export const MainWidget = () => {
                 </Title>
             </Box>
             <Box display='flex' flexWrap='wrap' gap='39.5px' flexDirection='column' maxWidth='443px'>
-                <Text size='m'>
+                <Text size='m' align="center">
                     Мы хотим упростить взаимодействие
                     между студентами и IT-компаниями
                 </Text>
