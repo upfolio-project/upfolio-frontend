@@ -41,18 +41,24 @@ function getColor({type}: HeaderProps) {
 export const Header = ({size, type, style, children}: HeaderProps) => {
     switch (size) {
         case "l":
-            return <HeaderStyled size={size} type={type} style={style} as="h1">{children}</HeaderStyled>;
+            return <HeaderStyled s={size} t={type} st={style} as="h1">{children}</HeaderStyled>;
         case undefined:
         case "m":
-            return <HeaderStyled size={size} type={type} style={style} as="h2">{children}</HeaderStyled>;
+            return <HeaderStyled s={size} t={type} st={style} as="h2">{children}</HeaderStyled>;
         case "s":
-            return <HeaderStyled size={size} type={type} style={style} as="h3">{children}</HeaderStyled>;
+            return <HeaderStyled s={size} t={type} st={style} as="h3">{children}</HeaderStyled>;
     }
 };
 
-export const HeaderStyled = styled.h1<HeaderProps>`
-  font: ${props => getFont({size: props.size, style: props.style})};
-  color: ${props => getColor({type: props.type})};
+export interface InnerHeaderProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+    s?: "s" | "m" | "l";
+    t?: "default" | "defaultLight" | "success" | "successLight";
+    st?: "normal" | "italic" | "bold";
+}
+
+export const HeaderStyled = styled.h1<InnerHeaderProps>`
+  font: ${props => getFont({size: props.s, style: props.st})};
+  color: ${props => getColor({type: props.t})};
   margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
