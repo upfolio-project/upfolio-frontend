@@ -19,8 +19,7 @@ export const MainWidget = () => {
     return (
         <ContainerStyled>
             <Box display='flex' alignItems='center' gap='10px'>
-                <Logo size='s'/>
-                <Text size='l' style='bold'>UpFolio</Text>
+                <Logo size='s' withText={true}/>
             </Box>
             <Box>
                 <Title>
