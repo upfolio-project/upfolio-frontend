@@ -4,7 +4,9 @@ import React from "react";
 import {Text, TextProps} from "@/shared/ui/text";
 import {colors} from "@/styles/variables";
 
-interface InnerLinkProps extends LinkProps, TextProps {
+interface InnerLinkProps extends
+    Omit<LinkProps, "onClick" | "as" | "InnerLinkProps" | "onMouseEnter" | "onTouchStart">,
+    Omit<TextProps, "onClick" | "as" | "InnerLinkProps" | "onMouseEnter" | "onTouchStart"> {
     children: React.ReactNode | React.ReactNode[]
     className?: string
 }
