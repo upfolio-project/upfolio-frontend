@@ -2,32 +2,47 @@ import styled from "styled-components";
 import {Box} from "@mui/material";
 import {Text, Title} from "@/shared/ui/text";
 import {LinkButton} from "@/shared/ui/button";
+import {Header} from "@/widgets/headerWidget";
+import {FooterWidget} from "@/widgets/footerWidget";
+
+const Main = styled.main`
+  box-sizing: border-box;
+  padding-top: 120px;
+  padding-bottom: 160px;
+  min-height: 100vh;
+  height: max-content;
+  width: 100vw;
+`;
 
 export default function Error404() {
     return (
         <>
-            <Box
-                display="flex"
-                alignItems="center"
-                width="100vw"
-                minHeight="100vh"
-                justifyContent="center"
-            >
-                <RootStyled
+            <Header/>
+            <Main>
+                <Box
+                    width="100vw"
                     display="flex"
-                    flexDirection="column"
-                    gap="40px"
-                    alignItems="center"
+                    justifyContent="center"
                 >
-                    <Title>Ошибка 404</Title>
-                    <Text size="l">
-                        Кажется, что-то пошло не так! Страница, которую вы запрашиваете, не существует. Возможно, она
-                        устарела,
-                        была удалена, или был введён неверный адрес в адресной строке.
-                    </Text>
-                    <LinkButton href='/' type="success">Вернуться на главную</LinkButton>
-                </RootStyled>
-            </Box>
+                        <RootStyled
+                            display="flex"
+                            flexDirection="column"
+                            gap="20px"
+                            alignItems="center"
+                        >
+                            <Title>Ошибка 404</Title>
+                            <Text size="l" align="center">
+                                Кажется, что-то пошло не так! Страница, которую вы запрашиваете, не существует.
+                                Возможно,
+                                она
+                                устарела,
+                                была удалена, или был введён неверный адрес в адресной строке.
+                            </Text>
+                            <LinkButton href="/" type="success">Вернуться на главную</LinkButton>
+                        </RootStyled>
+                </Box>
+            </Main>
+            <FooterWidget/>
         </>
     );
 }
