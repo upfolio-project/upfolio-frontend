@@ -8,7 +8,8 @@ export interface TextProps extends Omit<React.DetailedHTMLProps<React.HTMLAttrib
     type?: "default" | "defaultLight" | "success" | "successLight";
     style?: "normal" | "italic" | "bold";
     children?: React.ReactNode | React.ReactNode[];
-    as?: "p" | "span"
+    as?: "p" | "span";
+    align?: "left" | "center" | "right";
 }
 
 function getFont({size, style}: TextProps) {
@@ -40,8 +41,16 @@ function getColor({type}: TextProps) {
     }
 }
 
-export function Text({size, style, type, children, as}: TextProps) {
-    return <TextStyled s={size} st={style} t={type} as={as ? as : "p"}>{children}</TextStyled>;
+export function Text({size, style, type, children, as, align}: TextProps) {
+    return <TextStyled
+        s={size}
+        st={style}
+        t={type}
+        as={as ? as : "p"}
+        a={align}
+    >
+        {children}
+    </TextStyled>;
 }
 
 export interface InnerTextProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
@@ -49,9 +58,11 @@ export interface InnerTextProps extends React.DetailedHTMLProps<React.HTMLAttrib
     t?: "default" | "defaultLight" | "success" | "successLight";
     st?: "normal" | "italic" | "bold";
     as?: "span" | "p";
+    a?: "left" | "center" | "right";
 }
 
 const TextStyled = styled.p<InnerTextProps>`
   font: ${props => getFont({size: props.s, style: props.st})};
   color: ${props => getColor({type: props.t})};
+  text-align: ${props => props.a ? props.a : "left"};
 `;
