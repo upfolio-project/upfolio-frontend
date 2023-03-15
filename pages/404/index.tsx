@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import {Box} from "@mui/material";
 import {Text, Title} from "@/shared/ui/text";
-import {Button} from "@/shared/ui/button";
-import {BackHome} from "@/entities/backHome";
+import {LinkButton} from "@/shared/ui/button";
 
 export default function Error404() {
     return (
@@ -26,7 +25,7 @@ export default function Error404() {
                         устарела,
                         была удалена, или был введён неверный адрес в адресной строке.
                     </Text>
-                    <BackHome><Button type="success">Вернуться на главную</Button></BackHome>
+                    <LinkButton href='/' type="success">Вернуться на главную</LinkButton>
                 </RootStyled>
             </Box>
         </>
