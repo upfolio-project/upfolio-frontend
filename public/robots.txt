@@ -1,0 +1,136 @@
+Sitemap: https://upfolio.ru/sitemap.xml
+
+User-agent: Applebot
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: baiduspider
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Bingbot
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Discordbot
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+# принадлежат компании Meta, которая признана в России экстремистской организацией
+User-agent: facebookexternalhit
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Googlebot
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Googlebot-Image
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: ia_archiver
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: LinkedInBot
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: msnbot
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+# something Korean
+User-agent: Naverbot
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Pinterestbot
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+# something Czech
+User-agent: seznambot
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+# yahoo
+User-agent: Slurp
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: teoma
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Yandex
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Yeti
+Disallow: /
+Disallow: /404/
+Disallow: /_home/
+Disallow: /_home/*
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+# принадлежат компании Meta, которая признана в России экстремистской организацией
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: *
+Disallow: /
+Disallow: /_home
+Disallow: /_home/*
