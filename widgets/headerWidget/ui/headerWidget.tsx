@@ -20,11 +20,11 @@ export const Header = () => {
     return (
         <AppBarStyled position='absolute'>
             <Toolbar>
-                <Link href='#'>Главная</Link>
-                <Link href='#'>Портфолио</Link>
-                <Link href='#'>Компании</Link>
-                <Link href='#'>Партнёры</Link>
-                <Link href='#'>О платформе</Link>
+                <Link href='/'>Главная</Link>
+                <Link href='/search'>Портфолио</Link>
+                <Link href='/companies'>Компании</Link>
+                <Link href='/partners'>Партнёры</Link>
+                <Link href='/about'>О платформе</Link>
                 <Link href='#'>Личный кабинет</Link>
             </Toolbar>
         </AppBarStyled>
