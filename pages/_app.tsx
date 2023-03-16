@@ -5,15 +5,16 @@ import {Provider} from "react-redux";
 import Head from "next/head";
 import {DefaultTags, Meta} from "@/shared/seo";
 import React from "react";
+import {StyledEngineProvider} from "@mui/styled-engine";
 
 interface MyAppProps {
-    meta?: Meta
+    meta?: Meta;
 }
 
 export default function App({Component, pageProps}: AppProps<MyAppProps>) {
     const store = setupStore();
 
-    const meta  = pageProps.meta?.tags || [];
+    const meta = pageProps.meta?.tags || [];
     const title = pageProps.meta?.title || "UpFolio — платформа для создания и размещения цифрового портфолио";
 
     return (
@@ -24,9 +25,11 @@ export default function App({Component, pageProps}: AppProps<MyAppProps>) {
                 {meta && meta.map(prop => <meta {...prop} key={prop.key}/>)}
                 <title key="title">{title}</title>
             </Head>
-            <Provider store={store}>
-                <Component {...pageProps} />
-            </Provider>
+            <StyledEngineProvider injectFirst>
+                <Provider store={store}>
+                    <Component {...pageProps} />
+                </Provider>
+            </StyledEngineProvider>
         </>
     );
 }
