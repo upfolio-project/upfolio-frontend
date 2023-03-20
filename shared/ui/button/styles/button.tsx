@@ -4,7 +4,7 @@ import React from "react";
 import {borders, colors} from "@/styles/variables";
 import {Text} from "@/shared/ui/text";
 
-export interface ButtonProps {
+export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "width" | "chilldren"> {
     type?: "default" | "success";
     fill?: boolean;
     children?: React.ReactNode;
@@ -19,10 +19,10 @@ interface InnerButtonProps extends ButtonMUIProps {
 
 export const Button = (props: ButtonProps) => {
     return (
-        <ButtonUI
-            t={props.type}
-            fill={(props.fill === undefined || props.fill) ? "1" : "0"}
-            w={props.width}
+        <ButtonUI onClick={props.onClick}
+                  t={props.type}
+                  fill={(props.fill === undefined || props.fill) ? "1" : "0"}
+                  w={props.width}
         >
             {<Text size="m">{props.children}</Text>}
         </ButtonUI>
