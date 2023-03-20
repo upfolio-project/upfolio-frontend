@@ -4,6 +4,7 @@ import {FooterWidget} from "@/widgets/footerWidget";
 import styled from "styled-components";
 import {LoginWidget} from "@/widgets/loginWidget";
 
+
 const Main = styled.main`
   box-sizing: border-box;
   padding-top: 120px;
@@ -27,4 +28,4 @@ export default function Login() {
             <FooterWidget/>
         </>
     );
-};
+}
