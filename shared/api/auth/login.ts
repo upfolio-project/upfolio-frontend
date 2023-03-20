@@ -8,30 +8,34 @@ export const Login = commonApi.injectEndpoints({
     endpoints: build => ({
         loginByPassword: build.mutation<JWTSuccessAuthResponse, AuthorizeByPasswordRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
-                const {password, phoneNumber} = arg;
-
+                const {phoneNumber, password} = arg;
+                const phone = '7' + phoneNumber.split('').map(value => value == '-' ? '' : value).join('');
                 if (GetValidationPassword(password)) return {
                     error: {
                         error: 'Bad password',
                         status: 'CUSTOM_ERROR'
                     }
                 };
-                if (GetValidationPhone(phoneNumber)) return {
+                if (GetValidationPhone(phone)) return {
                     error: {
                         error: 'Bad phone',
                         status: 'CUSTOM_ERROR'
                     }
                 };
 
-                const body = {password: password, phoneNumber: phoneNumber};
-
+                const body = {password: password, phoneNumber: phone};
                 const result = await fetchWithBQ({
                     url: '/v1/authorize/byPassword',
                     method: 'POST',
                     body,
                 });
-
-                if (result.error) throw result.error;
+                const error: any = result?.error?.data;
+                if (result.error) return {
+                    error: {
+                        error: error,
+                        status: 'CUSTOM_ERROR'
+                    }
+                };
 
                 const data = result.data as JWTSuccessAuthResponse;
 
@@ -41,13 +45,11 @@ export const Login = commonApi.injectEndpoints({
                 const {setAuth, setError} = loginSlice.actions;
                 try {
                     const result = await queryFulfilled;
-                    if (result.data.token && result.data.refreshToken) {
-                        localStorage.setItem('token', result?.data?.token);
-                        localStorage.setItem('refreshToken', result?.data?.refreshToken);
-                        setAuth(true);
-                    }
+                    localStorage.setItem('token', result?.data?.token);
+                    localStorage.setItem('refreshToken', result?.data?.refreshToken);
+                   dispatch(setAuth(true));
                 } catch (e: any) {
-                    const error: string = e?.error?.error;
+                    const error: string = e?.error?.error?.text || e?.error?.error;
                     dispatch(setError(GetErrorDescription(error)));
                 }
             },
