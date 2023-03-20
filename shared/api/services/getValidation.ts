@@ -1,5 +1,5 @@
 export function GetValidationPassword(password: string): boolean {
-    return !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20}/.test(password);
+    return !/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password);
 }
 
 export function GetValidationPhone(phone: string): boolean {
