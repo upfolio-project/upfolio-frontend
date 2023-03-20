@@ -13,6 +13,10 @@ export const colors = {
 
 type ValueOf<T> = T[keyof T]
 
+export const shadows = {
+    defaultShadow: "0px 0px 30px rgba(0, 0, 0, 0.25)",
+};
+
 export const borders = {
     width2px: (color: ValueOf<typeof colors>) => `2px solid ${color}`,
     width1px: (color: ValueOf<typeof colors>) => `1px solid ${color}`,
@@ -29,7 +33,7 @@ const defaultFont: FontProps = {
 };
 
 function getFontStyle({style}: FontProps) {
-    switch(style) {
+    switch (style) {
         case undefined:
         case "normal":
             return "normal 400";
