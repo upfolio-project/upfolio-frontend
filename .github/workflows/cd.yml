@@ -20,6 +20,10 @@ jobs:
           git checkout -- *
           git checkout dev
           git pull
+          docker rmi $(docker images 'upfolio-dev' -a -q)
           sed -i 's/<tag>/${{ github.sha }}/' docker-compose.yml
+          
+          sed -i 's%<NEXT_PUBLIC_BASE_URL>%${{ secrets.NEXT_PUBLIC_BASE_URL }}%' docker-compose.yml
+          
           docker build . --tag upfolio-dev:${{ github.sha }}
           docker-compose up -d

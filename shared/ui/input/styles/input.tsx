@@ -16,6 +16,7 @@ export const InputStyled = (props: InputProps) => {
                 label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"
+                ha={props.hintAlign}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -26,7 +27,6 @@ export const InputStyled = (props: InputProps) => {
         }
         case ("phone"): {
             return <PhoneInput
-                {...props}
                 onChange={props.onChange}
                 inputRef={props.inputRef}
                 type={props.type}
