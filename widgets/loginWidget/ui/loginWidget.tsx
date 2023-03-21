@@ -11,27 +11,33 @@ import {useLoginByPasswordMutation} from "@/shared/api/auth/login";
 const ContainerStyled = styled(Container)`
   max-width: 451px;
   max-height: 465px;
-  border-radius: ${borders.radius10};
+  box-sizing: content-box;
 `;
 
-const Card = styled(Box)`
+const Card = styled("form")`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: pre;
   gap: 20px;
   padding: 40px;
   width: 100%;
   height: 100%;
   box-shadow: ${shadows.defaultShadow};
+  border-radius: ${borders.radius10};
 `;
 
 export const LoginWidget = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
     const [loginByPassword] = useLoginByPasswordMutation();
+    const loginHandler = () => {
+        return loginByPassword({
+            password: String(passwordRef?.current?.value),
+            phoneNumber: String(phoneRef?.current?.value),
+        });
+    };
     return (
         <ContainerStyled>
             <Card>
@@ -41,15 +47,12 @@ export const LoginWidget = () => {
                     <Input inputRef={phoneRef} type='phone' label='Телефон' placeholder='929-789-98-88'/>
                     <Input inputRef={passwordRef} type='password' label='Пароль' hint='Забыли пароль?'
                            placeholder='********'/>
-                    <Button onClick={() => loginByPassword({
-                        password: String(passwordRef?.current?.value),
-                        phoneNumber: String(phoneRef?.current?.value),
-                    })} type='success'
+                    <Button onClick={loginHandler} type='success'
                             width="container">Войти</Button>
                 </Box>
                 <Box display="flex" gap="10px">
                     <Text type="defaultLight">У вас нет аккаунта?</Text>
-                    <Link href='#' type='success'>Регистрация</Link>
+                    <Link href='/register' type='success'>Регистрация</Link>
                 </Box>
             </Card>
         </ContainerStyled>
