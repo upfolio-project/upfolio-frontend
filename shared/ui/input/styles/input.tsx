@@ -43,6 +43,7 @@ export const InputStyled = (props: InputProps) => {
                 label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"
+                ha={props.hintAlign}
                 InputLabelProps={{
                     shrink: true,
                 }}
