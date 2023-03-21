@@ -38,7 +38,7 @@ export const MainWidget = () => {
                     <LinkButton href='#' type='success'>
                         Зарегистрироваться
                     </LinkButton>
-                    <LinkButton href='#' type='default'>
+                    <LinkButton href='/login' type='default'>
                         Войти
                     </LinkButton>
                 </Box>
