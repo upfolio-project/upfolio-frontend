@@ -9,6 +9,7 @@ export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "wid
     fill?: boolean;
     children?: React.ReactNode;
     width?: "content" | "container"
+    buttonType?: "submit" | "button"
 }
 
 interface InnerButtonProps extends ButtonMUIProps {
@@ -23,6 +24,7 @@ export const Button = (props: ButtonProps) => {
                   t={props.type}
                   fill={(props.fill === undefined || props.fill) ? "1" : "0"}
                   w={props.width}
+                  type={props.buttonType || "button"}
         >
             {<Text size="m">{props.children}</Text>}
         </ButtonUI>
