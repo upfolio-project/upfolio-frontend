@@ -1,6 +1,10 @@
 export default function GetErrorDescription(error: string) {
     //in the future, you need to specify the requirement
     switch (error) {
+        case 'The account with this phone number is not found':
+            return 'Аккаунта с таким номером не существует';
+        case 'Password is incorrect':
+            return 'Неверный пароль';
         case 'Bad password':
             return 'Пароль не соответствует требованиям';
         case 'Bad phone':

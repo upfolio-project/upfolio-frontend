@@ -9,12 +9,13 @@ interface InnerLinkProps extends
     Omit<TextProps, "onClick" | "as" | "InnerLinkProps" | "onMouseEnter" | "onTouchStart"> {
     children: React.ReactNode | React.ReactNode[]
     className?: string
+    as?: "p" | "span"
 }
 
-export const InnerLink = ({href, children, className, size, style, type}: InnerLinkProps) => {
+export const InnerLink = ({href, children, className, size, style, type, as}: InnerLinkProps) => {
     return (
         <LinkStyled href={href} className={className}>
-            <Text size={size} style={style} type={type}>{children}</Text>
+            <Text size={size} style={style} type={type} as={as}>{children}</Text>
         </LinkStyled>
     );
 };
@@ -37,7 +38,7 @@ const LinkStyled = styled(Link)`
     text-decoration: underline;
     color: ${colors.colorAccent} !important;
     
-    & p {
+    & p, & span {
       color: ${colors.colorAccent} !important;
       
     }

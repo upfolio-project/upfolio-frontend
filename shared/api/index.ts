@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 
-export const BASE_URL = process.env['BASE_URL'];
+export const BASE_URL = process.env['NEXT_PUBLIC_BASE_URL'];
 
 export const commonApi = createApi({
     reducerPath: 'api',

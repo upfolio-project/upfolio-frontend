@@ -1,20 +1,24 @@
 import styled from "styled-components";
 import {TextField} from "@mui/material";
 import {borders, colors, fonts} from "@/styles/variables";
-import {RefObject} from "react";
+import React, {RefObject} from "react";
 
 export interface InputProps {
     type?: "phone" | "password" | "default" | "email";
-    hint?: string;
+    hint?: React.ReactNode;
     label?: string;
     hintType?: "default" | "secondary" | "success";
     placeholder?: string;
     onChange?: (value: string) => void;
     inputRef?: RefObject<HTMLInputElement | null>;
+    hintAlign?: "left" | "center" | "right";
 }
 
+interface TextFieldExtendsProps extends Omit<typeof TextField, ""> {
+    hintAlign?: "left" | "center" | "right";
+}
 
-export const DefaultInput = styled(TextField)`
+export const DefaultInput = styled(TextField)<TextFieldExtendsProps>`
   width: 100%;
   overflow: hidden;
   
@@ -68,6 +72,9 @@ export const DefaultInput = styled(TextField)`
 
   & > p {
     margin: 3px 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: ${props => props.hintAlign || "left"};
   }
   
   & > div {

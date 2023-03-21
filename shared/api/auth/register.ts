@@ -27,7 +27,7 @@ export const Register = commonApi.injectEndpoints({
                     }
                 };
                 const result = await fetchWithBQ({
-                    url: '/v1/register/phoneNumber',
+                    url: '/register/phoneNumber',
                     method: 'POST',
                     body: arg
                 });
@@ -68,7 +68,7 @@ export const Register = commonApi.injectEndpoints({
                     }
                 };
                 const result = await fetchWithBQ({
-                    url: '/v1/register/confirm',
+                    url: '/register/confirm',
                     method: 'POST',
                     body: arg
                 });
@@ -113,7 +113,7 @@ export const Register = commonApi.injectEndpoints({
                     }
                 };
                 const result = await fetchWithBQ({
-                    url: '/v1/register/finish',
+                    url: '/register/finish',
                     method: 'POST',
                     body: arg
                 });

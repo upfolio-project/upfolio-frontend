@@ -1,5 +1,5 @@
 export function GetValidationPassword(password: string): boolean {
-    return !/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20}/.test(password);
+    return !(password.length >= 8);
 }
 
 export function GetValidationPhone(phone: string): boolean {

@@ -1,3 +1,3 @@
-import {MainWidgetStyled} from "./ui/styles";
+import {MainWidget} from "./ui/mainWidget";
 
-export {MainWidgetStyled as MainWidget};
+export {MainWidget};
