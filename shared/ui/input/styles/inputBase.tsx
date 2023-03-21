@@ -15,7 +15,7 @@ export interface InputProps {
 }
 
 interface TextFieldExtendsProps extends Omit<typeof TextField, ""> {
-    hintAlign?: "left" | "center" | "right";
+    ha?: "left" | "center" | "right";
 }
 
 export const DefaultInput = styled(TextField)<TextFieldExtendsProps>`
@@ -74,7 +74,7 @@ export const DefaultInput = styled(TextField)<TextFieldExtendsProps>`
     margin: 3px 0 0;
     width: 100%;
     display: flex;
-    justify-content: ${props => props.hintAlign || "left"};
+    justify-content: ${props => props.ha || "left"};
   }
   
   & > div {
