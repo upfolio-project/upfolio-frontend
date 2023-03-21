@@ -9,13 +9,13 @@ export const InputStyled = (props: InputProps) => {
         case undefined:
         case null: {
             return <DefaultInput
+                ha={props.hintAlign}
                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
                 type={props.type}
                 helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
                 label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"
-                ha={props.hintAlign}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -27,6 +27,7 @@ export const InputStyled = (props: InputProps) => {
         case ("phone"): {
             return <PhoneInput
                 onChange={props.onChange}
+                inputRef={props.inputRef}
                 type={props.type}
                 hint={props.hint}
                 label={props.label}
@@ -35,13 +36,13 @@ export const InputStyled = (props: InputProps) => {
         }
         case ("password"): {
             return <DefaultInput
+                ha={props.hintAlign}
                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
                 type={props.type}
                 helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
                 label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
                 variant="outlined"
-                ha={props.hintAlign}
                 InputLabelProps={{
                     shrink: true,
                 }}
