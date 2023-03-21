@@ -8,4 +8,4 @@ services:
     container_name: upfolio-frontend-dev
     environment:
       - PORT=3000
-      - NEXT_PUBLIC_BASE_URL='<NEXT_PUBLIC_BASE_URL>'
+      - NEXT_PUBLIC_BASE_URL=<NEXT_PUBLIC_BASE_URL>
