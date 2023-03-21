@@ -4,7 +4,7 @@ import React from "react";
 import {borders, colors} from "@/styles/variables";
 import {Text} from "@/shared/ui/text";
 
-export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "width" | "chilldren"> {
+export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "width" | "children"> {
     type?: "default" | "success";
     fill?: boolean;
     children?: React.ReactNode;
