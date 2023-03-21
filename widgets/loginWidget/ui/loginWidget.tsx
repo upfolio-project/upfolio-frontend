@@ -14,7 +14,7 @@ const ContainerStyled = styled(Container)`
   box-sizing: content-box;
 `;
 
-const Card = styled("form")`
+const Card = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,30 +29,37 @@ const Card = styled("form")`
 `;
 
 export const LoginWidget = () => {
-    const passwordRef = useRef<HTMLInputElement>(null);
-    const phoneRef = useRef<HTMLInputElement>(null);
-    const [loginByPassword] = useLoginByPasswordMutation();
     const loginHandler = () => {
         return loginByPassword({
             password: String(passwordRef?.current?.value),
             phoneNumber: String(phoneRef?.current?.value),
         });
     };
+
+    const passwordRef = useRef<HTMLInputElement>(null);
+    const phoneRef = useRef<HTMLInputElement>(null);
+    const [loginByPassword] = useLoginByPasswordMutation();
+
     return (
         <ContainerStyled>
-            <Card>
+            <Card onSubmit={(e) => {
+                e.preventDefault();
+                loginHandler();
+            }
+            }>
                 <Header size="s">Войдите в свой аккаунт</Header>
                 <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
-                <Box display="flex" flexDirection="column" gap="20px">
-                    <Input inputRef={phoneRef} type='phone' label='Телефон' placeholder='929-789-98-88'/>
-                    <Input inputRef={passwordRef} type='password' label='Пароль' hint='Забыли пароль?'
-                           placeholder='********'/>
-                    <Button onClick={loginHandler} type='success'
+                <Box display="flex" flexDirection="column" gap="20px" width="320px">
+                    <Input inputRef={phoneRef} type="phone" label="Телефон" placeholder="929-789-98-88"/>
+                    <Input inputRef={passwordRef} type="password" label="Пароль"
+                           hint={<Link size="s" href="" type="defaultLight" as="span">Забыли пароль?</Link>}
+                           placeholder="********" hintAlign="right"/>
+                    <Button type="success" buttonType="submit"
                             width="container">Войти</Button>
                 </Box>
                 <Box display="flex" gap="10px">
                     <Text type="defaultLight">У вас нет аккаунта?</Text>
-                    <Link href='/register' type='success'>Регистрация</Link>
+                    <Link href="/register" type="success">Регистрация</Link>
                 </Box>
             </Card>
         </ContainerStyled>
