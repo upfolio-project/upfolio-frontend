@@ -25,7 +25,7 @@ export const Login = commonApi.injectEndpoints({
 
                 const body = {password: password, phoneNumber: phone};
                 const result = await fetchWithBQ({
-                    url: '/v1/authorize/byPassword',
+                    url: '/authorize/byPassword',
                     method: 'POST',
                     body,
                 });
@@ -47,7 +47,7 @@ export const Login = commonApi.injectEndpoints({
                     const result = await queryFulfilled;
                     localStorage.setItem('token', result?.data?.token);
                     localStorage.setItem('refreshToken', result?.data?.refreshToken);
-                   dispatch(setAuth(true));
+                    dispatch(setAuth(true));
                 } catch (e: any) {
                     const error: string = e?.error?.error?.text || e?.error?.error;
                     dispatch(setError(GetErrorDescription(error)));
