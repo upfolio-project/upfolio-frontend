@@ -3,8 +3,8 @@ import {TextField} from "@mui/material";
 import {borders, colors, fonts} from "@/styles/variables";
 import React, {RefObject} from "react";
 
-export interface InputProps {
-    type?: "phone" | "password" | "default" | "email";
+interface DefaultInputProps {
+    type?: "phone" | "default" | "email";
     hint?: React.ReactNode;
     label?: string;
     hintType?: "default" | "secondary" | "success";
@@ -12,7 +12,15 @@ export interface InputProps {
     onChange?: (value: string) => void;
     inputRef?: RefObject<HTMLInputElement | null>;
     hintAlign?: "left" | "center" | "right";
+    autocomplete?: "username"
 }
+
+interface PasswordInputProps extends Omit<DefaultInputProps, "type" | "autocomplete">{
+    type: "password";
+    autocomplete?: "current-password" | "new-password"
+}
+
+export type InputProps = DefaultInputProps | PasswordInputProps
 
 interface TextFieldExtendsProps extends Omit<typeof TextField, ""> {
     ha?: "left" | "center" | "right";
