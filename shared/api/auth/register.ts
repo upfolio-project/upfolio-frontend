@@ -18,7 +18,7 @@ export const Register = commonApi.injectEndpoints({
     endpoints: build => ({
         getRegisterToken: build.query<RegisterTokenSuccessResponse, RegisterTokenRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
-                const localToken = window.localStorage.getItem("register") || undefined;
+                const localToken = window.localStorage.getItem("register");
 
                 if (localToken) {
                     return {data: {token: localToken, timestamp: ""}};
