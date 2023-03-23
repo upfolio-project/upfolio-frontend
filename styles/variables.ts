@@ -1,6 +1,6 @@
 const [dominantR, dominantG, dominantB] = [255, 255, 255];
 const [secondaryR, secondaryG, secondaryB] = [33, 33, 33];
-const [accentR, accentG, accentB] = [187, 240, 119];
+const [accentR, accentG, accentB] = [96, 2, 238];
 
 export const colors = {
     colorDominant: `rgba(${dominantR}, ${dominantG}, ${dominantB}, 1)`,
