@@ -31,7 +31,7 @@ const FooterStyled = styled("footer")`
   justify-content: center;
   align-items: center;
   gap: 40px;
-  margin-bottom: 120px;
+  margin-bottom: 100px;
 `;
 
 const MarkStyled = styled("mark")`

@@ -9,13 +9,13 @@ export const InProgressWidget = () => {
             flexDirection="column"
             gap="20px"
             alignItems="center"
-            maxWidth="540px"
         >
             <Title>
                 В разработке
             </Title>
             <Text size="m" align="center">
-                Упс... Страница, которую вы запрашиваете, находится в разработке.<br/>Мы готовим обновление. Попробуйте зайти позже.
+                Упс... Страница, которую вы запрашиваете, находится в разработке.<br/>
+                Мы готовим обновление. Попробуйте зайти позже.
             </Text>
             <LinkButton href="/" type="success">Вернуться на главную</LinkButton>
         </Box>
