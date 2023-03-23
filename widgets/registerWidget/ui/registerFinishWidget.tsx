@@ -1,34 +1,14 @@
-import {Box, Container} from "@mui/material";
-import styled from "styled-components";
+import {Box} from "@mui/material";
 import {Header, Text} from "@/shared/ui/text";
 import {Input} from "@/shared/ui/input";
-import {borders, shadows} from "@/styles/variables";
 import {Button} from "@/shared/ui/button";
 import {useEffect, useRef} from "react";
 import {
     useGetRegisterTokenQuery, useFinishMutation
 } from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
+import {FormFeature} from "@/features/formFeature";
 
-const ContainerStyled = styled(Container)`
-  max-width: 451px;
-  max-height: 465px;
-  box-sizing: content-box;
-`;
-
-const Card = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 20px;
-  padding: 40px;
-  width: 100%;
-  height: 100%;
-  box-shadow: ${shadows.defaultShadow};
-  border-radius: ${borders.radius10};
-`;
 
 export const RegisterFinishWidget = () => {
     useEffect(() => {
@@ -64,26 +44,24 @@ export const RegisterFinishWidget = () => {
     const [registerFinishHandler, registerData] = useFinishMutation();
 
     return (
-        <ContainerStyled>
-            <Card onSubmit={(e) => {
-                e.preventDefault();
-                if (formDataCheck()) finishHandler();
-            }
-            }>
-                <Header size="s">Введите свои данные</Header>
-                <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
-                <Box display="flex" flexDirection="column" gap="20px" width="320px">
-                    <Input inputRef={firstNameRef} label="Имя" placeholder="Иван"/>
-                    <Input inputRef={lastNameRef} label="Фамилия" placeholder="Петров"/>
-                    <Input inputRef={passwordRef} type="password" label="Пароль"
-                           hint="Должно быть не менее 8 символов"
-                           placeholder="********" autocomplete="new-password"/>
-                    <Input inputRef={passwordAgainRef} type="password" label="Повторите пароль"
-                           placeholder="********" hintAlign="right" autocomplete="new-password"/>
-                    <Button type="success" buttonType="submit"
-                            width="container">Зарегистрироваться</Button>
-                </Box>
-            </Card>
-        </ContainerStyled>
+        <FormFeature onSubmit={(e) => {
+            e.preventDefault();
+            if (formDataCheck()) finishHandler();
+        }
+        }>
+            <Header size="s">Введите свои данные</Header>
+            <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
+            <Box display="flex" flexDirection="column" gap="20px" width="320px">
+                <Input inputRef={firstNameRef} label="Имя" placeholder="Иван"/>
+                <Input inputRef={lastNameRef} label="Фамилия" placeholder="Петров"/>
+                <Input inputRef={passwordRef} type="password" label="Пароль"
+                       hint="Должно быть не менее 8 символов"
+                       placeholder="********" autocomplete="new-password"/>
+                <Input inputRef={passwordAgainRef} type="password" label="Повторите пароль"
+                       placeholder="********" hintAlign="right" autocomplete="new-password"/>
+                <Button type="success" buttonType="submit"
+                        width="container">Зарегистрироваться</Button>
+            </Box>
+        </FormFeature>
     );
 };

@@ -1,8 +1,6 @@
-import {Box, Container} from "@mui/material";
-import styled from "styled-components";
+import {Box} from "@mui/material";
 import {Header, Text} from "@/shared/ui/text";
 import {Input} from "@/shared/ui/input";
-import {borders, shadows} from "@/styles/variables";
 import {Button} from "@/shared/ui/button";
 import {Link} from "@/shared/ui/link";
 import {useEffect, useRef} from "react";
@@ -11,26 +9,7 @@ import {
     useGetRegisterTokenQuery
 } from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
-
-const ContainerStyled = styled(Container)`
-  max-width: 451px;
-  max-height: 465px;
-  box-sizing: content-box;
-`;
-
-const Card = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 20px;
-  padding: 40px;
-  width: 100%;
-  height: 100%;
-  box-shadow: ${shadows.defaultShadow};
-  border-radius: ${borders.radius10};
-`;
+import {FormFeature} from "@/features/formFeature";
 
 export const RegisterOTPWidget = () => {
     useEffect(() => {
@@ -52,8 +31,7 @@ export const RegisterOTPWidget = () => {
     const [registerOTPHandler, registerData] = useConfirmPhoneOTPMutation();
 
     return (
-        <ContainerStyled>
-            <Card onSubmit={(e) => {
+            <FormFeature onSubmit={(e) => {
                 e.preventDefault();
                 OTPHandler();
             }
@@ -67,7 +45,6 @@ export const RegisterOTPWidget = () => {
                     <Text type="defaultLight" size="s">Не пришёл код?</Text>
                     <Link href="/login" type="success" size="s">Отправить повторно</Link>
                 </Box>
-            </Card>
-        </ContainerStyled>
+            </FormFeature>
     );
 };
