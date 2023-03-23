@@ -1,12 +1,18 @@
+const [dominantR, dominantG, dominantB] = [255, 255, 255];
+const [secondaryR, secondaryG, secondaryB] = [33, 33, 33];
+const [accentR, accentG, accentB] = [187, 240, 119];
+
 export const colors = {
-    colorDominant: "#FFF",
-    colorDominant50: "rgba(255, 255, 255, .5)",
+    colorDominant: `rgba(${dominantR}, ${dominantG}, ${dominantB}, 1)`,
+    colorDominant50: `rgba(${dominantR}, ${dominantG}, ${dominantB}, .5)`,
 
-    colorSecondary: "#212121",
-    colorSecondary50: "rgba(33, 33, 33, .5)",
+    colorSecondary: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, 1)`,
+    colorSecondary50: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .5)`,
+    colorSecondary20: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .2)`,
 
-    colorAccent: "#BBF077",
-    colorAccent50: "rgba(187, 240, 119, .5)",
+    colorAccent: `rgba(${accentR}, ${accentG}, ${accentB}, 1)`,
+    colorAccent50: `rgba(${accentR}, ${accentG}, ${accentB}, .5)`,
+    colorAccent20: `rgba(${accentR}, ${accentG}, ${accentB}, .2)`,
 
     colorTransparent: "transparent"
 };
