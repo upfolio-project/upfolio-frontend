@@ -39,7 +39,6 @@ const LinkStyled = styled(Link)`
     
     & p, & span {
       color: ${colors.colorAccent} !important;
-      
     }
   }
 `;
