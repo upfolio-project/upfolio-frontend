@@ -46,7 +46,7 @@ function getFontStyle({style}: FontProps) {
         case "italic":
             return "italic 400";
         case "bold":
-            return "normal 600";
+            return "normal 700";
     }
 }
 
