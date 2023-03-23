@@ -1,5 +1,5 @@
 import {Box} from "@mui/material";
-import {Header, Text} from "@/shared/ui/text";
+import {Header} from "@/shared/ui/text";
 import {Input} from "@/shared/ui/input";
 import {Button} from "@/shared/ui/button";
 import {useEffect, useRef} from "react";
@@ -50,7 +50,6 @@ export const RegisterFinishWidget = () => {
         }
         }>
             <Header size="s">Введите свои данные</Header>
-            <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
             <Box display="flex" flexDirection="column" gap="20px" width="320px">
                 <Input inputRef={firstNameRef} label="Имя" placeholder="Иван"/>
                 <Input inputRef={lastNameRef} label="Фамилия" placeholder="Петров"/>
