@@ -123,8 +123,12 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                 </Box>
                 <Box display="flex" gap={2}>
                     <Checkbox size="l">Чекбокс</Checkbox>
-                    <Checkbox>Чекбокс</Checkbox>
-                    <Checkbox size="s" type="defaultLight">Чекбокс</Checkbox>
+                    <Checkbox size="l" checked>Чекбокс</Checkbox>
+                    <Checkbox size="l" disabled>Чекбокс</Checkbox>
+                    <Checkbox size="l" checked disabled>Чекбокс</Checkbox>
+                    <Checkbox size="l">Чекбокс</Checkbox>
+                    <Checkbox size="l">Чекбокс</Checkbox>
+
                 </Box>
             </Box>
         </Box>
