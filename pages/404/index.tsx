@@ -2,23 +2,11 @@ import styled from "styled-components";
 import {Box} from "@mui/material";
 import {Text, Title} from "@/shared/ui/text";
 import {LinkButton} from "@/shared/ui/button";
-import {Header} from "@/widgets/headerWidget";
-import {FooterWidget} from "@/widgets/footerWidget";
-
-const Main = styled.main`
-  box-sizing: border-box;
-  padding-top: 120px;
-  padding-bottom: 160px;
-  min-height: 100vh;
-  height: max-content;
-  width: 100vw;
-`;
+import {BaseLayout} from "@/layouts/baseLayout";
 
 export default function Error404() {
     return (
-        <>
-            <Header/>
-            <Main>
+        <BaseLayout>
                 <Box
                     width="100vw"
                     display="flex"
@@ -38,9 +26,7 @@ export default function Error404() {
                             <LinkButton href="/" type="success">Вернуться на главную</LinkButton>
                         </RootStyled>
                 </Box>
-            </Main>
-            <FooterWidget/>
-        </>
+        </BaseLayout>
     );
 }
 

@@ -25,7 +25,7 @@ export const LinkButton = (props: LinkButtonProps) => {
                   fill={(props.fill === undefined || props.fill) ? "1" : "0"}
                   w={props.width}
         >
-            <Text size="m">{props.children}</Text>
+            <Text size="m" style="bold">{props.children}</Text>
         </ButtonUI>
     );
 };

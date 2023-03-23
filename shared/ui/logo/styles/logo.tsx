@@ -15,7 +15,7 @@ function getSrc(withText: boolean | undefined, logoWithText: StaticImageData | s
 export const Logo = (props: LogoProps) => {
     switch (props.size) {
         case "s":
-            return <LogoContainer width='125px' height='30px'
+            return <LogoContainer width='auto' height='24px'
                                   src={getSrc(props.withText, logoWithTextSizeS, logoWithoutTextSizeS)} alt=''/>;
         case "m":
             return <LogoContainer width='125px' height='30px'
@@ -41,8 +41,8 @@ const LogoContainer = ({width, height, src, alt}: LogoContainerProps) => {
 };
 
 const ImgStyled = styled(Image)`
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
 `;
 
 interface ImgWrapperProps {
