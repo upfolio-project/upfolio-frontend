@@ -62,18 +62,6 @@ export const Register = commonApi.injectEndpoints({
                 if (result.error) throw result.error;
                 return {data};
             },
-            async onQueryStarted(data, {queryFulfilled, dispatch}) {
-                const {setStep, setError} = registerSlice.actions;
-                try {
-                    const result = await queryFulfilled;
-                    if (result.data.success && result.data.timestamp) {
-                        dispatch(setStep(1));
-                    }
-                } catch (e: any) {
-                    const error: string = e?.error?.error;
-                    dispatch(setError(GetErrorDescription(error)));
-                }
-            },
             invalidatesTags: [],
         }),
         confirmPhoneOTP: build.mutation<SuccessResponse, ConfirmPhoneOTPRequest>({
@@ -100,18 +88,6 @@ export const Register = commonApi.injectEndpoints({
                 if (result.error) throw result.error;
 
                 return {data};
-            },
-            async onQueryStarted(data, {queryFulfilled, dispatch}) {
-                const {setError, setStep} = registerSlice.actions;
-                try {
-                    const result = await queryFulfilled;
-                    if (result.data.success && result.data.timestamp) {
-                        dispatch(setStep(2));
-                    }
-                } catch (e: any) {
-                    const error: string = e?.error?.error;
-                    dispatch(setError(GetErrorDescription(error)));
-                }
             },
             invalidatesTags: []
         }),
