@@ -2,7 +2,7 @@ import {InputAdornment} from "@mui/material";
 import {useIMask} from "react-imask";
 import styled from "styled-components";
 import {borders, colors, fonts} from "@/styles/variables";
-import {DefaultInput, InputProps} from "./inputBase";
+import {DefaultInput, InputProps} from "./baseInput";
 import {Text} from "@/shared/ui/text";
 
 const PhoneStart = () => (
