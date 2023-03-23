@@ -35,7 +35,6 @@ const LinkStyled = styled(Link)`
   }
   
   &:hover {
-    text-decoration: underline;
     color: ${colors.colorAccent} !important;
     
     & p, & span {
