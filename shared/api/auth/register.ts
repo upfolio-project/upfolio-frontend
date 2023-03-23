@@ -2,14 +2,13 @@ import {commonApi} from "@/shared/api";
 import {
     ConfirmPhoneOTPRequest, FinishRegistrationRequest,
     JWTSuccessAuthResponse,
-    RegisterByPhoneNumberRequest,
+    RegisterByPhoneNumberRequest, RegisterTokenRequest, RegisterTokenSuccessResponse,
     SuccessResponse
 } from "@/shared/api/entities";
 import {
     GetValidationCode,
     GetValidationPassword,
     GetValidationPhone,
-    GetValidationUsername
 } from "@/shared/api/services/getValidation";
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 import {registerSlice} from "@/shared/store/authSlice/register";
@@ -17,10 +16,37 @@ import {loginSlice} from "@/shared/store/authSlice/login";
 
 export const Register = commonApi.injectEndpoints({
     endpoints: build => ({
+        getRegisterToken: build.query<RegisterTokenSuccessResponse, RegisterTokenRequest>({
+            queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
+                const localToken = window.localStorage.getItem("register") || undefined;
+
+                if (localToken) {
+                    return {data: {token: localToken, timestamp: ""}};
+                }
+
+                const result = await fetchWithBQ({
+                    url: '/register/getRegisterToken',
+                    method: 'Get'
+                });
+
+                const data = result?.data as RegisterTokenSuccessResponse;
+                if (!data?.token) return {
+                    error: {
+                        error: 'Bad phone',
+                        status: 'CUSTOM_ERROR',
+                    }
+                };
+
+                window.localStorage.setItem("register", data.token);
+                return {data: data};
+            },
+            providesTags: () => []
+        }),
         commenceByPhoneNumber: build.mutation<SuccessResponse, RegisterByPhoneNumberRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
-                const {phoneNumber} = arg;
-                if (GetValidationPhone(phoneNumber)) return {
+                const {phoneNumber, registerToken} = arg;
+                const phone = '7' + phoneNumber.split('').map(value => value == '-' ? '' : value).join('');
+                if (GetValidationPhone(phone)) return {
                     error: {
                         error: 'Bad phone',
                         status: 'CUSTOM_ERROR',
@@ -29,19 +55,11 @@ export const Register = commonApi.injectEndpoints({
                 const result = await fetchWithBQ({
                     url: '/register/phoneNumber',
                     method: 'POST',
-                    body: arg
+                    body: {registerToken: registerToken, phoneNumber: phone}
                 });
 
                 const data = result.data as SuccessResponse;
-
-                if (data?.success) return {
-                    error: {
-                        error: '',
-                        status: 'CUSTOM_ERROR',
-                    }
-                };
                 if (result.error) throw result.error;
-
                 return {data};
             },
             async onQueryStarted(data, {queryFulfilled, dispatch}) {
@@ -99,26 +117,23 @@ export const Register = commonApi.injectEndpoints({
         }),
         finish: build.mutation<JWTSuccessAuthResponse, FinishRegistrationRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
-                const {password, username} = arg;
+                const {password} = arg;
                 if (GetValidationPassword(password)) return {
                     error: {
                         error: 'Bad password',
                         status: 'CUSTOM_ERROR'
                     }
                 };
-                if (GetValidationUsername(username)) return {
-                    error: {
-                        error: 'Bad username',
-                        status: 'CUSTOM_ERROR'
-                    }
-                };
+
                 const result = await fetchWithBQ({
                     url: '/register/finish',
                     method: 'POST',
                     body: arg
                 });
+
                 const data = result.data as JWTSuccessAuthResponse;
-                if (!data.refreshToken || !data.token) return {
+
+                if (!data.token) return {
                     error: {
                         error: '',
                         status: 'CUSTOM_ERROR',
@@ -134,10 +149,11 @@ export const Register = commonApi.injectEndpoints({
                 const {setAuth} = loginSlice.actions;
                 try {
                     const result = await queryFulfilled;
-                    if (result.data.token && result.data.refreshToken) {
+                    if (result.data.token) {
                         dispatch(setAuth(true));
                         localStorage.setItem('token', result?.data?.token);
                         localStorage.setItem('refreshToken', result?.data?.refreshToken);
+                        localStorage.removeItem('register');
                     }
                 } catch (e: any) {
                     const error: string = e?.error?.error;
@@ -150,4 +166,9 @@ export const Register = commonApi.injectEndpoints({
     overrideExisting: false,
 });
 
-export const {useCommenceByPhoneNumberMutation} = Register;
+export const {
+    useCommenceByPhoneNumberMutation,
+    useGetRegisterTokenQuery,
+    useConfirmPhoneOTPMutation,
+    useFinishMutation
+} = Register;
