@@ -18,30 +18,29 @@ export const ContainerStyled = styled(Container)`
 export const MainWidget = () => {
     return (
         <ContainerStyled>
-            <Box display='flex' alignItems='center' gap='10px'>
-                <Logo size='s' withText={true}/>
+            <Box display="flex" alignItems="center">
+                <Logo size="s" withText={true}/>
             </Box>
-            <Box>
+            <Box maxWidth="660px">
                 <Title>
                     платформа, которая позволяет
                     соискателям находить работу,
-                    <br/>а работодателям — работников или
-                    стажеров.
+                    а&nbsp;работодателям — работников&nbsp;или&nbsp;стажёров
                 </Title>
             </Box>
-            <Box display='flex' flexWrap='wrap' gap='39.5px' flexDirection='column' maxWidth='443px'>
-                <Text size='m' align="center">
-                    Мы хотим упростить взаимодействие
-                    между студентами и IT-компаниями
-                </Text>
-                <Box display='flex' gap='20px' justifyContent='center'>
-                    <LinkButton href='/register/enterPhone' type='success'>
-                        Зарегистрироваться
-                    </LinkButton>
-                    <LinkButton href='/login' type='default'>
-                        Войти
-                    </LinkButton>
-                </Box>
+            <Box maxWidth="300px">
+            <Text size="m" align="center">
+                Мы хотим упростить взаимодействие
+                между студентами и IT-компаниями
+            </Text>
+            </Box>
+            <Box display="flex" gap="20px" justifyContent="center">
+                <LinkButton href="/register/enterPhone" type="success">
+                    Зарегистрироваться
+                </LinkButton>
+                <LinkButton href="/login" type="default">
+                    Войти
+                </LinkButton>
             </Box>
         </ContainerStyled>
     );

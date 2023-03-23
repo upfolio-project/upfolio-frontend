@@ -8,14 +8,14 @@ export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "wid
     type?: "default" | "success";
     fill?: boolean;
     children?: React.ReactNode;
-    width?: "content" | "container"
-    buttonType?: "submit" | "button"
+    width?: "content" | "container";
+    buttonType?: "submit" | "button";
 }
 
 interface InnerButtonProps extends ButtonMUIProps {
     t?: "default" | "success";
     fill?: "0" | "1";
-    w?: "content" | "container"
+    w?: "content" | "container";
 }
 
 export const Button = (props: ButtonProps) => {
@@ -26,7 +26,7 @@ export const Button = (props: ButtonProps) => {
                   w={props.width}
                   type={props.buttonType || "button"}
         >
-            {<Text size="m">{props.children}</Text>}
+            {<Text size="m" style="bold">{props.children}</Text>}
         </ButtonUI>
     );
 };
@@ -44,23 +44,33 @@ function getBackgroundColor({t, fill}: InnerButtonProps) {
 }
 
 function getTextColor({t, fill}: InnerButtonProps) {
-    if (fill === "0") return colors.colorSecondary;
+    if (fill === "0") {
+        switch (t) {
+            case undefined:
+            case "default":
+                return colors.colorSecondary;
+            case "success":
+                return colors.colorAccent;
+        }
+    }
     switch (t) {
         case undefined:
         case "default":
             return colors.colorDominant;
         case "success":
-            return colors.colorSecondary;
+            return colors.colorDominant;
     }
 }
 
-function getTextColorHover({t}: InnerButtonProps) {
+function getTextColorHover({t, fill}: InnerButtonProps) {
     switch (t) {
         case undefined:
         case "default":
-            return colors.colorDominant;
+            if (fill === "0") return colors.colorDominant;
+                return colors.colorSecondary;
         case "success":
-            return colors.colorSecondary;
+            if (fill === "0") return colors.colorDominant;
+            return colors.colorAccent;
     }
 }
 
@@ -78,12 +88,12 @@ function getBackgroundColorHover({fill, t}: InnerButtonProps) {
     switch (t) {
         case undefined:
         case "default": {
-            if (fill) return colors.colorSecondary50;
-            return colors.colorSecondary;
+            if (fill === "0") return colors.colorSecondary;
+            return colors.colorDominant;
         }
         case "success": {
-            if (fill) return colors.colorAccent50;
-            return colors.colorAccent;
+            if (fill === "0") return colors.colorAccent;
+            return colors.colorDominant;
         }
     }
 }
@@ -133,7 +143,6 @@ export const ButtonUI = styled(ButtonMUI)<InnerButtonProps>`
   &:hover {
     opacity: 1;
     background-color: ${props => getBackgroundColorHover(props)};
-    border: ${borders.width2px(colors.colorTransparent)};
 
     p {
       color: ${props => getTextColorHover(props)} !important;

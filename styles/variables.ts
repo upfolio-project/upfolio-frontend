@@ -1,6 +1,6 @@
 const [dominantR, dominantG, dominantB] = [255, 255, 255];
 const [secondaryR, secondaryG, secondaryB] = [33, 33, 33];
-const [accentR, accentG, accentB] = [187, 240, 119];
+const [accentR, accentG, accentB] = [96, 2, 238];
 
 export const colors = {
     colorDominant: `rgba(${dominantR}, ${dominantG}, ${dominantB}, 1)`,
@@ -46,20 +46,20 @@ function getFontStyle({style}: FontProps) {
         case "italic":
             return "italic 400";
         case "bold":
-            return "normal 600";
+            return "normal 700";
     }
 }
 
 export const fonts = {
     s: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 12px/16px Rubik, sans-serif`,
-    m: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 18px/22px Rubik, sans-serif`,
+    m: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 16px/18px Rubik, sans-serif`,
     l: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 24px/28px Rubik, sans-serif`,
 
-    h3: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 32px/38px Rubik, sans-serif`,
+    h3: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 24px/28px Rubik, sans-serif`,
     h2: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 48px/56px Rubik, sans-serif`,
     h1: ({style}: FontProps = defaultFont) => `${getFontStyle({style})} 64px/76px Rubik, sans-serif`,
 
-    title: () => `normal 900 40px/50px Unbounded, sans-serif`,
+    title: () => `normal 900 24px/30px Unbounded, sans-serif`,
     // future
     // subtitle: `normal 900 40px/50px Unbounded, sans-serif`,
 };

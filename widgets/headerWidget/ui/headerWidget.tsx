@@ -9,8 +9,10 @@ const AppBarStyled = styled(AppBar)`
   align-items: center;
   box-shadow: none;
   background-color: ${colors.colorDominant};
+  margin-top: 50px;
 
   & * {
+    min-height: max-content;
     gap: 40px;
   }
 `;
