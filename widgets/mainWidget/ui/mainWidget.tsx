@@ -35,7 +35,7 @@ export const MainWidget = () => {
                     между студентами и IT-компаниями
                 </Text>
                 <Box display='flex' gap='20px' justifyContent='center'>
-                    <LinkButton href='#' type='success'>
+                    <LinkButton href='/register/enterPhone' type='success'>
                         Зарегистрироваться
                     </LinkButton>
                     <LinkButton href='/login' type='default'>
