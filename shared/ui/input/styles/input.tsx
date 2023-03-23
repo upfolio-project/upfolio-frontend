@@ -1,4 +1,4 @@
-import {DefaultInput, InputProps} from "./inputBase";
+import {DefaultInput, InputProps} from "./baseInput";
 import {PhoneInput} from "./phoneInput";
 import {Text} from "@/shared/ui/text";
 
@@ -20,6 +20,7 @@ export const InputStyled = (props: InputProps) => {
                     shrink: true,
                 }}
                 InputProps={{
+                    autoComplete: props.autocomplete,
                     inputRef: props.inputRef
                 }}
             />;
@@ -38,7 +39,7 @@ export const InputStyled = (props: InputProps) => {
             return <DefaultInput
                 ha={props.hintAlign}
                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
-                type={props.type}
+                type="password"
                 helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
                 label={<Text size="m">{props.label}</Text>}
                 placeholder={props.placeholder}
@@ -47,6 +48,7 @@ export const InputStyled = (props: InputProps) => {
                     shrink: true,
                 }}
                 InputProps={{
+                    autoComplete: props.autocomplete,
                     inputRef: props.inputRef
                 }}
             />;

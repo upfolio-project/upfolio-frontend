@@ -2,7 +2,9 @@ type ProfileModelType = 'PUBLIC' | 'PRIVATE' | 'CONTACTS_HIDDEN' | 'CONTACTS_FOR
 type ProfileModelStatus = 'LOOKING_FOR_JOB' | 'FOUND_JOB' | 'NOT_LOOKING_FOR_JOB'
 
 export interface FinishRegistrationRequest {
-    username: string,
+    registerToken: string
+    firstName: string
+    lastName: string
     password: string
 }
 
@@ -12,12 +14,20 @@ export interface JWTSuccessAuthResponse {
     refreshToken: string
 }
 
+export interface RegisterTokenSuccessResponse {
+    token: string
+    timestamp: string
+}
+
+export interface RegisterTokenRequest {}
+
 export interface AuthorizeByPasswordRequest {
     phoneNumber: string
     password: string
 }
 
 export interface ConfirmPhoneOTPRequest {
+    registerToken: string
     code: string
 }
 
@@ -27,6 +37,7 @@ export interface SuccessResponse {
 }
 
 export interface RegisterByPhoneNumberRequest {
+    registerToken: string
     phoneNumber: string
 }
 
