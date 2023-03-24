@@ -19,7 +19,8 @@ export interface RegisterTokenSuccessResponse {
     timestamp: string
 }
 
-export interface RegisterTokenRequest {}
+export interface RegisterTokenRequest {
+}
 
 export interface AuthorizeByPasswordRequest {
     phoneNumber: string
@@ -68,4 +69,14 @@ export interface ProfileModel {
 export interface GetProfileResponse {
     timestamp: string
     profile: ProfileModel
+}
+
+export interface EditProfileModel {
+    username: string
+    realName: UserRealNameModel
+    type: ProfileModelType
+    status: ProfileModelStatus
+    bio: string
+    tags: [string]
+    dateOfBirth: string
 }
