@@ -3,11 +3,18 @@ import {Header, Text} from "@/shared/ui/text";
 import {Input} from "@/shared/ui/input";
 import {Button} from "@/shared/ui/button";
 import {Link} from "@/shared/ui/link";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import {useLoginByPasswordMutation} from "@/shared/api/auth/login";
 import {FormFeature} from "@/features/formFeature";
+import {useRouter} from "next/router";
 
 export const LoginWidget = () => {
+    useEffect(() => {
+        if (loginData?.status === "fulfilled" && loginData?.data?.token) {
+            router.push("/me");
+        }
+    });
+
     const loginHandler = () => {
         return loginByPassword({
             password: String(passwordRef?.current?.value),
@@ -17,7 +24,9 @@ export const LoginWidget = () => {
 
     const passwordRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
-    const [loginByPassword] = useLoginByPasswordMutation();
+
+    const router = useRouter();
+    const [loginByPassword, loginData] = useLoginByPasswordMutation();
 
     return (
         <FormFeature onSubmit={(e) => {
