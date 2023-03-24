@@ -8,21 +8,21 @@ export const InputStyled = (props: InputProps) => {
         case "default":
         case undefined:
         case null: {
-            return <DefaultInput
-                ha={props.hintAlign}
-                onChange={(event) => props.onChange && props.onChange(event.target.value)}
-                type={props.type}
-                helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
-                label={<Text size="m">{props.label}</Text>}
-                placeholder={props.placeholder}
-                variant="outlined"
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                InputProps={{
-                    autoComplete: props.autocomplete,
-                    inputRef: props.inputRef
-                }}
+            return <DefaultInput defaultValue={props.defaultValue}
+                                 ha={props.hintAlign}
+                                 onChange={(event) => props.onChange && props.onChange(event.target.value)}
+                                 type={props.type}
+                                 helperText={<Text size="s" type="defaultLight" as="span">{props.hint}</Text>}
+                                 label={<Text size="m">{props.label}</Text>}
+                                 placeholder={props.placeholder}
+                                 variant="outlined"
+                                 InputLabelProps={{
+                                     shrink: true,
+                                 }}
+                                 InputProps={{
+                                     autoComplete: props.autocomplete,
+                                     inputRef: props.inputRef
+                                 }}
             />;
         }
         case ("phone"): {
