@@ -8,6 +8,8 @@ export const colors = {
 
     colorSecondary: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, 1)`,
     colorSecondary50: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .5)`,
+    colorSecondary05: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .05)`,
+
     colorSecondary20: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .2)`,
 
     colorAccent: `rgba(${accentR}, ${accentG}, ${accentB}, 1)`,
