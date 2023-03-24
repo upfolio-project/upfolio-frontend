@@ -25,7 +25,7 @@ interface UserWidgetProps {
     username: string;
 }
 
-const UserWidget = ({username}: UserWidgetProps) => {
+const ProfileWidget = ({username}: UserWidgetProps) => {
     const {data: me, isLoading: getMeLoading, isError} = useGetMeQuery({});
     const router = useRouter();
 
@@ -78,7 +78,7 @@ const UserWidgetStyled = ({username}: UserWidgetProps) => {
             gap="20px"
             justifyContent="center"
         >
-            <UserWidget username={username}/>
+            <ProfileWidget username={username}/>
         </Box>
     );
 };

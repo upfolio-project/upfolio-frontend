@@ -3,7 +3,7 @@ import {Meta} from "@/shared/seo";
 import {GetServerSideProps} from "next";
 import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
-import {UserWidget} from "@/widgets/userWidget";
+import {UserWidget} from "@/widgets/profileWidget";
 import {PageLayout} from "@/layouts/pageLayout";
 import {BASE_URL} from "@/shared/api";
 import {ProfileModel} from "@/shared/api/entities";
