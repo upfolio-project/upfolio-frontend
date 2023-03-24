@@ -1,5 +1,10 @@
 type ProfileModelType = 'PUBLIC' | 'PRIVATE' | 'CONTACTS_HIDDEN' | 'CONTACTS_FOR_COMPANIES'
-type ProfileModelStatus = 'LOOKING_FOR_JOB' | 'FOUND_JOB' | 'NOT_LOOKING_FOR_JOB'
+
+export enum ProfileModelStatus {
+    LOOKING_FOR_JOB = "LOOKING_FOR_JOB",
+    FOUND_JOB = "FOUND_JOB",
+    NOT_LOOKING_FOR_JOB = "NOT_LOOKING_FOR_JOB",
+}
 
 export interface FinishRegistrationRequest {
     registerToken: string
