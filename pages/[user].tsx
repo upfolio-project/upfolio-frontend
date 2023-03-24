@@ -1,32 +1,24 @@
-import Error404 from "@/pages/404";
 import {useRouter} from "next/router";
 import {Meta} from "@/shared/seo";
 import {GetServerSideProps} from "next";
 import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
+import {UserWidget} from "@/widgets/userWidget";
+import {PageLayout} from "@/layouts/pageLayout";
+import {BASE_URL} from "@/shared/api";
+import {ProfileModel} from "@/shared/api/entities";
+
 
 function OtherPages() {
-    function getUser(username: string) {
-        if (username) {
-            return null;
-        }
-        return null;
-    }
-
     const route = useRouter();
 
     // TODO hook for this
     const username = route.asPath.replace("/", "");
 
-    const user = getUser(username);
-    if (!user) {
-        return (
-            <Error404/>
-        );
-    }
     return (
-        // user page here
-        <></>
+        <PageLayout>
+            <UserWidget username={username}/>
+        </PageLayout>
     );
 }
 
@@ -40,17 +32,10 @@ interface Context extends ParsedUrlQuery {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext<Context>) => {
     const username = context.params?.user || "";
+    const profile: ProfileModel = await fetch(`${BASE_URL}/profile/${username}`|| "")
+        .then(response => response.json().then(data => data?.profile));
 
-    function getUserData(user: string): null | { username: string, description: string, user: string } {
-        // return {user: user, username: "Пупкин Иван", description: "Самое крутое описание пользователя"};
-
-        // user; need to avoid `unused-vars` error
-        user; return null;
-    }
-
-    // this data from specific API handler that return name and description
-    const userData = getUserData(username);
-    if (!userData) {
+    if (!profile) {
         return {
             props: {
                 meta: {
@@ -71,7 +56,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
                     },
                     {
                         name: "description",
-                        content: userData.description,
+                        content: profile.bio,
                         key: "description"
                     },
                     {
@@ -81,12 +66,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
                     },
                     {
                         property: "og:site_name",
-                        content: userData.username,
+                        content: `${profile.realName.firstName} ${profile.realName.lastName}`,
                         key: "socialNetworkSiteName"
                     },
                     {
                         property: "og:description",
-                        content: userData.description,
+                        content: profile.bio,
                         key: "socialNetworkDescription"
                     },
                     {
@@ -94,6 +79,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
                         content: "website",
                         key: "socialNetworkType"
                     },
+                    {
+                        property: "og:image",
+                        content: profile.profilePhotoUrl,
+                        key: "socialNetworkImage"
+                    }
                 ]
             }
         }
