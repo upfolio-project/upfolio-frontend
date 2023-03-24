@@ -6,6 +6,7 @@ import {Skeleton} from "./skeleton";
 import {AboutUser, UserBio, UserContacts} from "@/entities/userData";
 import {useRouter} from "next/router";
 import {useCallback, useEffect} from "react";
+import {Error404Entity} from "@/entities/error404Entity";
 
 const PortfolioData = styled(Box)`
   width: 676px;
@@ -45,11 +46,13 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
 
     const {
         data: userData,
-        isLoading: getProfileLoading
+        isLoading: getProfileLoading, 
+        isError: getProfileError
     } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
 
     const profile = userData?.profile;
 
+    if (getProfileError) return <Box position="absolute" top="200px"><Error404Entity/></Box>;
     if (getProfileLoading || !profile) return <Skeleton/>;
 
     return (
