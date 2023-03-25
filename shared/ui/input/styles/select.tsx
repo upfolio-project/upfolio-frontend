@@ -78,8 +78,8 @@ const SelectStyled = styled(MUISelect)`
   }
 
   &:hover > div, &:focus-visible > div, &:focus-within > div {
-    border: ${borders.width2px(colors.colorAccent50)};
-    border-radius: ${borders.radius10};
+    border: ${borders.width2px(colors.colorAccent50)} !important;
+    border-radius: ${borders.radius10} !important;
   }
 `;
 
