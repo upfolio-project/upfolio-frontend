@@ -51,7 +51,7 @@ function statusToString(status: ProfileModelStatus | undefined) {
         case ProfileModelStatus.LOOKING_FOR_JOB:
             return "Ищу работу";
         case ProfileModelStatus.FOUND_JOB:
-            return "Нашел работу";
+            return "Нашёл работу";
         default:
             return "";
     }
@@ -81,7 +81,8 @@ const Tags = ({tags}: { tags: string[] | undefined }) => {
 };
 
 const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, status}: AboutUserProps) => {
-    const ageHumanity = dateOfBirth ? dateOfBirthToAgeString(new Date(dateOfBirth)) : undefined;
+    const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
+        dateOfBirthToAgeString(new Date(dateOfBirth || "")) : undefined;
 
     const statusString = statusToString(status);
     return (
@@ -91,7 +92,7 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, sta
                 <Header size="s" style="bold">
                     {firstName} {lastName}
                 </Header>
-                {ageHumanity && <Text size="m">{ageHumanity}</Text>}
+                {!!(new Date(dateOfBirth || "").getDate()) && <Text size="m">{ageHumanity}</Text>}
                 <Text size="m" type="success">{statusString}</Text>
                 <Tags tags={tags}/>
             </InfoContainer>
