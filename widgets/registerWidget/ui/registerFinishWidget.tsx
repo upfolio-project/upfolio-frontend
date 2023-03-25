@@ -13,7 +13,7 @@ import {FormFeature} from "@/features/formFeature";
 export const RegisterFinishWidget = () => {
     useEffect(() => {
         if (registerData?.status === "fulfilled" && registerData?.data?.token) {
-            router.push("/");
+            router.push("/me");
         }
     });
 

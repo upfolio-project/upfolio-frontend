@@ -27,7 +27,7 @@ export const Header = () => {
                 <Link href='/companies'>Компании</Link>
                 <Link href='/partners'>Партнёры</Link>
                 <Link href='/about'>О платформе</Link>
-                <Link href='#'>Личный кабинет</Link>
+                <Link href='/me'>Личный кабинет</Link>
             </Toolbar>
         </AppBarStyled>
     );

@@ -41,8 +41,9 @@ function getColor({type}: TextProps) {
     }
 }
 
-export function Text({size, style, type, children, as, align}: TextProps) {
+export function Text({className, size, style, type, children, as, align}: TextProps) {
     return <TextStyled
+        className={className}
         s={size}
         st={style}
         t={type}

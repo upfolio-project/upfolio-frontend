@@ -13,9 +13,12 @@ interface DefaultInputProps {
     inputRef?: RefObject<HTMLInputElement | null>;
     hintAlign?: "left" | "center" | "right";
     autocomplete?: "username"
+    defaultValue?: React.ReactNode
+    before?: React.ReactNode
+    className?: string
 }
 
-interface PasswordInputProps extends Omit<DefaultInputProps, "type" | "autocomplete">{
+interface PasswordInputProps extends Omit<DefaultInputProps, "type" | "autocomplete"> {
     type: "password";
     autocomplete?: "current-password" | "new-password"
 }
@@ -29,7 +32,7 @@ interface TextFieldExtendsProps extends Omit<typeof TextField, ""> {
 export const DefaultInput = styled(TextField)<TextFieldExtendsProps>`
   width: 100%;
   overflow: hidden;
-  
+
   & label {
     transition: color .3s;
     display: block;
@@ -60,13 +63,14 @@ export const DefaultInput = styled(TextField)<TextFieldExtendsProps>`
     box-sizing: border-box;
     padding: 0 18px;
     font: ${fonts.m()};
-    
+
     ::placeholder,
     ::-webkit-input-placeholder {
       opacity: 1 !important;
       color: ${colors.colorSecondary50}
 
     }
+
     :-ms-input-placeholder {
       opacity: 1 !important;
       color: ${colors.colorSecondary50}
@@ -84,7 +88,7 @@ export const DefaultInput = styled(TextField)<TextFieldExtendsProps>`
     display: flex;
     justify-content: ${props => props.ha || "left"};
   }
-  
+
   & > div {
     overflow: hidden;
     border-radius: ${borders.radius10};
