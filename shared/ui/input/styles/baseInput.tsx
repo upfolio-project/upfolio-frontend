@@ -13,7 +13,9 @@ interface DefaultInputProps {
     inputRef?: RefObject<HTMLInputElement | null>;
     hintAlign?: "left" | "center" | "right";
     autocomplete?: "username"
-    defaultValue?: string
+    defaultValue?: React.ReactNode
+    before?: React.ReactNode
+    className?: string
 }
 
 interface PasswordInputProps extends Omit<DefaultInputProps, "type" | "autocomplete"> {
