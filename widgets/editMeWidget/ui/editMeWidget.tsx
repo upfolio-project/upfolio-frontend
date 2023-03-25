@@ -4,7 +4,8 @@ import {useEditProfileMutation, useGetMeQuery, useGetProfileQuery} from "@/share
 import {ChipInput, DatePicker, Input, Select, TextField} from "@/shared/ui/input";
 import {ProfileModelStatus} from "@/shared/api/entities";
 import {Button} from "@/shared/ui/button";
-import React, {useRef} from "react";
+import React, {useCallback, useEffect, useRef} from "react";
+import {useRouter} from "next/router";
 
 const Container = styled(Box)`
   width: 100vw;
@@ -31,7 +32,18 @@ const statuses = [
 ];
 
 const EditMeWidget = () => {
-    const {data: me, isLoading: getMeLoading} = useGetMeQuery({});
+    const {data: me, isLoading: getMeLoading, isError} = useGetMeQuery({});
+    const router = useRouter();
+
+    const authToLogin = useCallback(function () {
+        if (isError) {
+            router.push("/login");
+        }
+    }, [isError, router]);
+
+    useEffect(() => {
+        authToLogin();
+    }, [authToLogin]);
 
     const {
         data: userData,
