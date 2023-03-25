@@ -82,6 +82,6 @@ export interface EditProfileModel {
     type: ProfileModelType
     status: ProfileModelStatus
     bio: string
-    tags: [string]
-    dateOfBirth: string
+    tags: string[]
+    dateOfBirth: string | null
 }
