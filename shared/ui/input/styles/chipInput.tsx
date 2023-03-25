@@ -15,15 +15,15 @@ interface ChipInputProps extends Omit<InputProps, "inputRef"> {
 
 const ChipInput = (props: ChipInputProps) => {
     const [chips, changeChips] = useState(props.chips);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
-        if (e.code === "Enter") {
-            const inputData = inputRef?.current?.value;
+        if (e.code === "Enter" && !!inputRef.current) {
+            const inputData = inputRef?.current?.value ? inputRef?.current?.value.trim() : undefined;
             if (!inputData) return;
             if (chips.includes(inputData)) return;
             if (props.maxCount && chips.length >= props.maxCount) return;
-            changeChips([...chips, inputData]);
+            changeChips([...chips, inputData.trim()]);
             inputRef.current.value = "";
         }
     }
