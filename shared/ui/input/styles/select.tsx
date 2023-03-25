@@ -76,11 +76,6 @@ const SelectStyled = styled(MUISelect)`
     font: ${fonts.m()};
     
   }
-
-  &:hover > div, &:focus-visible > div, &:focus-within > div {
-    border: ${borders.width2px(colors.colorAccent50)} !important;
-    border-radius: ${borders.radius10} !important;
-  }
 `;
 
 const FormControlStyled = styled(FormControl)`
@@ -98,6 +93,11 @@ const FormControlStyled = styled(FormControl)`
 
   & fieldset {
     border: none;
+  }
+
+  &:hover > div> div, &:focus-visible > div > div, &:focus-within > div > div {
+    border: ${borders.width2px(colors.colorAccent50)} !important;
+    border-radius: ${borders.radius10} !important;
   }
 `;
 
