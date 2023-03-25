@@ -6,6 +6,8 @@ import Head from "next/head";
 import {DefaultTags, Meta} from "@/shared/seo";
 import React from "react";
 import {StyledEngineProvider} from "@mui/styled-engine";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {LocalizationProvider} from "@mui/x-date-pickers";
 
 interface MyAppProps {
     meta?: Meta;
@@ -25,11 +27,13 @@ export default function App({Component, pageProps}: AppProps<MyAppProps>) {
                 {meta && meta.map(prop => <meta {...prop} key={prop.key}/>)}
                 <title key="title">{title}</title>
             </Head>
-            <StyledEngineProvider injectFirst>
-                <Provider store={store}>
-                    <Component {...pageProps} />
-                </Provider>
-            </StyledEngineProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <StyledEngineProvider injectFirst>
+                    <Provider store={store}>
+                        <Component {...pageProps} />
+                    </Provider>
+                </StyledEngineProvider>
+            </LocalizationProvider>
         </>
     );
 }
