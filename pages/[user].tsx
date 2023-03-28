@@ -5,8 +5,8 @@ import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {UserWidget} from "@/widgets/profileWidget";
 import {PageLayout} from "@/layouts/pageLayout";
-import {BASE_URL} from "@/shared/api";
-import {ProfileModel} from "@/shared/api/entities";
+import {setupStore} from "@/shared/store";
+import {Profile} from "@/shared/api/profile/profile";
 
 
 function OtherPages() {
@@ -32,19 +32,13 @@ interface Context extends ParsedUrlQuery {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext<Context>) => {
     const username = context.params?.user || "";
-    let profile: ProfileModel;
-    try {
-        profile = await fetch(`${BASE_URL}/profile/${username}`|| "")
-            .then(response => response.json().then(data => data?.profile));
-    } catch (e) {
-        return {
-            props: {
-                meta: {}
-            }
-        };
-    }
-
-
+    const store = setupStore();
+    await store.dispatch(Profile.endpoints.getProfile.initiate({
+        username: username
+    }));
+    const {data: profile} = Profile.endpoints.getProfile.select({
+        username: username
+    })(store.getState());
     return {
         props: {
             meta: {
@@ -57,7 +51,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
                     },
                     {
                         name: "description",
-                        content: profile?.bio,
+                        content: profile?.profile.bio || "",
                         key: "description"
                     },
                     {
@@ -67,12 +61,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
                     },
                     {
                         property: "og:site_name",
-                        content: `${profile?.realName?.firstName} ${profile?.realName?.lastName}`,
+                        content: `${profile?.profile.realName?.firstName || ""} ${profile?.profile.realName?.lastName || ""}`,
                         key: "socialNetworkSiteName"
                     },
                     {
                         property: "og:description",
-                        content: profile?.bio,
+                        content: profile?.profile.bio || "",
                         key: "socialNetworkDescription"
                     },
                     {
@@ -82,7 +76,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
                     },
                     {
                         property: "og:image",
-                        content: profile?.profilePhotoUrl,
+                        content: profile?.profile.profilePhotoUrl || "",
                         key: "socialNetworkImage"
                     }
                 ]
