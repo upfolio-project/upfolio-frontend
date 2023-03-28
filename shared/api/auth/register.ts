@@ -13,6 +13,7 @@ import {
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 import {registerSlice} from "@/shared/store/authSlice/register";
 import {loginSlice} from "@/shared/store/authSlice/login";
+import {setToken} from "@/shared/api/services/tokenServices";
 
 export const Register = commonApi.injectEndpoints({
     endpoints: build => ({
@@ -127,8 +128,8 @@ export const Register = commonApi.injectEndpoints({
                     const result = await queryFulfilled;
                     if (result.data.token) {
                         dispatch(setAuth(true));
-                        localStorage.setItem('token', result?.data?.token);
-                        localStorage.setItem('refreshToken', result?.data?.refreshToken);
+                        setToken(result?.data?.token, "token");
+                        setToken(result?.data?.refreshToken, "refreshToken");
                         localStorage.removeItem('register');
                     }
                 } catch (e: any) {
