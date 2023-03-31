@@ -1,17 +1,13 @@
 import {
-    BaseQueryFn, buildCreateApi, coreModule,
+    BaseQueryFn, createApi,
     FetchArgs,
     fetchBaseQuery,
-    FetchBaseQueryError, reactHooksModule
+    FetchBaseQueryError
 } from "@reduxjs/toolkit/dist/query/react";
 import {setCookie} from "cookies-next";
 import {getToken, setToken} from "@/shared/api/services/tokenServices";
 
 export const BASE_URL = process.env['NEXT_PUBLIC_BASE_URL'];
-const createApi = buildCreateApi(
-    coreModule(),
-    reactHooksModule({unstable__sideEffectsInRender: true})
-);
 
 
 const baseQuery = fetchBaseQuery({
@@ -49,7 +45,6 @@ const customFetchBase: BaseQueryFn<string | FetchArgs,
                 setCookie("token", "");
                 setCookie("refreshToken", "");
             }
-
         }
     }
     return result;
