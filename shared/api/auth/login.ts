@@ -3,6 +3,7 @@ import {AuthorizeByPasswordRequest, JWTSuccessAuthResponse} from "@/shared/api/e
 import {loginSlice} from "@/shared/store/authSlice/login";
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 import {GetValidationPassword, GetValidationPhone} from "@/shared/api/services/getValidation";
+import {setToken} from "@/shared/api/services/tokenServices";
 
 export const Login = commonApi.injectEndpoints({
     endpoints: build => ({
@@ -45,8 +46,8 @@ export const Login = commonApi.injectEndpoints({
                 const {setAuth, setError} = loginSlice.actions;
                 try {
                     const result = await queryFulfilled;
-                    localStorage.setItem('token', result?.data?.token);
-                    localStorage.setItem('refreshToken', result?.data?.refreshToken);
+                    setToken(result?.data?.token, "token");
+                    setToken(result?.data?.refreshToken, "refreshToken");
                     dispatch(setAuth(true));
                 } catch (e: any) {
                     const error: string = e?.error?.error?.text || e?.error?.error;

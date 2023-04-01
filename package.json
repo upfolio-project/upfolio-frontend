@@ -20,6 +20,7 @@
     "@types/react-redux": "^7.1.25",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
+    "cookies-next": "^2.1.1",
     "dayjs": "^1.11.7",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",
