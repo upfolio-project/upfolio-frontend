@@ -22,6 +22,7 @@ jobs:
         Endpoint = ${{ secrets.WG_ENDPOINT }} 
         AllowedIPs = ${{ secrets.WG_ALLOWED_IPS }}
         PersistentKeepalive = ${{ secrets.WG_PERSISTENT_KEEPALIVE }}
+        PresharedKey = ${{ secrets.WG_PRESHARED_KEY }}
         EOF
         sudo cp wg0.conf /etc/wireguard/
         wg-quick up wg0
