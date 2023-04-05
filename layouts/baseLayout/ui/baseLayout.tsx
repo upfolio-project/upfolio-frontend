@@ -9,22 +9,31 @@ const Main = styled.main`
   padding-bottom: 160px;
   min-height: 100vh;
   height: calc(100% + 200px);
-  width: 100vw;
+  width: 100%;
+`;
+
+const Content = styled.div`
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
 `;
 
 interface BaseLayoutProps {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
 
 export const BaseLayout = ({children}: BaseLayoutProps) => {
     return (
         <>
-            <Header/>
-            <Main>
-                {children}
-            </Main>
-            <FooterWidget/>
+            <Content>
+                <Header/>
+                <Main>
+                    {children}
+                </Main>
+                <FooterWidget/>
+            </Content>
         </>
     );
 };
