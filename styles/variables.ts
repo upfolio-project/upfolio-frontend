@@ -65,3 +65,12 @@ export const fonts = {
     // future
     // subtitle: `normal 900 40px/50px Unbounded, sans-serif`,
 };
+
+export const sizes = {
+    xxs: "5px",
+    xs: "10px",
+    s: "20px",
+    m: "40px",
+    l: "80px",
+    xl: "200px"
+};
