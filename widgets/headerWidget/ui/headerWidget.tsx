@@ -36,7 +36,7 @@ export const Header = () => {
     return (
         <AppBarStyled position="absolute">
             <Toolbar>
-                <Link href="/"><Logo withText size="s"/></Link>
+                <Link href="/" as="span"><Logo withText size="s"/></Link>
                 <div>
                     <Link href="/search">Портфолио</Link>
                     <Link href="/companies">Компании</Link>
