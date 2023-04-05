@@ -2,10 +2,11 @@ import React from "react";
 import {Header} from "@/widgets/headerWidget";
 import {FooterWidget} from "@/widgets/footerWidget";
 import styled from "styled-components";
+import {sizes} from "@/styles/variables";
 
 const Main = styled.main`
   box-sizing: border-box;
-  padding-top: 200px;
+  padding-top: calc(${sizes.l} + ${sizes.s} + ${sizes.m});
   padding-bottom: 160px;
   min-height: 100vh;
   height: calc(100% + 200px);

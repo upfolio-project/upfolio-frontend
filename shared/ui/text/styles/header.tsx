@@ -8,6 +8,8 @@ interface HeaderProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<
     type?: "default" | "defaultLight" | "success" | "successLight";
     style?: "normal" | "italic" | "bold";
     children?: React.ReactNode | React.ReactNode[]
+    as?: "h1" | "h2" | "h3" | "p" | "span";
+
 }
 
 function getFont({size, style}: HeaderProps) {
@@ -38,15 +40,15 @@ function getColor({type}: HeaderProps) {
     }
 }
 
-export const Header = ({size, type, style, children}: HeaderProps) => {
+export const Header = ({size, type, style, children, as}: HeaderProps) => {
     switch (size) {
         case "l":
-            return <HeaderStyled s={size} t={type} st={style} as="h1">{children}</HeaderStyled>;
+            return <HeaderStyled s={size} t={type} st={style} as={as ? as : "h1"}>{children}</HeaderStyled>;
         case undefined:
         case "m":
-            return <HeaderStyled s={size} t={type} st={style} as="h2">{children}</HeaderStyled>;
+            return <HeaderStyled s={size} t={type} st={style} as={as ? as : "h2"}>{children}</HeaderStyled>;
         case "s":
-            return <HeaderStyled s={size} t={type} st={style} as="h3">{children}</HeaderStyled>;
+            return <HeaderStyled s={size} t={type} st={style} as={as ? as : "h3"}>{children}</HeaderStyled>;
     }
 };
 
