@@ -1,25 +1,23 @@
 import {useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
 import styled from "styled-components";
-import {borders, colors} from "@/shared/styles";
 import {Skeleton} from "./skeleton";
 import {AboutUser, UserContacts} from "@/entities/userData";
 import {useRouter} from "next/router";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
+import {PortfolioData} from "@/entities/portfolioData";
+import {sizes} from "@/shared/styles";
 
-const PortfolioData = styled(Box)`
+const PortfolioDataStyled = styled(Box)`
   width: 676px;
-  border: ${borders.width2px(colors.colorSecondary05)};
-  border-radius: ${borders.radius10};
-  min-height: 120vw;
 `;
 
 const UserDataStyled = styled(Box)`
   width: 328px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: ${sizes.s};
 `;
 
 interface UserWidgetProps {
@@ -70,7 +68,9 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
                 />
                 <UserContacts/>
             </UserDataStyled>
-            <PortfolioData></PortfolioData>
+            <PortfolioDataStyled>
+                <PortfolioData/>
+            </PortfolioDataStyled>
         </>
     );
 };
@@ -79,7 +79,7 @@ const UserWidgetStyled = ({username}: UserWidgetProps) => {
     return (
         <Box
             display="flex"
-            gap="20px"
+            gap={sizes.s}
             justifyContent="center"
         >
             <ProfileWidget username={username}/>
