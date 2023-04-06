@@ -7,9 +7,11 @@ const PortfolioContainer = styled(Box)`
   width: 100%;
 `;
 
-interface PortfolioDataProps {}
+// interface PortfolioDataProps {}
 
-const PortfolioData = ({..._}: PortfolioDataProps) => {
+const PortfolioData = (
+    // props: PortfolioDataProps
+) => {
     return (
         <Wrapper>
             <PortfolioContainer>
