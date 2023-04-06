@@ -80,7 +80,7 @@ export const Register = commonApi.injectEndpoints({
                     body: arg
                 });
                 const data = result.data as SuccessResponse;
-                if (!data.accent) return {
+                if (!data.success) return {
                     error: {
                         error: '',
                         status: 'CUSTOM_ERROR',
