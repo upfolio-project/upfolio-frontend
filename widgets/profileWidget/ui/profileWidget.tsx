@@ -62,6 +62,7 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
                     profilePhotoUrl={profile.profilePhotoUrl}
                     firstName={profile.realName.firstName}
                     lastName={profile.realName.lastName}
+                    bio={profile.bio}
                     dateOfBirth={profile.dateOfBirth}
                     tags={profile.tags}
                     status={profile.status}

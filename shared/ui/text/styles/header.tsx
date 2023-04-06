@@ -9,7 +9,7 @@ interface HeaderProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<
     style?: "normal" | "italic" | "bold";
     children?: React.ReactNode | React.ReactNode[]
     as?: "h1" | "h2" | "h3" | "p" | "span";
-
+    align?: "left" | "center" | "right";
 }
 
 function getFont({size, style}: HeaderProps) {
@@ -40,15 +40,15 @@ function getColor({type}: HeaderProps) {
     }
 }
 
-export const Header = ({size, type, style, children, as}: HeaderProps) => {
+export const Header = ({size, type, style, children, as, align}: HeaderProps) => {
     switch (size) {
         case "l":
-            return <HeaderStyled s={size} t={type} st={style} as={as ? as : "h1"}>{children}</HeaderStyled>;
+            return <HeaderStyled a={align} s={size} t={type} st={style} as={as ? as : "h1"}>{children}</HeaderStyled>;
         case undefined:
         case "m":
-            return <HeaderStyled s={size} t={type} st={style} as={as ? as : "h2"}>{children}</HeaderStyled>;
+            return <HeaderStyled a={align} s={size} t={type} st={style} as={as ? as : "h2"}>{children}</HeaderStyled>;
         case "s":
-            return <HeaderStyled s={size} t={type} st={style} as={as ? as : "h3"}>{children}</HeaderStyled>;
+            return <HeaderStyled a={align} s={size} t={type} st={style} as={as ? as : "h3"}>{children}</HeaderStyled>;
     }
 };
 
@@ -56,6 +56,7 @@ export interface InnerHeaderProps extends React.DetailedHTMLProps<React.HTMLAttr
     s?: "s" | "m" | "l";
     t?: "default" | "defaultLight" | "success" | "successLight";
     st?: "normal" | "italic" | "bold";
+    a?: "left" | "center" | "right";
 }
 
 export const HeaderStyled = styled.h1<InnerHeaderProps>`
@@ -64,4 +65,5 @@ export const HeaderStyled = styled.h1<InnerHeaderProps>`
   margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
+  text-align: ${props => props.a ? props.a : "left"};
 `;

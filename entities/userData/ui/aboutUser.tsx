@@ -5,29 +5,14 @@ import {ProfileModelStatus} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import {Link} from "@/shared/ui/link";
 import styled from "styled-components";
+import {sizes} from "@/styles/variables";
 
-const InfoContainer = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-`;
 
 const TagItem = styled.span`
   display: flex;
   gap: 4px;
   align-items: baseline;
 `;
-
-interface AboutUserProps {
-    profilePhotoUrl: string
-    firstName: string
-    lastName: string
-    dateOfBirth: string | null
-    tags: string[]
-    status: ProfileModelStatus
-}
 
 function dateOfBirthToAgeString(dateOfBirth: Date) {
     const today = new Date();
@@ -57,6 +42,10 @@ function statusToString(status: ProfileModelStatus | undefined) {
     }
 }
 
+const StatusTag = styled.div`
+  height: 18px;
+`;
+
 const Tags = ({tags}: { tags: string[] | undefined }) => {
     if (!tags || !tags.length) {
         return <></>;
@@ -73,12 +62,31 @@ const Tags = ({tags}: { tags: string[] | undefined }) => {
                     <Link href="#" size="s" type="defaultLight" as="span">
                         {tag}
                     </Link>
-                    {index !== tags.length - 1 && <Text as="span" size="s" type="success" key={`${tag}-after`}> · </Text>}
+                    {index !== tags.length - 1 &&
+                        <Text as="span" size="s" type="success" key={`${tag}-after`}> · </Text>}
                 </TagItem>
             ))}
         </Box>
     );
 };
+
+const InfoContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+interface AboutUserProps {
+    profilePhotoUrl: string;
+    firstName: string;
+    lastName: string;
+    bio: string;
+    dateOfBirth: string | null;
+    tags: string[];
+    status: ProfileModelStatus;
+}
 
 const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, status}: AboutUserProps) => {
     const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
@@ -89,11 +97,15 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, sta
         <Wrapper>
             <Avatar src={profilePhotoUrl}/>
             <InfoContainer>
-                <Header size="s" style="bold">
-                    {firstName} {lastName}
-                </Header>
-                {!!(new Date(dateOfBirth || "").getDate()) && <Text size="m">{ageHumanity}</Text>}
-                <Text size="m" type="success">{statusString}</Text>
+                <Box display="flex" flexDirection="column" gap={sizes.xxs} alignItems="center">
+                    <Header size="s" style="bold" align="center">
+                        {firstName} {lastName}
+                    </Header>
+                    {!!(new Date(dateOfBirth || "").getDate()) && <Text size="m">{ageHumanity}</Text>}
+                </Box>
+                <StatusTag>
+                    <Text size="m" type="success">{statusString}</Text>
+                </StatusTag>
                 <Tags tags={tags}/>
             </InfoContainer>
         </Wrapper>
