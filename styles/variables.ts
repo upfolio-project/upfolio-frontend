@@ -1,6 +1,7 @@
 const [dominantR, dominantG, dominantB] = [255, 255, 255];
 const [secondaryR, secondaryG, secondaryB] = [33, 33, 33];
 const [accentR, accentG, accentB] = [96, 2, 238];
+const [successR, successG, successB] = [35, 171, 40];
 
 export const colors = {
     colorDominant: `rgba(${dominantR}, ${dominantG}, ${dominantB}, 1)`,
@@ -16,19 +17,23 @@ export const colors = {
     colorAccent50: `rgba(${accentR}, ${accentG}, ${accentB}, .5)`,
     colorAccent20: `rgba(${accentR}, ${accentG}, ${accentB}, .2)`,
 
+    colorSuccess: `rgba(${successR}, ${successG}, ${successB}, 1)`,
+    colorSuccess10: `rgba(${successR}, ${successG}, ${successB}, .1)`,
+
     colorTransparent: "transparent"
 };
 
 type ValueOf<T> = T[keyof T]
 
 export const shadows = {
-    defaultShadow: "0px 0px 30px rgba(0, 0, 0, 0.25)",
+    defaultShadow: "0px 0px 30px 5px rgba(0, 0, 0, 0.1)",
 };
 
 export const borders = {
     width2px: (color: ValueOf<typeof colors>) => `2px solid ${color}`,
     width1px: (color: ValueOf<typeof colors>) => `1px solid ${color}`,
     radius10: "10px",
+    radius5: "5px",
     radius4: "4px"
 };
 

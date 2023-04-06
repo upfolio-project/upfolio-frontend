@@ -5,7 +5,7 @@ import React from "react";
 
 export interface TextProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>, "size" | "style" | "type"> {
     size?: "s" | "m" | "l";
-    type?: "default" | "defaultLight" | "accent" | "accentLight";
+    type?: "default" | "defaultLight" | "accent" | "accentLight" | "success";
     style?: "normal" | "italic" | "bold";
     children?: React.ReactNode | React.ReactNode[];
     as?: "p" | "span";
@@ -38,6 +38,8 @@ function getColor({type}: TextProps) {
             return colors.colorAccent;
         case "accentLight":
             return colors.colorAccent50;
+        case "success":
+            return colors.colorSuccess;
     }
 }
 
@@ -56,7 +58,7 @@ export function Text({className, size, style, type, children, as, align}: TextPr
 
 export interface InnerTextProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
     s?: "s" | "m" | "l";
-    t?: "default" | "defaultLight" | "accent" | "accentLight";
+    t?: "default" | "defaultLight" | "accent" | "accentLight" | "success";
     st?: "normal" | "italic" | "bold";
     as?: "span" | "p";
     a?: "left" | "center" | "right";
