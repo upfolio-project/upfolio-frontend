@@ -7,7 +7,7 @@ import React, {useEffect, useRef} from "react";
 import {useCommenceByPhoneNumberMutation, useGetRegisterTokenQuery} from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 
 export const RegisterPhoneWidget = () => {
     useEffect(() => {

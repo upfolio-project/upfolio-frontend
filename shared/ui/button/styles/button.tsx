@@ -1,7 +1,7 @@
 import {Button as ButtonMUI, ButtonProps as ButtonMUIProps} from "@mui/material";
 import styled from "styled-components";
 import React from "react";
-import {borders, colors} from "@/styles/variables";
+import {borders, colors} from "@/shared/styles";
 import {Text} from "@/shared/ui/text";
 
 export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "width" | "children"> {

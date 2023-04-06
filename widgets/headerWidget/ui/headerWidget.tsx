@@ -1,7 +1,7 @@
 import {AppBar, Toolbar} from "@mui/material";
 import {Link} from "@/shared/ui/link";
 import styled from "styled-components";
-import {colors, sizes} from "@/styles/variables";
+import {colors, sizes} from "@/shared/styles";
 import {Logo} from "@/shared/ui/logo";
 
 const AppBarStyled = styled(AppBar)`

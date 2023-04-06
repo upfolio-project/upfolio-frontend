@@ -7,7 +7,7 @@ import {useEffect, useRef} from "react";
 import {useLoginByPasswordMutation} from "@/shared/api/auth/login";
 import {FormFeature} from "@/features/formFeature";
 import {useRouter} from "next/router";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 
 export const LoginWidget = () => {
     useEffect(() => {

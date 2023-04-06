@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {fonts, colors} from "@/styles/variables";
+import {fonts, colors} from "@/shared/styles";
 import React from "react";
 
 

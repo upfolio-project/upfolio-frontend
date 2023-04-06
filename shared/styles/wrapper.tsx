@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {Box} from "@mui/material";
-import {borders, shadows} from "@/styles/variables";
+import {borders, shadows} from "@/shared/styles/variables";
 
 const Wrapper = styled(Box)`
   display: flex;

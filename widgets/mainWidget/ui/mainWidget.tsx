@@ -3,7 +3,7 @@ import {Header, Text} from "@/shared/ui/text";
 import {Box} from "@mui/system";
 import {LinkButton} from "@/shared/ui/button";
 import styled from "styled-components";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 
 
 export const ContainerStyled = styled(Container)`

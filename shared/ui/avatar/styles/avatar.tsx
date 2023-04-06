@@ -1,5 +1,5 @@
 import {Avatar as MUIAvatar} from "@mui/material";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 
 interface AvatarProps {
     src: string

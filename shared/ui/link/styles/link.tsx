@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Link, {LinkProps} from "next/link";
 import React from "react";
 import {Text, TextProps} from "@/shared/ui/text";
-import {colors} from "@/styles/variables";
+import {colors} from "@/shared/styles";
 
 interface InnerLinkProps extends
     Omit<LinkProps, "onClick" | "as" | "InnerLinkProps" | "onMouseEnter" | "onTouchStart">,

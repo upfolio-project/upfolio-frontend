@@ -2,7 +2,7 @@ import React from "react";
 import {Header} from "@/widgets/headerWidget";
 import {FooterWidget} from "@/widgets/footerWidget";
 import styled from "styled-components";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 
 const Main = styled.main`
   box-sizing: border-box;

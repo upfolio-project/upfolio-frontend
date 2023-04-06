@@ -6,7 +6,7 @@ import behance from "@/shared/elements/icons/social/behance.svg";
 import Image from "next/image";
 import {Box} from "@mui/material";
 import styled from "styled-components";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 import {Link} from "@/shared/ui/link";
 
 export enum messengers {

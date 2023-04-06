@@ -2,7 +2,7 @@ import {Box} from "@mui/system";
 import styled from "styled-components";
 import {Text} from "@/shared/ui/text";
 import {Link} from "@/shared/ui/link";
-import {colors, fonts, sizes} from "@/styles/variables";
+import {colors, fonts, sizes} from "@/shared/styles";
 import {Logo} from "@/shared/ui/logo";
 
 

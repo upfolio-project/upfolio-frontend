@@ -1,10 +1,10 @@
 import {Avatar} from "@/shared/ui/avatar";
 import {Header, Text} from "@/shared/ui/text";
-import {Wrapper} from "./shared";
+import {Wrapper} from "@/shared/styles/wrapper";
 import {ProfileModelStatus} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import styled from "styled-components";
-import {borders, colors, sizes} from "@/styles/variables";
+import {borders, colors, sizes} from "@/shared/styles";
 import {dateOfBirthToView, registerDateToView, userStatusToView} from "@/shared/utils/dataToView";
 import {Tags} from "@/shared/ui/tag";
 import {messengers, Messengers} from "@/shared/ui/messengers/styles/messengers";

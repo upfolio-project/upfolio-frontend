@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {borders, colors, sizes} from "@/styles/variables";
+import {borders, colors, sizes} from "@/shared/styles";
 import {Link} from "@/shared/ui/link";
 import React from "react";
 

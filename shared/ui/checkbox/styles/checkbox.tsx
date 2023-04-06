@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {Text} from "@/shared/ui/text";
-import {borders, colors} from "@/styles/variables";
+import {borders, colors} from "@/shared/styles";
 import check from "./../static/check.svg";
 import React from "react";
 

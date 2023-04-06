@@ -8,7 +8,7 @@ import {
 } from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 
 
 export const RegisterFinishWidget = () => {

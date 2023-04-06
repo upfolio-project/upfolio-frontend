@@ -1,7 +1,7 @@
 import {Text} from "@/shared/ui/text";
 import {DefaultInput, InputProps} from "./baseInput";
 import styled from "styled-components";
-import {borders, colors, fonts} from "@/styles/variables";
+import {borders, colors, fonts} from "@/shared/styles";
 
 const TextField = (props: InputProps) => {
     return (

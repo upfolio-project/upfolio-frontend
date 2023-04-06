@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {TextField} from "@mui/material";
-import {borders, colors, fonts} from "@/styles/variables";
+import {borders, colors, fonts} from "@/shared/styles";
 import React, {RefObject} from "react";
 
 interface DefaultInputProps {

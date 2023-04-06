@@ -1,7 +1,7 @@
 import {useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
 import styled from "styled-components";
-import {borders, colors} from "@/styles/variables";
+import {borders, colors} from "@/shared/styles";
 import {Skeleton} from "./skeleton";
 import {AboutUser, UserContacts} from "@/entities/userData";
 import {useRouter} from "next/router";

@@ -1,5 +1,5 @@
 import {Box} from "@mui/material";
-import {sizes} from "@/styles/variables";
+import {sizes} from "@/shared/styles";
 import {Tag} from "@/shared/ui/tag/styles/tag";
 import React from "react";
 
