@@ -1,18 +1,19 @@
 import {Box} from "@mui/material";
-import {Text, Title} from "@/shared/ui/text";
+import {Header, Text} from "@/shared/ui/text";
 import {LinkButton} from "@/shared/ui/button";
+import {sizes} from "@/styles/variables";
 
 export const InProgressWidget = () => {
     return (
         <Box
             display="flex"
             flexDirection="column"
-            gap="20px"
+            gap={sizes.s}
             alignItems="center"
         >
-            <Title>
+            <Header style="bold" size="s">
                 В разработке
-            </Title>
+            </Header>
             <Text size="m" align="center">
                 Упс... Страница, которую вы запрашиваете, находится в разработке.<br/>
                 Мы готовим обновление. Попробуйте зайти позже.
