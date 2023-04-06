@@ -22,13 +22,13 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                         <Button type="default">Кнопка</Button>
                     </Grid>
                     <Grid item xs>
-                        <Button type="success">Кнопка</Button>
+                        <Button type="accent">Кнопка</Button>
                     </Grid>
                     <Grid item xs>
                         <Button type="default" fill={false}>Кнопка</Button>
                     </Grid>
                     <Grid item xs>
-                        <Button type="success" fill={false}>Кнопка</Button>
+                        <Button type="accent" fill={false}>Кнопка</Button>
                     </Grid>
                 </Box>
 
@@ -42,7 +42,7 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                     <Box display="grid" gridTemplateColumns="1fr" gap={1}>
                         <Title>Акцентный</Title>
                         <Title type="defaultLight">Акцентный</Title>
-                        <Title type="success">Акцентный</Title>
+                        <Title type="accent">Акцентный</Title>
                     </Box>
                 </Box>
 
@@ -56,17 +56,17 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                     <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
                         <Header size="l">Текст</Header>
                         <Header size="l" type="defaultLight">Текст</Header>
-                        <Header size="l" type="success">Текст</Header>
+                        <Header size="l" type="accent">Текст</Header>
                     </Box>
                     <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
                         <Header size="m">Текст</Header>
                         <Header size="m" type="defaultLight">Текст</Header>
-                        <Header size="m" type="success">Текст</Header>
+                        <Header size="m" type="accent">Текст</Header>
                     </Box>
                     <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
                         <Header size="s">Текст</Header>
                         <Header size="s" type="defaultLight">Текст</Header>
-                        <Header size="s" type="success">Текст</Header>
+                        <Header size="s" type="accent">Текст</Header>
                     </Box>
                 </Box>
 
@@ -80,17 +80,17 @@ export const ExampleWidget = ({className}: ExampleWidgetProps) => {
                     <Box display="flex" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
                         <Text size="l">Текст</Text>
                         <Text size="l" type="defaultLight">Текст</Text>
-                        <Text size="l" type="success">Текст</Text>
+                        <Text size="l" type="accent">Текст</Text>
                     </Box>
                     <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
                         <Text size="m">Текст</Text>
                         <Text size="m" type="defaultLight">Текст</Text>
-                        <Text size="m" type="success">Текст</Text>
+                        <Text size="m" type="accent">Текст</Text>
                     </Box>
                     <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1}>
                         <Text size="s">Текст</Text>
                         <Text size="s" type="defaultLight">Текст</Text>
-                        <Text size="s" type="success">Текст</Text>
+                        <Text size="s" type="accent">Текст</Text>
                     </Box>
                 </Box>
 

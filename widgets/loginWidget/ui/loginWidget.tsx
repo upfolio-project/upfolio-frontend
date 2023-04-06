@@ -42,12 +42,12 @@ export const LoginWidget = () => {
                 <Input inputRef={passwordRef} type="password" label="Пароль"
                        hint={<Link size="s" href="" type="defaultLight" as="span">Забыли пароль?</Link>}
                        placeholder="********" hintAlign="right"/>
-                <Button type="success" buttonType="submit"
+                <Button type="accent" buttonType="submit"
                         width="container">Войти</Button>
             </Box>
             <Box display="flex" gap={sizes.xs}>
                 <Text type="defaultLight" size="s">У вас нет аккаунта?</Text>
-                <Link href="/register/enterPhone" type="success" size="s">Регистрация</Link>
+                <Link href="/register/enterPhone" type="accent" size="s">Регистрация</Link>
             </Box>
         </FormFeature>
     );

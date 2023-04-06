@@ -38,12 +38,12 @@ export const RegisterPhoneWidget = () => {
             <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
             <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
                 <Input inputRef={phoneRef} type="phone" label="Телефон" placeholder="929-789-98-88"/>
-                <Button type="success" buttonType="submit"
+                <Button type="accent" buttonType="submit"
                         width="container">Получить СМС-код</Button>
             </Box>
             <Box display="flex" gap={sizes.xs}>
                 <Text type="defaultLight" size="s">У вас уже есть аккаунт?</Text>
-                <Link href="/login" type="success" size="s">Вход</Link>
+                <Link href="/login" type="accent" size="s">Вход</Link>
             </Box>
         </FormFeature>
     );

@@ -7,7 +7,7 @@ interface DefaultInputProps {
     type?: "phone" | "default" | "email";
     hint?: React.ReactNode;
     label?: string;
-    hintType?: "default" | "secondary" | "success";
+    hintType?: "default" | "secondary" | "accent";
     placeholder?: string;
     onChange?: (value: string) => void;
     inputRef?: RefObject<HTMLInputElement | null>;

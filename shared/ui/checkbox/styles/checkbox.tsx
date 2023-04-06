@@ -7,7 +7,7 @@ import React from "react";
 interface CheckboxProps extends
     Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size" | "style" | "type"> {
     size?: "s" | "m" | "l";
-    type?: "default" | "defaultLight" | "success" | "successLight";
+    type?: "default" | "defaultLight" | "accent" | "accentLight";
     style?: "normal" | "italic" | "bold";
     children?: React.ReactNode
 }

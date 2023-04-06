@@ -23,7 +23,7 @@ export function Error404Entity() {
                     Возможно, она устарела, была удалена,<br/>
                     или был введён неверный адрес в адресной строке.
                 </Text>
-                <LinkButton href="/" type="success">Вернуться на главную</LinkButton>
+                <LinkButton href="/" type="accent">Вернуться на главную</LinkButton>
             </RootStyled>
         </Box>
     );

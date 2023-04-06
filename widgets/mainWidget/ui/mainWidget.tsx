@@ -20,7 +20,7 @@ export const MainWidget = () => {
         <ContainerStyled>
             <Box maxWidth="386px">
                 <Header size="s" style="bold">
-                    <Header as="span" size="s" type="success" style="bold">UpFolio</Header> — платформа,
+                    <Header as="span" size="s" type="accent" style="bold">UpFolio</Header> — платформа,
                     которая&nbsp;позволяет
                     соискателям находить работу,
                     а работодателям —
@@ -34,7 +34,7 @@ export const MainWidget = () => {
             </Text>
             </Box>
             <Box display="flex" gap={sizes.xs} justifyContent="center">
-                <LinkButton href="/register/enterPhone" type="success">
+                <LinkButton href="/register/enterPhone" type="accent">
                     Зарегистрироваться
                 </LinkButton>
                 <LinkButton href="/login" type="default">

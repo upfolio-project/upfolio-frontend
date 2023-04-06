@@ -5,7 +5,7 @@ import React from "react";
 
 interface HeaderProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>, "size" | "type" | "style"> {
     size?: "s" | "m" | "l";
-    type?: "default" | "defaultLight" | "success" | "successLight";
+    type?: "default" | "defaultLight" | "accent" | "accentLight";
     style?: "normal" | "italic" | "bold";
     children?: React.ReactNode | React.ReactNode[]
     as?: "h1" | "h2" | "h3" | "p" | "span";
@@ -33,9 +33,9 @@ function getColor({type}: HeaderProps) {
             return colors.colorSecondary;
         case "defaultLight":
             return colors.colorSecondary50;
-        case "success":
+        case "accent":
             return colors.colorAccent;
-        case "successLight":
+        case "accentLight":
             return colors.colorAccent50;
     }
 }
@@ -54,7 +54,7 @@ export const Header = ({size, type, style, children, as, align}: HeaderProps) =>
 
 export interface InnerHeaderProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
     s?: "s" | "m" | "l";
-    t?: "default" | "defaultLight" | "success" | "successLight";
+    t?: "default" | "defaultLight" | "accent" | "accentLight";
     st?: "normal" | "italic" | "bold";
     a?: "left" | "center" | "right";
 }

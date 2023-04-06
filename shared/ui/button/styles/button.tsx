@@ -5,7 +5,7 @@ import {borders, colors} from "@/styles/variables";
 import {Text} from "@/shared/ui/text";
 
 export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "width" | "children"> {
-    type?: "default" | "success";
+    type?: "default" | "accent";
     fill?: boolean;
     children?: React.ReactNode;
     width?: "content" | "container";
@@ -13,7 +13,7 @@ export interface ButtonProps extends Omit<ButtonMUIProps, "type" | "fill" | "wid
 }
 
 interface InnerButtonProps extends ButtonMUIProps {
-    t?: "default" | "success";
+    t?: "default" | "accent";
     fill?: "0" | "1";
     w?: "content" | "container";
 }
@@ -38,7 +38,7 @@ function getBackgroundColor({t, fill}: InnerButtonProps) {
         case undefined:
         case "default":
             return colors.colorSecondary;
-        case "success":
+        case "accent":
             return colors.colorAccent;
     }
 }
@@ -49,7 +49,7 @@ function getTextColor({t, fill}: InnerButtonProps) {
             case undefined:
             case "default":
                 return colors.colorSecondary;
-            case "success":
+            case "accent":
                 return colors.colorAccent;
         }
     }
@@ -57,7 +57,7 @@ function getTextColor({t, fill}: InnerButtonProps) {
         case undefined:
         case "default":
             return colors.colorDominant;
-        case "success":
+        case "accent":
             return colors.colorDominant;
     }
 }
@@ -68,7 +68,7 @@ function getTextColorHover({t, fill}: InnerButtonProps) {
         case "default":
             if (fill === "0") return colors.colorDominant;
                 return colors.colorSecondary;
-        case "success":
+        case "accent":
             if (fill === "0") return colors.colorDominant;
             return colors.colorAccent;
     }
@@ -79,7 +79,7 @@ function getBorderColor({t}: InnerButtonProps) {
         case undefined:
         case "default":
             return colors.colorSecondary;
-        case "success":
+        case "accent":
             return colors.colorAccent;
     }
 }
@@ -91,7 +91,7 @@ function getBackgroundColorHover({fill, t}: InnerButtonProps) {
             if (fill === "0") return colors.colorSecondary;
             return colors.colorDominant;
         }
-        case "success": {
+        case "accent": {
             if (fill === "0") return colors.colorAccent;
             return colors.colorDominant;
         }

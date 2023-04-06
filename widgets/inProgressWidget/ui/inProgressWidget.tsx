@@ -18,7 +18,7 @@ export const InProgressWidget = () => {
                 Упс... Страница, которую вы запрашиваете, находится в разработке.<br/>
                 Мы готовим обновление. Попробуйте зайти позже.
             </Text>
-            <LinkButton href="/" type="success">Вернуться на главную</LinkButton>
+            <LinkButton href="/" type="accent">Вернуться на главную</LinkButton>
         </Box>
     );
 };

@@ -115,7 +115,7 @@ const EditMeWidget = () => {
                     />
                 </Box>
                 <ChipInput chips={profile.tags} placeholder="Введите тег" inputRef={tagsRef} label="Теги" maxCount={15}/>
-                <Button width="container" type="success" onClick={() => onClick()}>Сохранить</Button>
+                <Button width="container" type="accent" onClick={() => onClick()}>Сохранить</Button>
             </Box>
         </Container>
     );

@@ -59,7 +59,7 @@ export const RegisterFinishWidget = () => {
                        placeholder="********" autocomplete="new-password"/>
                 <Input inputRef={passwordAgainRef} type="password" label="Повторите пароль"
                        placeholder="********" hintAlign="right" autocomplete="new-password"/>
-                <Button type="success" buttonType="submit"
+                <Button type="accent" buttonType="submit"
                         width="container">Зарегистрироваться</Button>
             </Box>
         </FormFeature>

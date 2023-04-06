@@ -63,7 +63,7 @@ const Tags = ({tags}: { tags: string[] | undefined }) => {
                         {tag}
                     </Link>
                     {index !== tags.length - 1 &&
-                        <Text as="span" size="s" type="success" key={`${tag}-after`}> · </Text>}
+                        <Text as="span" size="s" type="accent" key={`${tag}-after`}> · </Text>}
                 </TagItem>
             ))}
         </Box>
@@ -104,7 +104,7 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, sta
                     {!!(new Date(dateOfBirth || "").getDate()) && <Text size="m">{ageHumanity}</Text>}
                 </Box>
                 <StatusTag>
-                    <Text size="m" type="success">{statusString}</Text>
+                    <Text size="m" type="accent">{statusString}</Text>
                 </StatusTag>
                 <Tags tags={tags}/>
             </InfoContainer>
