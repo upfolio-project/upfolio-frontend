@@ -1,25 +1,27 @@
 import {Box} from "@mui/material";
-import {Text, Title} from "@/shared/ui/text";
+import {Header, Text} from "@/shared/ui/text";
 import {LinkButton} from "@/shared/ui/button";
 import styled from "styled-components";
+import {sizes} from "@/styles/variables";
 
 export function Error404Entity() {
     return (
         <Box
-            width="100vw"
             display="flex"
             justifyContent="center"
         >
             <RootStyled
                 display="flex"
                 flexDirection="column"
-                gap="20px"
+                gap={sizes.s}
                 alignItems="center"
             >
-                <Title>Ошибка 404</Title>
+                <Header size="s" style="bold">Ошибка 404</Header>
                 <Text size="m" align="center">
-                    Кажется, что-то пошло не так!<br/> Страница, которую вы запрашиваете, не существует.<br/>
-                    Возможно, она устарела, была удалена,<br/>или был введён неверный адрес в адресной строке.
+                    Кажется, что-то пошло не так!<br/>
+                    Страница, которую вы запрашиваете, не существует.
+                    Возможно, она устарела, была удалена,<br/>
+                    или был введён неверный адрес в адресной строке.
                 </Text>
                 <LinkButton href="/" type="success">Вернуться на главную</LinkButton>
             </RootStyled>
@@ -30,7 +32,7 @@ export function Error404Entity() {
 const RootStyled = styled(Box)`
   text-align: center;
   @media screen and (min-width: 600px) {
-    max-width: 580px;
+    max-width: 420px;
   }
 
   @media screen and (max-width: 599px) {
