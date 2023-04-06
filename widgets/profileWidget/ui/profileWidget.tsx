@@ -48,7 +48,7 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
         data: userData,
         isLoading: getProfileLoading, 
         isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
+    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading || isError});
 
     const profile = userData?.profile;
 
@@ -66,6 +66,7 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
                     dateOfBirth={profile.dateOfBirth}
                     tags={profile.tags}
                     status={profile.status}
+                    registered={profile.registered}
                 />
                 <UserBio bio={profile.bio}/>
                 <UserContacts/>

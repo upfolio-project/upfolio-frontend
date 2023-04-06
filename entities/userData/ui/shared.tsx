@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {Box} from "@mui/material";
-import {borders, colors} from "@/styles/variables";
+import {borders, shadows} from "@/styles/variables";
 
 const Wrapper = styled(Box)`
   display: flex;
@@ -9,8 +9,8 @@ const Wrapper = styled(Box)`
   align-items: center;
   padding: 30px 47px;
   gap: 20px;
-  border: ${borders.width2px(colors.colorSecondary05)};
   border-radius: ${borders.radius10};
+  box-shadow: ${shadows.defaultShadow};
 `;
 
 export {Wrapper};
