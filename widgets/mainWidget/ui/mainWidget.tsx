@@ -1,15 +1,15 @@
 import {Container} from "@mui/material";
-import {Text, Title} from "@/shared/ui/text";
+import {Header, Text} from "@/shared/ui/text";
 import {Box} from "@mui/system";
 import {LinkButton} from "@/shared/ui/button";
 import styled from "styled-components";
-import {Logo} from "@/shared/ui/logo";
+import {sizes} from "@/shared/styles";
 
 
 export const ContainerStyled = styled(Container)`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: ${sizes.s};
   text-align: center;
   align-items: center;
 `;
@@ -18,15 +18,14 @@ export const ContainerStyled = styled(Container)`
 export const MainWidget = () => {
     return (
         <ContainerStyled>
-            <Box display="flex" alignItems="center">
-                <Logo size="s" withText={true}/>
-            </Box>
-            <Box maxWidth="660px">
-                <Title>
-                    платформа, которая позволяет
+            <Box maxWidth="386px">
+                <Header size="s" style="bold" align="center">
+                    <Header as="span" size="s" type="accent" style="bold">UpFolio</Header> — платформа,
+                    которая&nbsp;позволяет
                     соискателям находить работу,
-                    а&nbsp;работодателям — работников&nbsp;или&nbsp;стажёров
-                </Title>
+                    а работодателям —
+                    работников&nbsp;или стажёров.
+                </Header>
             </Box>
             <Box maxWidth="300px">
             <Text size="m" align="center">
@@ -34,8 +33,8 @@ export const MainWidget = () => {
                 между студентами и IT-компаниями
             </Text>
             </Box>
-            <Box display="flex" gap="10px" justifyContent="center">
-                <LinkButton href="/register/enterPhone" type="success">
+            <Box display="flex" gap={sizes.xs} justifyContent="center">
+                <LinkButton href="/register/enterPhone" type="accent">
                     Зарегистрироваться
                 </LinkButton>
                 <LinkButton href="/login" type="default">

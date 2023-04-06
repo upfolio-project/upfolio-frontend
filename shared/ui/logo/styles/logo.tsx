@@ -1,35 +1,48 @@
 import styled from "styled-components";
-import logoWithoutTextSizeS from "@/shared/images/logo/logoSizeS.png";
+import logoWithoutTextSizeS from "@/shared/elements/logo/logoSizeS.svg";
 import logoWithTextSizeS from "@/shared/elements/logo/logoWithTextSizeS.svg";
 import Image, {StaticImageData} from "next/image";
 
 interface LogoProps {
-    size: 's' | 'm'
-    withText?: boolean
+    size: 's' | 'm';
+    withText?: boolean;
 }
 
-function getSrc(withText: boolean | undefined, logoWithText: StaticImageData | string, logoWithoutText: StaticImageData | string) {
+function getSrc(
+    withText: boolean | undefined,
+    logoWithText: StaticImageData | string,
+    logoWithoutText: StaticImageData | string
+) {
     return withText ? logoWithText : logoWithoutText;
 }
 
 export const Logo = (props: LogoProps) => {
     switch (props.size) {
         case "s":
-            return <LogoContainer width='auto' height='24px'
-                                  src={getSrc(props.withText, logoWithTextSizeS, logoWithoutTextSizeS)} alt=''/>;
+            return <LogoContainer
+                width="auto" height="24px"
+                src={getSrc(props.withText,
+                    logoWithTextSizeS,
+                    logoWithoutTextSizeS)}
+                alt=""/>;
         case "m":
-            return <LogoContainer width='125px' height='30px'
-                                  src={getSrc(props.withText, logoWithTextSizeS, logoWithoutTextSizeS)} alt=''/>;
+            return <LogoContainer
+                width="125px"
+                height="30px"
+                src={getSrc(props.withText,
+                    logoWithTextSizeS,
+                    logoWithoutTextSizeS)}
+                alt=""/>;
         default:
             return null;
     }
 };
 
 interface LogoContainerProps {
-    width: string
-    height: string
-    src: StaticImageData | string
-    alt: string
+    width: string;
+    height: string;
+    src: StaticImageData | string;
+    alt: string;
 }
 
 const LogoContainer = ({width, height, src, alt}: LogoContainerProps) => {
@@ -46,8 +59,8 @@ const ImgStyled = styled(Image)`
 `;
 
 interface ImgWrapperProps {
-    width: string
-    height: string
+    width: string;
+    height: string;
 }
 
 const ImgWrapper = styled('div')<ImgWrapperProps>`

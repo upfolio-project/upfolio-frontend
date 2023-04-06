@@ -10,7 +10,7 @@ interface LinkWithoutAsProps extends Omit<LinkProps, "as"> {
 const LinkWithoutAs = ({...props}: LinkWithoutAsProps) => <Link {...props} as=""/>;
 
 interface LinkButtonProps {
-    type?: "default" | "success";
+    type?: "default" | "accent";
     fill?: boolean;
     children?: React.ReactNode;
     width?: "content" | "container"

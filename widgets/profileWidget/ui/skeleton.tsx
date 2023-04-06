@@ -1,7 +1,7 @@
 import {Box, Skeleton as MUISkeleton} from "@mui/material";
 import {Header, Text} from "@/shared/ui/text";
 import styled from "styled-components";
-import {borders, colors} from "@/styles/variables";
+import {borders, colors} from "@/shared/styles";
 
 const PortfolioData = styled(Box)`
   width: 676px;

@@ -1,6 +1,6 @@
 import {DatePicker as MUIDatePicker} from "@mui/x-date-pickers";
 import styled from "styled-components";
-import {borders, colors, fonts} from "@/styles/variables";
+import {borders, colors, fonts} from "@/shared/styles";
 import dayjs from 'dayjs';
 import {Ref, useState} from "react";
 

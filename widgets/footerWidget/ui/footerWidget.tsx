@@ -2,7 +2,8 @@ import {Box} from "@mui/system";
 import styled from "styled-components";
 import {Text} from "@/shared/ui/text";
 import {Link} from "@/shared/ui/link";
-import {colors, fonts} from "@/styles/variables";
+import {colors, fonts, sizes} from "@/shared/styles";
+import {Logo} from "@/shared/ui/logo";
 
 
 const Col = styled(Box)`
@@ -14,15 +15,27 @@ const Col = styled(Box)`
 
 const ColWrapper = styled(Box)`
   display: flex;
-  flex-direction: row;;
+  flex-direction: row;
   align-items: start;
-  max-width: 951px;
   justify-content: space-between;
   width: 100%;
 `;
 
 const Row = styled(Box)`
   display: flex;
+
+  & * {
+    width: auto;
+    display: inline;
+    word-wrap: normal;
+  }
+`;
+
+const LinksWrapper = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: ${sizes.m};
 `;
 
 const FooterStyled = styled("footer")`
@@ -30,8 +43,8 @@ const FooterStyled = styled("footer")`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  margin-bottom: 100px;
+  gap: ${sizes.m};
+  margin-bottom: ${sizes.l};
 `;
 
 const MarkStyled = styled("mark")`
@@ -44,71 +57,73 @@ export const FooterWidget = () => {
     return (
         <FooterStyled>
             <ColWrapper>
-                <Col gap='20px'>
-                    <Text style='bold' size='m'>
-                        UpFolio
-                    </Text>
-                    <Col gap='10px'>
-                        <Link href='#'>
-                            О платформе
-                        </Link>
-                        <Link href='#'>
-                            Каталог вакансий
-                        </Link>
-                        <Link href='#'>
-                            Контакты
-                        </Link>
-                    </Col>
+                <Col gap={sizes.s}>
+                    <Logo withText size="s"/>
+                    <Box width="175px">
+                        <Text size="m" type="defaultLight">
+                            Платформа
+                            для&nbsp;размещения
+                            цифрового портфолио
+                        </Text>
+                    </Box>
                 </Col>
-                <Col gap='20px'>
-                    <Text style='bold' size='m'>
-                        Помощь
-                    </Text>
-                    <Col gap='10px'>
-                        <Link href='#'>
-                            Для специалиста
-                        </Link>
-                        <Link href='#'>
-                            Для работодателя
-                        </Link>
-                        <Link href='#'>
-                            FAQ
-                        </Link>
+                <LinksWrapper>
+                    <Col gap={sizes.s}>
+                        <Text style="bold" size="m">
+                            UpFolio
+                        </Text>
+                        <Col gap={sizes.xs}>
+                            <Link href="#">
+                                О платформе
+                            </Link>
+                            <Link href="#">
+                                Каталог вакансий
+                            </Link>
+                            <Link href="#">
+                                Контакты
+                            </Link>
+                        </Col>
                     </Col>
-                </Col>
-                <Col gap='20px'>
-                    <Text style='bold' size='m'>
-                        Документы
-                    </Text>
-                    <Col gap='10px'>
-                        <Link href='#'>
-                            Соглашение с пользователем
-                        </Link>
-                        <Link href='#'>
-                            Наши партнёры
-                        </Link>
+                    <Col gap={sizes.s}>
+                        <Text style="bold" size="m">
+                            Помощь
+                        </Text>
+                        <Col gap={sizes.xs}>
+                            <Link href="#">
+                                Для специалистов
+                            </Link>
+                            <Link href="#">
+                                Для работодателей
+                            </Link>
+                            <Link href="#">
+                                FAQ
+                            </Link>
+                        </Col>
                     </Col>
-                </Col>
-                <Col gap='20px'>
-                    <Text style='bold' size='m'>
-                        Следите за нами в соцсетях
-                    </Text>
-                    <Col gap='10px'>
-                        <Link href='#'>
-                            VK
-                        </Link>
-                        <Link href='#'>
-                            Telegram
-                        </Link>
+                    <Col gap={sizes.s}>
+                        <Text style="bold" size="m">
+                            Документы
+                        </Text>
+                        <Col gap="10px">
+                            <Link href="#">
+                                Соглашение с пользователем
+                            </Link>
+                            <Link href="#">
+                                Наши партнёры
+                            </Link>
+                        </Col>
                     </Col>
-                </Col>
+                </LinksWrapper>
             </ColWrapper>
             <ColWrapper>
                 <Row>
-                    <Text size='m'><MarkStyled>UpFolio</MarkStyled>, inbox@upfolio.ru</Text>
+                    <Text>
+                        <Link href="/" size="m" type="accent" as="span">UpFolio</Link><span>, </span>
+                        <Link href="mailto:inbox@upfolio.ru" size="m" as="span">inbox@upfolio.ru</Link>
+                    </Text>
                 </Row>
                 <Row>
-                    <Text size='m'>Сейчас на сайте <MarkStyled>123</MarkStyled> портфолио
+                    <Text size="m">Сейчас на сайте <MarkStyled>123</MarkStyled> портфолио
                         и <MarkStyled>321</MarkStyled> вакансии</Text>
                 </Row>
             </ColWrapper>

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import {TextField} from "@mui/material";
-import {borders, colors, fonts} from "@/styles/variables";
+import {borders, colors, fonts} from "@/shared/styles";
 import React, {RefObject} from "react";
 
 interface DefaultInputProps {
     type?: "phone" | "default" | "email";
     hint?: React.ReactNode;
     label?: string;
-    hintType?: "default" | "secondary" | "success";
+    hintType?: "default" | "secondary" | "accent";
     placeholder?: string;
     onChange?: (value: string) => void;
     inputRef?: RefObject<HTMLInputElement | null>;
