@@ -7,6 +7,7 @@ import React, {useEffect, useRef} from "react";
 import {useCommenceByPhoneNumberMutation, useGetRegisterTokenQuery} from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
+import {sizes} from "@/styles/variables";
 
 export const RegisterPhoneWidget = () => {
     useEffect(() => {
@@ -35,12 +36,12 @@ export const RegisterPhoneWidget = () => {
         }>
             <Header size="s">Создайте аккаунт</Header>
             <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
-            <Box display="flex" flexDirection="column" gap="20px" width="320px">
+            <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
                 <Input inputRef={phoneRef} type="phone" label="Телефон" placeholder="929-789-98-88"/>
                 <Button type="success" buttonType="submit"
                         width="container">Получить СМС-код</Button>
             </Box>
-            <Box display="flex" gap="10px">
+            <Box display="flex" gap={sizes.xs}>
                 <Text type="defaultLight" size="s">У вас уже есть аккаунт?</Text>
                 <Link href="/login" type="success" size="s">Вход</Link>
             </Box>

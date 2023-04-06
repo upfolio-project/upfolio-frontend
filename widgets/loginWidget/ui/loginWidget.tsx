@@ -7,6 +7,7 @@ import {useEffect, useRef} from "react";
 import {useLoginByPasswordMutation} from "@/shared/api/auth/login";
 import {FormFeature} from "@/features/formFeature";
 import {useRouter} from "next/router";
+import {sizes} from "@/styles/variables";
 
 export const LoginWidget = () => {
     useEffect(() => {
@@ -36,7 +37,7 @@ export const LoginWidget = () => {
         }>
             <Header size="s">Войдите в свой аккаунт</Header>
             <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
-            <Box display="flex" flexDirection="column" gap="20px" width="320px">
+            <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
                 <Input inputRef={phoneRef} type="phone" label="Телефон" placeholder="929-789-98-88"/>
                 <Input inputRef={passwordRef} type="password" label="Пароль"
                        hint={<Link size="s" href="" type="defaultLight" as="span">Забыли пароль?</Link>}
@@ -44,7 +45,7 @@ export const LoginWidget = () => {
                 <Button type="success" buttonType="submit"
                         width="container">Войти</Button>
             </Box>
-            <Box display="flex" gap="10px">
+            <Box display="flex" gap={sizes.xs}>
                 <Text type="defaultLight" size="s">У вас нет аккаунта?</Text>
                 <Link href="/register/enterPhone" type="success" size="s">Регистрация</Link>
             </Box>
