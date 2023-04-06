@@ -117,9 +117,9 @@ export const FooterWidget = () => {
             </ColWrapper>
             <ColWrapper>
                 <Row>
-                    <Text as="span">
+                    <Text>
                         <Link href="/" size="m" type="accent" as="span">UpFolio</Link><span>, </span>
-                        <Link href="mailto:inbox@upfolio.ru" size="m">inbox@upfolio.ru</Link>
+                        <Link href="mailto:inbox@upfolio.ru" size="m" as="span">inbox@upfolio.ru</Link>
                     </Text>
                 </Row>
                 <Row>

@@ -19,7 +19,7 @@ export const MainWidget = () => {
     return (
         <ContainerStyled>
             <Box maxWidth="386px">
-                <Header size="s" style="bold">
+                <Header size="s" style="bold" align="center">
                     <Header as="span" size="s" type="accent" style="bold">UpFolio</Header> — платформа,
                     которая&nbsp;позволяет
                     соискателям находить работу,
