@@ -7,6 +7,7 @@ import styled from "styled-components";
 import {borders, colors, sizes} from "@/styles/variables";
 import {dateOfBirthToView, registerDateToView, userStatusToView} from "@/shared/utils/dataToView";
 import {Tags} from "@/shared/ui/tag";
+import {messengers, Messengers} from "@/shared/ui/messengers/styles/messengers";
 
 const StatusTag = styled.div`
   height: 18px;
@@ -42,6 +43,25 @@ interface AboutUserProps {
     registered: string
 }
 
+const mockMessengers = [
+    {
+        name: messengers.dribbble,
+        url: "#"
+    },
+    {
+        name: messengers.behance,
+        url: "#"
+    },
+    {
+        name: messengers.github,
+        url: "#"
+    },
+    {
+        name: messengers.telegram,
+        url: "#"
+    },
+];
+
 const AboutUser = ({profilePhotoUrl, firstName, lastName, bio, dateOfBirth, tags, status, registered}: AboutUserProps) => {
     const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
         dateOfBirthToView(new Date(dateOfBirth || "")) : undefined;
@@ -71,6 +91,7 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, bio, dateOfBirth, tags
                         Зарегистрирован <Text size="s" type="accent" as="span">{registeredHumanity}</Text>
                     </Text>
                 }
+                <Messengers messengers={mockMessengers}/>
             </InfoContainer>
         </Wrapper>
     );
