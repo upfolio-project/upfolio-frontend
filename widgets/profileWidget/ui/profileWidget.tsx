@@ -3,7 +3,7 @@ import {Box} from "@mui/material";
 import styled from "styled-components";
 import {borders, colors} from "@/styles/variables";
 import {Skeleton} from "./skeleton";
-import {AboutUser, UserBio, UserContacts} from "@/entities/userData";
+import {AboutUser, UserContacts} from "@/entities/userData";
 import {useRouter} from "next/router";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
@@ -48,7 +48,7 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
         data: userData,
         isLoading: getProfileLoading, 
         isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading || isError});
+    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
 
     const profile = userData?.profile;
 
@@ -68,7 +68,6 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
                     status={profile.status}
                     registered={profile.registered}
                 />
-                <UserBio bio={profile.bio}/>
                 <UserContacts/>
             </UserDataStyled>
             <PortfolioData></PortfolioData>
