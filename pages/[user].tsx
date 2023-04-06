@@ -33,6 +33,16 @@ interface Context extends ParsedUrlQuery {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext<Context>) => {
     const username = context.params?.user || "";
+    if (username === "me") {
+        return {
+            props:
+                {
+                    meta: {
+                        title: `Личная страница — UpFolio`,
+                    }
+                }
+        };
+    }
     const store = setupStore();
     const {res} = context;
     let profile: undefined | ProfileModel = undefined;
