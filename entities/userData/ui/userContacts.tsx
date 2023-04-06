@@ -1,5 +1,5 @@
 import {Header, Text} from "@/shared/ui/text";
-import {Wrapper} from "./shared";
+import {Wrapper} from "@/shared/styles";
 
 interface UserContactsProps {
 

@@ -1,6 +1,6 @@
 import {Chip as MUIChip} from "@mui/material";
 import styled from "styled-components";
-import {fonts} from "@/styles/variables";
+import {fonts} from "@/shared/styles";
 
 interface ChipProps {
     children: string

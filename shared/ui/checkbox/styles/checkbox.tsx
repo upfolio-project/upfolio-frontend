@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import {Text} from "@/shared/ui/text";
-import {borders, colors} from "@/styles/variables";
+import {borders, colors} from "@/shared/styles";
 import check from "./../static/check.svg";
 import React from "react";
 
 interface CheckboxProps extends
     Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size" | "style" | "type"> {
     size?: "s" | "m" | "l";
-    type?: "default" | "defaultLight" | "success" | "successLight";
+    type?: "default" | "defaultLight" | "accent" | "accentLight";
     style?: "normal" | "italic" | "bold";
     children?: React.ReactNode
 }

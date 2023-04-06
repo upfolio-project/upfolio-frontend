@@ -10,6 +10,7 @@ import {
 } from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
+import {sizes} from "@/shared/styles";
 
 export const RegisterOTPWidget = () => {
     useEffect(() => {
@@ -37,13 +38,13 @@ export const RegisterOTPWidget = () => {
             }
             }>
                 <Header size="s">Введите код подтверждения</Header>
-                <Box display="flex" flexDirection="column" gap="20px" width="320px">
+                <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
                     <Input inputRef={OTPRef} label="Код подтверждения" placeholder="xxxx"/>
-                    <Button type="success" buttonType="submit" width="container">Отправить</Button>
+                    <Button type="accent" buttonType="submit" width="container">Отправить</Button>
                 </Box>
-                <Box display="flex" gap="10px">
+                <Box display="flex" gap={sizes.xs}>
                     <Text type="defaultLight" size="s">Не пришёл код?</Text>
-                    <Link href="/login" type="success" size="s">Отправить повторно</Link>
+                    <Link href="/login" type="accent" size="s">Отправить повторно</Link>
                 </Box>
             </FormFeature>
     );

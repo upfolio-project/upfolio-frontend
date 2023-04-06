@@ -8,6 +8,7 @@ import {
 } from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
+import {sizes} from "@/shared/styles";
 
 
 export const RegisterFinishWidget = () => {
@@ -50,7 +51,7 @@ export const RegisterFinishWidget = () => {
         }
         }>
             <Header size="s">Введите свои данные</Header>
-            <Box display="flex" flexDirection="column" gap="20px" width="320px">
+            <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
                 <Input inputRef={firstNameRef} label="Имя" placeholder="Иван"/>
                 <Input inputRef={lastNameRef} label="Фамилия" placeholder="Петров"/>
                 <Input inputRef={passwordRef} type="password" label="Пароль"
@@ -58,7 +59,7 @@ export const RegisterFinishWidget = () => {
                        placeholder="********" autocomplete="new-password"/>
                 <Input inputRef={passwordAgainRef} type="password" label="Повторите пароль"
                        placeholder="********" hintAlign="right" autocomplete="new-password"/>
-                <Button type="success" buttonType="submit"
+                <Button type="accent" buttonType="submit"
                         width="container">Зарегистрироваться</Button>
             </Box>
         </FormFeature>

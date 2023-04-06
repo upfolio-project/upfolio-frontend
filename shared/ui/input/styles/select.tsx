@@ -1,7 +1,7 @@
 import {FormControl, InputLabel, MenuItem, Select as MUISelect} from "@mui/material";
 import React, {Ref, useState} from "react";
 import styled from "styled-components";
-import {borders, colors, fonts, shadows} from "@/styles/variables";
+import {borders, colors, fonts, shadows} from "@/shared/styles";
 
 interface Item<V> {
     content: React.ReactNode;

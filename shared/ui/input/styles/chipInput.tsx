@@ -3,7 +3,7 @@ import {Box} from "@mui/material";
 import {Chip} from "@/shared/ui/chip";
 import {Text} from "@/shared/ui/text";
 import styled from "styled-components";
-import {borders, colors, fonts} from "@/styles/variables";
+import {borders, colors, fonts} from "@/shared/styles";
 import {MutableRefObject, useEffect, useRef, useState, KeyboardEvent} from "react";
 
 

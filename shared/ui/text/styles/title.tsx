@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import {fonts, colors} from "@/styles/variables";
+import {fonts, colors} from "@/shared/styles";
 import React from "react";
 
 
 interface TitleProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>, "type"> {
-    type?: "default" | "defaultLight" | "success" | "successLight";
+    type?: "default" | "defaultLight" | "accent" | "accentLight";
     children?: React.ReactNode | React.ReactNode[];
 }
 
@@ -15,9 +15,9 @@ function getColor({type}: TitleProps) {
             return colors.colorSecondary;
         case "defaultLight":
             return colors.colorSecondary50;
-        case "success":
+        case "accent":
             return colors.colorAccent;
-        case "successLight":
+        case "accentLight":
             return colors.colorAccent50;
     }
 }
