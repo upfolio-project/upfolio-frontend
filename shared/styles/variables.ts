@@ -26,7 +26,8 @@ export const colors = {
 type ValueOf<T> = T[keyof T]
 
 export const shadows = {
-    defaultShadow: "0px 0px 30px 5px rgba(0, 0, 0, 0.1)",
+    defaultShadow: "0 0 30px 5px rgba(0, 0, 0, 0.1)",
+    accentShadow: "0 6px 20px 0 rgba(0, 0, 0, 0.1)",
 };
 
 export const borders = {
