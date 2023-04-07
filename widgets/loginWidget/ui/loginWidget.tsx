@@ -37,7 +37,7 @@ export const LoginWidget = () => {
             loginHandler();
         }
         }>
-            {isError && <Message title="Похоже произошла ошибка" description={error} severity="error"/>}
+            {isError && <Message title="Произошла ошибка" description={error} severity="error"/>}
             <Header size="s">Войдите в свой аккаунт</Header>
             <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
             <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">

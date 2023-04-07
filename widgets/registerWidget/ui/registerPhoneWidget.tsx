@@ -41,7 +41,7 @@ export const RegisterPhoneWidget = () => {
             loginHandler();
         }
         }>
-            {isError && <Message title="Похоже произошла ошибка"
+            {isError && <Message title="Произошла ошибка"
                                  description={GetErrorDescription(error?.data?.text)}
                                  severity="error"/>}
             <Header size="s">Создайте аккаунт</Header>

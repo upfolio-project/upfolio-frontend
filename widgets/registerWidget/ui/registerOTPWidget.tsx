@@ -39,7 +39,7 @@ export const RegisterOTPWidget = () => {
             OTPHandler();
         }
         }>
-            {isError && <Message title="Похоже произошла ошибка"
+            {isError && <Message title="Произошла ошибка"
                                  description={GetErrorDescription(error?.data?.text)}
                                  severity="error"/>}
             <Header size="s">Введите код подтверждения</Header>

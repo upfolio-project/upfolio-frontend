@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import {Alert, AlertProps, AlertTitle, Box, IconButton, LinearProgress} from "@mui/material";
+import {Alert, AlertProps, Box, IconButton, LinearProgress} from "@mui/material";
 import {ReactNode, useEffect, useState} from "react";
 import {borders, colors, shadows, sizes} from "@/shared/styles";
-import {Header, Text} from "@/shared/ui/text";
+import {Text} from "@/shared/ui/text";
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -42,8 +42,8 @@ export const Message = ({title, description, severity}: MessageProps) => {
                     <CloseIcon sx={{color: getColor({type: severity}), fontSize: sizes.s}}/>
                 </IconButton>
             }>
-                <AlertTitle><Header size='s'>{title}</Header></AlertTitle>
-                <Text>{description}</Text>
+                <Text size="m">{title}</Text>
+                <Text size="s">{description}</Text>
             </AlertStyled>
             <LinearProgressStyled type={severity} variant="determinate" value={progress}/>
         </Wrapper>
@@ -74,8 +74,8 @@ const Wrapper = styled(Box)<InnerMessageProps>`
   z-index: 2;
   flex-direction: column;
   max-width: max-content;
-  top: 80vh;
-  right: 2vw;
+  bottom: 4vmin;
+  right: 4vmin;
   border-radius: ${borders.radius10};
   box-shadow: ${shadows.accentShadow};
   overflow: hidden;

@@ -54,7 +54,7 @@ export const RegisterFinishWidget = () => {
             if (formDataCheck()) finishHandler();
         }
         }>
-            {error && <Message title="Похоже произошла ошибка"
+            {error && <Message title="Произошла ошибка"
                                description="Пароли не совпадают"
                                severity="error"/>}
             <Header size="s">Введите свои данные</Header>
