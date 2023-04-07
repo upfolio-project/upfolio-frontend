@@ -13,6 +13,12 @@ export default function GetErrorDescription(error: string) {
             return 'Код подтверждения должен состоять только из цифр';
         case 'Bad username':
             return 'Имя пользователя не соответствует требования';
+        case 'Invalid OTP code':
+            return 'Код подтверждения неверный';
+        case 'Too many OTP attempts':
+            return 'Слишком много попыток';
+        case 'Registration steps fault, please reload the page':
+            return 'Регистрация не была завершена успешно, обновите страницу';
         default:
             return 'Похоже что-то пошло не так, попробуйте обновить страницу';
     }
