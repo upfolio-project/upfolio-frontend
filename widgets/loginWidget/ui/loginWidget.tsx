@@ -8,10 +8,12 @@ import {useLoginByPasswordMutation} from "@/shared/api/auth/login";
 import {FormFeature} from "@/features/formFeature";
 import {useRouter} from "next/router";
 import {sizes} from "@/shared/styles";
+import {Message} from "@/shared/ui/message";
+import {useAppSelector} from "@/shared/hooks";
 
 export const LoginWidget = () => {
     useEffect(() => {
-        if (loginData?.status === "fulfilled" && loginData?.data?.token) {
+        if (status === "fulfilled" && loginData?.token) {
             router.push("/me");
         }
     });
@@ -25,9 +27,9 @@ export const LoginWidget = () => {
 
     const passwordRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
-
+    const error = useAppSelector(state => state.login.error);
     const router = useRouter();
-    const [loginByPassword, loginData] = useLoginByPasswordMutation();
+    const [loginByPassword, {data: loginData, status, isError}] = useLoginByPasswordMutation();
 
     return (
         <FormFeature onSubmit={(e) => {
@@ -35,6 +37,7 @@ export const LoginWidget = () => {
             loginHandler();
         }
         }>
+            {isError && <Message title="Похоже произошла ошибка" description={error} severity="error"/>}
             <Header size="s">Войдите в свой аккаунт</Header>
             <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
             <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
