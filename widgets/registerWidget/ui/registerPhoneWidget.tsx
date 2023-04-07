@@ -8,10 +8,12 @@ import {useCommenceByPhoneNumberMutation, useGetRegisterTokenQuery} from "@/shar
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
 import {sizes} from "@/shared/styles";
+import {Message} from "@/shared/ui/message";
+import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 
 export const RegisterPhoneWidget = () => {
     useEffect(() => {
-        if (registerData?.status === "fulfilled" && registerData?.data?.success) {
+        if (status === "fulfilled" && registerData?.success) {
             router.push("/register/enterOTP");
         }
     });
@@ -26,14 +28,22 @@ export const RegisterPhoneWidget = () => {
     const {data: registerToken} = useGetRegisterTokenQuery({});
     const router = useRouter();
     const phoneRef = useRef<HTMLInputElement>(null);
-    const [registerPhoneHandler, registerData] = useCommenceByPhoneNumberMutation();
-
+    const [registerPhoneHandler, {
+        data: registerData,
+        status,
+        isError,
+        error: regError
+    }] = useCommenceByPhoneNumberMutation();
+    const error = regError as any;
     return (
         <FormFeature onSubmit={(e) => {
             e.preventDefault();
             loginHandler();
         }
         }>
+            {isError && <Message title="Похоже произошла ошибка"
+                                 description={GetErrorDescription(error?.data?.text)}
+                                 severity="error"/>}
             <Header size="s">Создайте аккаунт</Header>
             <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
             <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">

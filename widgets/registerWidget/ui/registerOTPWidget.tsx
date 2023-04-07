@@ -11,10 +11,12 @@ import {
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
 import {sizes} from "@/shared/styles";
+import {Message} from "@/shared/ui/message";
+import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 
 export const RegisterOTPWidget = () => {
     useEffect(() => {
-        if (registerData?.status === "fulfilled" && registerData?.data?.success) {
+        if (status === "fulfilled" && registerData?.success) {
             router.push("/register/finish");
         }
     });
@@ -29,23 +31,26 @@ export const RegisterOTPWidget = () => {
     const {data: registerToken} = useGetRegisterTokenQuery({});
     const router = useRouter();
     const OTPRef = useRef<HTMLInputElement>(null);
-    const [registerOTPHandler, registerData] = useConfirmPhoneOTPMutation();
-
+    const [registerOTPHandler, {data: registerData, status, isError, error: regError}] = useConfirmPhoneOTPMutation();
+    const error = regError as any;
     return (
-            <FormFeature onSubmit={(e) => {
-                e.preventDefault();
-                OTPHandler();
-            }
-            }>
-                <Header size="s">Введите код подтверждения</Header>
-                <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
-                    <Input inputRef={OTPRef} label="Код подтверждения" placeholder="xxxx"/>
-                    <Button type="accent" buttonType="submit" width="container">Отправить</Button>
-                </Box>
-                <Box display="flex" gap={sizes.xs}>
-                    <Text type="defaultLight" size="s">Не пришёл код?</Text>
-                    <Link href="/login" type="accent" size="s">Отправить повторно</Link>
-                </Box>
-            </FormFeature>
+        <FormFeature onSubmit={(e) => {
+            e.preventDefault();
+            OTPHandler();
+        }
+        }>
+            {isError && <Message title="Похоже произошла ошибка"
+                                 description={GetErrorDescription(error?.data?.text)}
+                                 severity="error"/>}
+            <Header size="s">Введите код подтверждения</Header>
+            <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
+                <Input inputRef={OTPRef} label="Код подтверждения" placeholder="xxxx"/>
+                <Button type="accent" buttonType="submit" width="container">Отправить</Button>
+            </Box>
+            <Box display="flex" gap={sizes.xs}>
+                <Text type="defaultLight" size="s">Не пришёл код?</Text>
+                <Link href="/login" type="accent" size="s">Отправить повторно</Link>
+            </Box>
+        </FormFeature>
     );
 };

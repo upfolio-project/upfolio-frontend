@@ -2,16 +2,18 @@ import {Box} from "@mui/material";
 import {Header} from "@/shared/ui/text";
 import {Input} from "@/shared/ui/input";
 import {Button} from "@/shared/ui/button";
-import {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {
     useGetRegisterTokenQuery, useFinishMutation
 } from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
 import {sizes} from "@/shared/styles";
+import {Message} from "@/shared/ui/message";
 
 
 export const RegisterFinishWidget = () => {
+    const [error, setError] = useState(false);
     useEffect(() => {
         if (registerData?.status === "fulfilled" && registerData?.data?.token) {
             router.push("/me");
@@ -29,8 +31,10 @@ export const RegisterFinishWidget = () => {
 
     const formDataCheck = () => {
         if (String(passwordRef?.current?.value) !== String(passwordAgainRef?.current?.value)) {
+            setError(true);
             return false;
         }
+        setError(false);
         // other checks on form layer
         return true;
     };
@@ -50,6 +54,9 @@ export const RegisterFinishWidget = () => {
             if (formDataCheck()) finishHandler();
         }
         }>
+            {error && <Message title="Похоже произошла ошибка"
+                               description="Пароли не совпадают"
+                               severity="error"/>}
             <Header size="s">Введите свои данные</Header>
             <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
                 <Input inputRef={firstNameRef} label="Имя" placeholder="Иван"/>
