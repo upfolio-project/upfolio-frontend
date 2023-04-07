@@ -60,7 +60,7 @@ export const Register = commonApi.injectEndpoints({
                 });
 
                 const data = result.data as SuccessResponse;
-                if (result.error) throw result.error;
+                if (result.error) return {error: result.error};
                 return {data};
             },
             invalidatesTags: [],
@@ -80,13 +80,7 @@ export const Register = commonApi.injectEndpoints({
                     body: arg
                 });
                 const data = result.data as SuccessResponse;
-                if (!data.success) return {
-                    error: {
-                        error: '',
-                        status: 'CUSTOM_ERROR',
-                    }
-                };
-                if (result.error) throw result.error;
+                if (result.error) return {error: result.error};
 
                 return {data};
             },
@@ -109,14 +103,7 @@ export const Register = commonApi.injectEndpoints({
                 });
 
                 const data = result.data as JWTSuccessAuthResponse;
-
-                if (!data.token) return {
-                    error: {
-                        error: '',
-                        status: 'CUSTOM_ERROR',
-                    }
-                };
-                if (result.error) throw result.error;
+                if (result.error) return {error: result.error};
 
                 return {data};
 
