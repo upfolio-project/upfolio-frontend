@@ -6,9 +6,10 @@ import {ProfileModelStatus} from "@/shared/api/entities";
 import {Button} from "@/shared/ui/button";
 import React, {useCallback, useEffect, useRef} from "react";
 import {useRouter} from "next/router";
+import {Message} from "@/shared/ui/message";
+import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 
 const Container = styled(Box)`
-  width: 100vw;
   display: flex;
   justify-content: center;
 `;
@@ -50,7 +51,8 @@ const EditMeWidget = () => {
     } = useGetProfileQuery({"username": me?.username || ""}, {skip: getMeLoading || !me});
     const profile = userData?.profile;
 
-    const [editProfile] = useEditProfileMutation();
+    const [editProfile, {error: regError}] = useEditProfileMutation();
+    const error = regError as any;
 
     const usernameRef = useRef<HTMLInputElement>(null);
     const firstNameRef = useRef<HTMLInputElement>(null);
@@ -80,7 +82,9 @@ const EditMeWidget = () => {
 
     return (
         <Container>
-
+            {error && <Message title="Произошла ошибка"
+                                 description={GetErrorDescription(error?.data?.text)}
+                                 severity="error"/>}
             <Box width="600px" display="flex" flexDirection="column" gap="20px">
                 <Input
                     label="Username"
