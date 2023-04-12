@@ -14,12 +14,16 @@ const ProjectPreviewContainer = styled(Box)`
   padding: ${sizes.m};
   min-width: 5px;
   background-color: ${colors.colorSecondary05};
+  display: flex;
+  flex-direction: column;
+  gap: ${sizes.xs}
 `;
 
 const ProjectPreviewEntity = ({name, description, created, tags}: ProjectPreviewEntityProps) => {
     return (
         <ProjectPreviewContainer>
             <Text size="m" style="bold">{name}</Text>
+            <Text size="s" type="defaultLight">{description}</Text>
         </ProjectPreviewContainer>
     );
 };
