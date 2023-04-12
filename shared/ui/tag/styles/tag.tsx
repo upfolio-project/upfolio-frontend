@@ -11,8 +11,13 @@ const TagItem = styled.span<{tagType: "default" | "accent"}>`
   padding-left: ${sizes.xs};
   padding-right: ${sizes.xs};
   border-radius: ${borders.radius5};
+
   &, & * {
     color: ${p => p.tagType === "accent" ? colors.colorDominant : colors.colorAccent};
+  }
+
+  &:hover, a:hover span, & span:hover {
+    color: ${p => p.tagType === "accent" ? colors.colorDominant : colors.colorAccent} !important;
   }
 `;
 
