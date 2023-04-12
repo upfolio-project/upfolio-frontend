@@ -84,7 +84,7 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, bio, dateOfBirth, tags
                 <StatusTag>
                     <Text size="s" type="success">{statusString}</Text>
                 </StatusTag>
-                <Tags tags={tags}/>
+                <Tags tags={tags.map(tag => ({value: tag, link: "#"}))}/>
                 {bio && <BioText size="s" type="defaultLight">{bio}</BioText>}
                 {registeredHumanity &&
                     <Text size="s" type="defaultLight" align="center">
