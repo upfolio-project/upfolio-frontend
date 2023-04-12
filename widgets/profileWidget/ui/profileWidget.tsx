@@ -6,12 +6,7 @@ import {AboutUser, UserContacts} from "@/entities/userData";
 import {useRouter} from "next/router";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
-import {PortfolioData} from "@/entities/portfolioData";
 import {sizes} from "@/shared/styles";
-
-const PortfolioDataStyled = styled(Box)`
-  width: 676px;
-`;
 
 const UserDataStyled = styled(Box)`
   width: 328px;
@@ -44,7 +39,7 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
 
     const {
         data: userData,
-        isLoading: getProfileLoading, 
+        isLoading: getProfileLoading,
         isError: getProfileError
     } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
 
@@ -68,22 +63,13 @@ const ProfileWidget = ({username}: UserWidgetProps) => {
                 />
                 <UserContacts/>
             </UserDataStyled>
-            <PortfolioDataStyled>
-                <PortfolioData/>
-            </PortfolioDataStyled>
         </>
     );
 };
 
 const UserWidgetStyled = ({username}: UserWidgetProps) => {
     return (
-        <Box
-            display="flex"
-            gap={sizes.s}
-            justifyContent="center"
-        >
-            <ProfileWidget username={username}/>
-        </Box>
+        <ProfileWidget username={username}/>
     );
 };
 
