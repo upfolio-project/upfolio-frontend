@@ -43,7 +43,7 @@ const PortfolioWidget = () => {
             <Wrapper>
                 <PortfolioContainer>
                     <Box width="100%" justifyContent="left"><Header size="s">Портфолио</Header></Box>
-                    {mockProjects.map(project => <ProjectPreviewEntity key={project.name}/>)}
+                    {mockProjects.map(project => <ProjectPreviewEntity {...project} key={project.name}/>)}
                 </PortfolioContainer>
             </Wrapper>
         </PortfolioDataStyled>
