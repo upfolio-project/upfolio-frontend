@@ -1,21 +1,27 @@
 import {Box} from "@mui/material";
 import {sizes} from "@/shared/styles";
-import {Tag} from "@/shared/ui/tag/styles/tag";
+import {Tag, TagProps} from "@/shared/ui/tag/styles/tag";
 import React from "react";
 
-const Tags = ({tags}: { tags: string[] | undefined }) => {
+interface TagsProps {
+    tags: TagProps[] | undefined
+    tagType?: "default" | "accent"
+    align?: "left" | "center" | "right"
+}
+
+const Tags = ({tags, align, tagType}: TagsProps) => {
     if (!tags || !tags.length) {
         return <></>;
     }
     return (
         <Box
-            display="flex"
+            display="inline-flex"
             flexWrap="wrap"
-            justifyContent="center"
+            justifyContent={align || "center"}
             gap={sizes.xxs}
         >
             {tags && tags.map((tag) => (
-                <Tag key={tag} value={tag} link="#"/>
+                <Tag tagType={tagType} key={tag.value + (tag.link || "")} value={tag.value} link={tag.link}/>
             ))}
         </Box>
     );

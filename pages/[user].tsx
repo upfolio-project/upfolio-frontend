@@ -8,6 +8,9 @@ import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
 import {Profile} from "@/shared/api/profile/profile";
 import {ProfileModel} from "@/shared/api/entities";
+import {sizes} from "@/shared/styles";
+import {PortfolioWidget} from "@/widgets/portfolioWidget";
+import {Box} from "@mui/material";
 
 
 function OtherPages() {
@@ -18,7 +21,15 @@ function OtherPages() {
 
     return (
         <PageLayout>
-            <UserWidget username={username}/>
+            <Box
+                display="flex"
+                gap={sizes.s}
+                justifyContent="center"
+            >
+                <UserWidget username={username}/>
+                <PortfolioWidget/>
+            </Box>
+
         </PageLayout>
     );
 }
