@@ -15,7 +15,7 @@ const Tags = ({tags, align, tagType}: TagsProps) => {
     }
     return (
         <Box
-            display="flex"
+            display="inline-flex"
             flexWrap="wrap"
             justifyContent={align || "center"}
             gap={sizes.xxs}

@@ -21,19 +21,22 @@ const mockProjects = [
         name: "Task manager",
         description: "Приложение для повышения продуктивности, постановки задач, планирования дня, достижения успеха. Приложение для повышения продуктивности, постановки задач, планирования дня, достижения успеха.",
         tags: ["flask", "python", "tasks", "queue", "js", "css", "html"],
-        created: "2022-11-05"
+        created: "2022-11-05",
+        projectHref: "#1"
     },
     {
         name: "Without description",
         description: "",
         tags: ["flask", "python", "tasks"],
-        created: "2022-08-03"
+        created: "2022-08-03",
+        projectHref: "#2"
     },
     {
         name: "Without tags",
         description: "Приложение для повышения продуктивности, постановки задач, планирования дня, достижения успеха. Приложение для повышения продуктивности, постановки задач, планирования дня, достижения успеха.",
         tags: [],
-        created: "2022-11-05"
+        created: "2022-11-05",
+        projectHref: "#3"
     }
 ];
 
