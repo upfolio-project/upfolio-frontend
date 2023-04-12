@@ -6,9 +6,10 @@ import React from "react";
 interface TagsProps {
     tags: TagProps[] | undefined
     tagType?: "default" | "accent"
+    align?: "left" | "center" | "right"
 }
 
-const Tags = ({tags}: TagsProps) => {
+const Tags = ({tags, align, tagType}: TagsProps) => {
     if (!tags || !tags.length) {
         return <></>;
     }
@@ -16,11 +17,11 @@ const Tags = ({tags}: TagsProps) => {
         <Box
             display="flex"
             flexWrap="wrap"
-            justifyContent="center"
+            justifyContent={align || "center"}
             gap={sizes.xxs}
         >
             {tags && tags.map((tag) => (
-                <Tag key={tag.value + (tag.link || "")} value={tag.value} link={tag.link}/>
+                <Tag tagType={tagType} key={tag.value + (tag.link || "")} value={tag.value} link={tag.link}/>
             ))}
         </Box>
     );
