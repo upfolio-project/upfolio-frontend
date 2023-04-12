@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import {Box} from "@mui/material";
 import {Header} from "@/shared/ui/text";
-import {Wrapper} from "@/shared/styles";
+import {sizes, Wrapper} from "@/shared/styles";
 import {ProjectPreviewEntity} from "@/entities/projectPreviewEntity";
 
 const PortfolioDataStyled = styled(Box)`
@@ -11,6 +11,9 @@ const PortfolioDataStyled = styled(Box)`
 
 const PortfolioContainer = styled(Box)`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: ${sizes.s}
 `;
 
 const mockProjects = [
@@ -40,9 +43,7 @@ const PortfolioWidget = () => {
             <Wrapper>
                 <PortfolioContainer>
                     <Box width="100%" justifyContent="left"><Header size="s">Портфолио</Header></Box>
-                    <Box>
-                        {mockProjects.map(project => <ProjectPreviewEntity key={project.name}/>)}
-                    </Box>
+                    {mockProjects.map(project => <ProjectPreviewEntity key={project.name}/>)}
                 </PortfolioContainer>
             </Wrapper>
         </PortfolioDataStyled>
