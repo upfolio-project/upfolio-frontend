@@ -18,8 +18,6 @@ import {
 } from "./login/login";
 
 import type {
-    ProfileModelStatus,
-
     GetMeRequest,
     GetMeSuccessResponse,
 
@@ -28,6 +26,10 @@ import type {
 
     EditProfileRequest,
     EditProfileSuccessResponse
+} from "./profile/profile";
+
+import {
+    ProfileModelStatus
 } from "./profile/profile";
 
 

@@ -14,7 +14,7 @@ export const Profile = commonApi.injectEndpoints({
     endpoints: build => ({
         getProfile: build.query<GetProfileSuccessResponse, GetProfileRequest>({
             query: (arg) => ({
-                url: `/profile/${arg.username}`,
+                url: `/profile/user/${arg.username}`,
                 method: 'GET'
             }),
         }),
