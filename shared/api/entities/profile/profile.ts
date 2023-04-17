@@ -13,16 +13,18 @@ export interface UserRealNameModel {
 }
 
 export interface ProfileModel {
+    userUuid: string
     username: string
     realName: UserRealNameModel
-    dateOfBirth: string
-    profilePhotoUrl: string
-    type: ProfileModelType
     registered: string
+    type: ProfileModelType
+    profilePhotoUrl: string
+    verified: boolean
+    dateOfBirth: string
     status: ProfileModelStatus
     bio: string
     tags: string[]
-    verified: boolean
+    location: string
 }
 
 
