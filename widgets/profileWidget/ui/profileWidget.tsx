@@ -1,11 +1,7 @@
-import {useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
 import styled from "styled-components";
 import {Skeleton} from "./skeleton";
 import {AboutUser, UserContacts} from "@/entities/userData";
-import {useRouter} from "next/router";
-import {useCallback, useEffect} from "react";
-import {Error404Entity} from "@/entities/error404Entity";
 import {sizes} from "@/shared/styles";
 import {ProfileModel} from "@/shared/api/entities";
 
