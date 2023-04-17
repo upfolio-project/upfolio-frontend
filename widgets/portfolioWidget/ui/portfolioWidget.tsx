@@ -40,7 +40,13 @@ const mockProjects = [
     }
 ];
 
-const PortfolioWidget = () => {
+interface PortfolioWidgetProps {
+    userUuid: string | undefined
+    isLoading: boolean
+}
+
+const PortfolioWidget = ({userUuid, isLoading}: PortfolioWidgetProps) => {
+
     return (
         <PortfolioDataStyled>
             <Wrapper>

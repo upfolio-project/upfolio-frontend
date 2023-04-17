@@ -6,11 +6,13 @@ import {ParsedUrlQuery} from "querystring";
 import {UserWidget} from "@/widgets/profileWidget";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {Profile} from "@/shared/api/profile/profile";
+import {Profile, useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
 import type {ProfileModel} from "@/shared/api/entities";
 import {sizes} from "@/shared/styles";
 import {PortfolioWidget} from "@/widgets/portfolioWidget";
 import {Box} from "@mui/material";
+import {useCallback, useEffect} from "react";
+import {Error404Entity} from "@/entities/error404Entity";
 
 
 function OtherPages() {
@@ -19,6 +21,33 @@ function OtherPages() {
     // TODO hook for this
     const username = route.asPath.replace("/", "");
 
+    const {data: me, isLoading: getMeLoading, isError} = useGetMeQuery({});
+    const router = useRouter();
+
+    const authToLogin = useCallback(function () {
+        if (isError && username === "me") {
+            router.push("/login");
+        }
+    }, [isError, username, router]);
+
+    useEffect(() => {
+        authToLogin();
+    }, [authToLogin]);
+
+
+    const meString = me?.username || "";
+    const currentUsername = username === "me" ? meString : username;
+
+    const {
+        data: userData,
+        isLoading: getProfileLoading,
+        isError: getProfileError
+    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
+
+    const profile = userData?.profile;
+
+    if (getProfileError) return <Box position="absolute" top="200px"><Error404Entity/></Box>;
+
     return (
         <PageLayout>
             <Box
@@ -26,8 +55,8 @@ function OtherPages() {
                 gap={sizes.s}
                 justifyContent="center"
             >
-                <UserWidget username={username}/>
-                <PortfolioWidget/>
+                <UserWidget profile={profile} isLoading={getProfileLoading}/>
+                <PortfolioWidget userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
             </Box>
 
         </PageLayout>
