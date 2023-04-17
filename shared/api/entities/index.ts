@@ -12,17 +12,17 @@ import {
     FinishRegistrationSuccessResponse
 } from "./register/register";
 
+import {
+    AuthorizeByPasswordRequest,
+    AuthorizeByPasswordSuccessResponse
+} from "./login/login";
+
 type ProfileModelType = 'PUBLIC' | 'PRIVATE' | 'CONTACTS_HIDDEN' | 'CONTACTS_FOR_COMPANIES'
 
 export enum ProfileModelStatus {
     LOOKING_FOR_JOB = "LOOKING_FOR_JOB",
     FOUND_JOB = "FOUND_JOB",
     NOT_LOOKING_FOR_JOB = "NOT_LOOKING_FOR_JOB",
-}
-
-export interface AuthorizeByPasswordRequest {
-    phoneNumber: string
-    password: string
 }
 
 export interface GetMeResponse {
@@ -77,4 +77,7 @@ export type {
     FinishRegistrationRequest,
     FinishRegistrationSuccessResponse,
 
+
+    AuthorizeByPasswordRequest,
+    AuthorizeByPasswordSuccessResponse
 };
