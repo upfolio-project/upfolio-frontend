@@ -27,14 +27,14 @@ export const Register = commonApi.injectEndpoints({
         getRegisterToken: build.query<RegisterTokenSuccessResponse, RegisterTokenRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
                 const localToken = window.localStorage.getItem("register");
-
-                if (localToken) {
-                    return {data: {token: localToken, timestamp: ""}};
+                console.log(localToken);
+                if (localToken !== null) {
+                    return {data: {timestamp: "", token: localToken}};
                 }
 
                 const result = await fetchWithBQ({
                     url: '/register/getRegisterToken',
-                    method: 'Get'
+                    method: 'GET'
                 });
 
                 const data = result?.data as RegisterTokenSuccessResponse;
