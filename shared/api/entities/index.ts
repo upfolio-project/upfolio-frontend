@@ -1,87 +1,68 @@
-type ProfileModelType = 'PUBLIC' | 'PRIVATE' | 'CONTACTS_HIDDEN' | 'CONTACTS_FOR_COMPANIES'
+import {
+    RegisterTokenRequest,
+    RegisterTokenSuccessResponse,
 
-export enum ProfileModelStatus {
-    LOOKING_FOR_JOB = "LOOKING_FOR_JOB",
-    FOUND_JOB = "FOUND_JOB",
-    NOT_LOOKING_FOR_JOB = "NOT_LOOKING_FOR_JOB",
-}
+    RegisterByPhoneNumberRequest,
+    RegisterByPhoneNumberSuccessResponse,
 
-export interface FinishRegistrationRequest {
-    registerToken: string
-    firstName: string
-    lastName: string
-    password: string
-}
+    ConfirmPhoneOTPRequest,
+    ConfirmPhoneOTPSuccessResponse,
 
-export interface JWTSuccessAuthResponse {
-    timestamp: string
-    token: string
-    refreshToken: string
-}
+    FinishRegistrationRequest,
+    FinishRegistrationSuccessResponse
+} from "./register/register";
 
-export interface RegisterTokenSuccessResponse {
-    token: string
-    timestamp: string
-}
+import {
+    AuthorizeByPasswordRequest,
+    AuthorizeByPasswordSuccessResponse
+} from "./login/login";
 
-export interface RegisterTokenRequest {
-}
+import type {
+    ProfileModel,
 
-export interface AuthorizeByPasswordRequest {
-    phoneNumber: string
-    password: string
-}
+    GetMeRequest,
+    GetMeSuccessResponse,
 
-export interface ConfirmPhoneOTPRequest {
-    registerToken: string
-    code: string
-}
+    GetProfileRequest,
+    GetProfileSuccessResponse,
 
-export interface SuccessResponse {
-    timestamp: string
-    success: boolean
-}
+    EditProfileRequest,
+    EditProfileSuccessResponse
+} from "./profile/profile";
 
-export interface RegisterByPhoneNumberRequest {
-    registerToken: string
-    phoneNumber: string
-}
+import {
+    ProfileModelStatus,
+} from "./profile/profile";
 
-export interface GetMeResponse {
-    timestamp: string
-    username: string
-    url: string
-}
 
-export interface UserRealNameModel {
-    firstName: string
-    lastName: string
-}
+export type {
+    RegisterTokenRequest,
+    RegisterTokenSuccessResponse,
 
-export interface ProfileModel {
-    username: string
-    realName: UserRealNameModel
-    dateOfBirth: string
-    profilePhotoUrl: string
-    type: ProfileModelType
-    registered: string
-    status: ProfileModelStatus
-    bio: string
-    tags: string[]
-    verified: boolean
-}
+    RegisterByPhoneNumberRequest,
+    RegisterByPhoneNumberSuccessResponse,
 
-export interface GetProfileResponse {
-    timestamp: string
-    profile: ProfileModel
-}
+    ConfirmPhoneOTPRequest,
+    ConfirmPhoneOTPSuccessResponse,
 
-export interface EditProfileModel {
-    username: string
-    realName: UserRealNameModel
-    type: ProfileModelType
-    status: ProfileModelStatus
-    bio: string
-    tags: string[]
-    dateOfBirth: string | null
-}
+    FinishRegistrationRequest,
+    FinishRegistrationSuccessResponse,
+
+
+    AuthorizeByPasswordRequest,
+    AuthorizeByPasswordSuccessResponse,
+
+
+    ProfileModel,
+
+    GetMeRequest,
+    GetMeSuccessResponse,
+
+    GetProfileRequest,
+    GetProfileSuccessResponse,
+
+    EditProfileRequest,
+    EditProfileSuccessResponse
+};
+
+export {ProfileModelStatus};

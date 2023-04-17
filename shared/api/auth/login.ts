@@ -1,5 +1,5 @@
 import {commonApi} from "@/shared/api";
-import {AuthorizeByPasswordRequest, JWTSuccessAuthResponse} from "@/shared/api/entities";
+import type {AuthorizeByPasswordRequest, AuthorizeByPasswordSuccessResponse} from "@/shared/api/entities";
 import {loginSlice} from "@/shared/store/authSlice/login";
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 import {GetValidationPassword, GetValidationPhone} from "@/shared/api/services/getValidation";
@@ -7,7 +7,7 @@ import {setToken} from "@/shared/api/services/tokenServices";
 
 export const Login = commonApi.injectEndpoints({
     endpoints: build => ({
-        loginByPassword: build.mutation<JWTSuccessAuthResponse, AuthorizeByPasswordRequest>({
+        loginByPassword: build.mutation<AuthorizeByPasswordSuccessResponse, AuthorizeByPasswordRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
                 const {phoneNumber, password} = arg;
                 const phone = '7' + phoneNumber.split('').map(value => value == '-' ? '' : value).join('');
@@ -38,7 +38,7 @@ export const Login = commonApi.injectEndpoints({
                     }
                 };
 
-                const data = result.data as JWTSuccessAuthResponse;
+                const data = result.data as AuthorizeByPasswordSuccessResponse;
 
                 return {data};
             },

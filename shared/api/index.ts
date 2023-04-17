@@ -29,9 +29,9 @@ const customFetchBase: BaseQueryFn<string | FetchArgs,
     if (result?.error?.status == 401) {
         const refreshResult = await baseQuery({
             credentials: 'include',
-            url: '/refresh',
-            method: 'GET',
-            params: {refreshToken: getToken("refreshToken")}
+            url: '/authorize/refresh',
+            method: 'POST',
+            body: {refreshToken: getToken("refreshToken")}
         }, api, extraOptions);
         const data = refreshResult.data as { token: string, refreshToken: string };
         if (data) {

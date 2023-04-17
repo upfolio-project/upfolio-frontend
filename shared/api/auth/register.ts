@@ -1,9 +1,16 @@
 import {commonApi} from "@/shared/api";
-import {
-    ConfirmPhoneOTPRequest, FinishRegistrationRequest,
-    JWTSuccessAuthResponse,
-    RegisterByPhoneNumberRequest, RegisterTokenRequest, RegisterTokenSuccessResponse,
-    SuccessResponse
+import type {
+    RegisterTokenRequest,
+    RegisterTokenSuccessResponse,
+
+    RegisterByPhoneNumberRequest,
+    RegisterByPhoneNumberSuccessResponse,
+
+    ConfirmPhoneOTPRequest,
+    ConfirmPhoneOTPSuccessResponse,
+
+    FinishRegistrationRequest,
+    FinishRegistrationSuccessResponse,
 } from "@/shared/api/entities";
 import {
     GetValidationCode,
@@ -43,7 +50,7 @@ export const Register = commonApi.injectEndpoints({
             },
             providesTags: () => []
         }),
-        commenceByPhoneNumber: build.mutation<SuccessResponse, RegisterByPhoneNumberRequest>({
+        commenceByPhoneNumber: build.mutation<RegisterByPhoneNumberSuccessResponse, RegisterByPhoneNumberRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
                 const {phoneNumber, registerToken} = arg;
                 const phone = '7' + phoneNumber.split('').map(value => value == '-' ? '' : value).join('');
@@ -59,13 +66,13 @@ export const Register = commonApi.injectEndpoints({
                     body: {registerToken: registerToken, phoneNumber: phone}
                 });
 
-                const data = result.data as SuccessResponse;
+                const data = result.data as RegisterByPhoneNumberSuccessResponse;
                 if (result.error) return {error: result.error};
                 return {data};
             },
             invalidatesTags: [],
         }),
-        confirmPhoneOTP: build.mutation<SuccessResponse, ConfirmPhoneOTPRequest>({
+        confirmPhoneOTP: build.mutation<ConfirmPhoneOTPSuccessResponse, ConfirmPhoneOTPRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
                 const {code} = arg;
                 if (GetValidationCode(code)) return {
@@ -79,14 +86,14 @@ export const Register = commonApi.injectEndpoints({
                     method: 'POST',
                     body: arg
                 });
-                const data = result.data as SuccessResponse;
+                const data = result.data as ConfirmPhoneOTPSuccessResponse;
                 if (result.error) return {error: result.error};
 
                 return {data};
             },
             invalidatesTags: []
         }),
-        finish: build.mutation<JWTSuccessAuthResponse, FinishRegistrationRequest>({
+        finish: build.mutation<FinishRegistrationSuccessResponse, FinishRegistrationRequest>({
             queryFn: async (arg, api, extraOptions, fetchWithBQ) => {
                 const {password} = arg;
                 if (GetValidationPassword(password)) return {
@@ -102,7 +109,7 @@ export const Register = commonApi.injectEndpoints({
                     body: arg
                 });
 
-                const data = result.data as JWTSuccessAuthResponse;
+                const data = result.data as FinishRegistrationSuccessResponse;
                 if (result.error) return {error: result.error};
 
                 return {data};
