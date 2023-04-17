@@ -5,7 +5,7 @@ import {Header} from "@/shared/ui/text";
 import {sizes, Wrapper} from "@/shared/styles";
 import {ProjectPreviewEntity} from "@/entities/projectPreviewEntity";
 import {useGetProjectsQuery} from "@/shared/api/projects/projects";
-import {Skeleton} from "@/widgets/portfolioWidget/ui/skeleton";
+import {Skeleton} from "./skeleton";
 
 const PortfolioDataStyled = styled(Box)`
   width: 676px;
