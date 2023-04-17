@@ -18,6 +18,8 @@ import {
 } from "./login/login";
 
 import type {
+    ProfileModel,
+
     GetMeRequest,
     GetMeSuccessResponse,
 
@@ -29,7 +31,7 @@ import type {
 } from "./profile/profile";
 
 import {
-    ProfileModelStatus
+    ProfileModelStatus,
 } from "./profile/profile";
 
 
@@ -49,6 +51,9 @@ export type {
 
     AuthorizeByPasswordRequest,
     AuthorizeByPasswordSuccessResponse,
+
+
+    ProfileModel,
 
     GetMeRequest,
     GetMeSuccessResponse,
