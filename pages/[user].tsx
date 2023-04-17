@@ -56,7 +56,7 @@ function OtherPages() {
                 justifyContent="center"
             >
                 <UserWidget profile={profile} isLoading={getProfileLoading}/>
-                <PortfolioWidget userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
+                <PortfolioWidget username={profile?.username} userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
             </Box>
 
         </PageLayout>

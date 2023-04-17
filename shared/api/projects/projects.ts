@@ -12,14 +12,14 @@ export const Projects = commonApi.injectEndpoints({
     endpoints: build => ({
         getProjects: build.query<GetProjectsSuccessResponse, GetProjectsRequest>({
             query: (arg) => ({
-                url: `/profile/user/${arg.userUuid}`,
+                url: `/projects/user/${arg.userUuid}`,
                 method: 'GET'
             }),
         }),
 
         getProject: build.query<GetProjectSuccessResponse, GetProjectRequest>({
             query: (arg) => ({
-                url: `/profile/project/${arg.uuid}`,
+                url: `/projects/project/${arg.uuid}`,
                 method: 'GET'
             }),
         }),
