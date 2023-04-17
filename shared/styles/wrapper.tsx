@@ -8,7 +8,7 @@ const Wrapper = styled(Box)`
   justify-content: center;
   align-items: center;
   padding: ${sizes.m};
-  gap: 20px;
+  gap: ${sizes.s};
   border-radius: ${borders.radius10};
   box-shadow: ${shadows.defaultShadow};
 `;
