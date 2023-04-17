@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import {Box} from "@mui/material";
-import {borders, colors, sizes, Wrapper} from "@/shared/styles";
+import {sizes, Wrapper} from "@/shared/styles";
 import {Header, Text} from "@/shared/ui/text";
-import {useGetProjectQuery, useGetProjectsQuery} from "@/shared/api/projects/projects";
+import {useGetProjectQuery} from "@/shared/api/projects/projects";
 import {messengers, Messengers} from "@/shared/ui/messengers";
 import {Tags} from "@/shared/ui/tag";
-import {useState} from "react";
+import React, {useState} from "react";
+import {ProjectImages} from "@/entities/projectImages";
 
 interface ProjectWidgetProps {
     uuid?: string;
@@ -53,17 +54,27 @@ const mockMessengers = [
     },
 ];
 
+interface ProjectContentProps {
+    children: React.ReactNode | React.ReactNode[]
+    imageCount: number
+}
 
-const ProjectResponsiveContent = styled<{imageCount: number}>(Box)`
+const ProjectContent = ({children, ...props}: ProjectContentProps) => {
+    return <Box {...props}>{children}</Box>;
+};
+
+
+const ProjectResponsiveContent =
+    styled(ProjectContent)`
+  & > * {
+    word-wrap: anywhere;
+    height: max-content;
+  }
   width: 100%;
   column-gap: ${sizes.l};
   row-gap: ${sizes.m};
   align-items: flex-start;
   display: grid;
-  & > * {
-    word-wrap: anywhere;
-    height: max-content;
-  }
   
   grid-template-columns: ${props => props.imageCount === 3 ? "1fr 1fr" : "1fr"};
   grid-template-rows: auto auto 1fr;
@@ -81,39 +92,11 @@ const ProjectResponsiveContent = styled<{imageCount: number}>(Box)`
           
 `;
 
-const Images = ({count}: { count: 1 | 2 | 3 }) => {
-    const imageSizes = {
-        "1": {areas: '"E"', sizes: [["944px", "358px"]]},
-        "2": {areas: '"E F"', sizes: [["462px", "358px"], ["462px", "358px"]]},
-        "3": {areas: '"E E" "F G"', sizes: [["482px", "358px"], ["230px", "170px"], ["230px", "170px"]]}
-    };
-
-    return (
-        <Box
-            display="grid"
-            width="100%"
-            gridTemplateAreas={imageSizes[count.toString()].areas}
-            gap={sizes.s}
-        >
-            {imageSizes[count.toString()].sizes.map((size, index) => (
-                <Box
-                    key={index}
-                    gridArea={"EFG"[index]}
-                    borderRadius={borders.radius10}
-                    backgroundColor={colors.colorSecondary05}
-                    width={size[0]}
-                    height={size[1]}
-                />
-            ))}
-        </Box>
-    );
-};
 
 export function ProjectWidget({uuid}: ProjectWidgetProps) {
     const [imageCount, changeImageCount] = useState(3);
     const {
         data: projectData,
-        isLoading: getProjectLoading
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
 
 
@@ -149,7 +132,11 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
                         </Text>
                     </Box>
                     <Box gridArea="D" width="100%" onClick={() => changeImageCount((imageCount + 1) % 3 + 1)}>
-                        <Images count={imageCount}/>
+                        <ProjectImages images={[
+                            "/assets/no-img.png",
+                            "/assets/no-img.png",
+                            "/assets/no-img.png"
+                        ].slice(3 - imageCount)}/>
                     </Box>
 
                 </ProjectResponsiveContent>
