@@ -34,6 +34,16 @@ import {
     ProfileModelStatus,
 } from "./profile/profile";
 
+import type {
+    GetProjectsRequest,
+    GetProjectsSuccessResponse,
+
+    CreateProjectRequest,
+    CreateProjectSuccessResponse,
+
+    GetProjectRequest,
+    GetProjectSuccessResponse
+} from "./projects/projects";
 
 export type {
     RegisterTokenRequest,
@@ -62,7 +72,17 @@ export type {
     GetProfileSuccessResponse,
 
     EditProfileRequest,
-    EditProfileSuccessResponse
+    EditProfileSuccessResponse,
+
+
+    GetProjectsRequest,
+    GetProjectsSuccessResponse,
+
+    CreateProjectRequest,
+    CreateProjectSuccessResponse,
+
+    GetProjectRequest,
+    GetProjectSuccessResponse
 };
 
 export {ProfileModelStatus};
