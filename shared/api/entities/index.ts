@@ -42,7 +42,10 @@ import type {
     CreateProjectSuccessResponse,
 
     GetProjectRequest,
-    GetProjectSuccessResponse
+    GetProjectSuccessResponse,
+
+    EditProjectRequest,
+    EditProjectSuccessResponse
 } from "./projects/projects";
 
 export type {
@@ -82,7 +85,10 @@ export type {
     CreateProjectSuccessResponse,
 
     GetProjectRequest,
-    GetProjectSuccessResponse
+    GetProjectSuccessResponse,
+
+    EditProjectRequest,
+    EditProjectSuccessResponse
 };
 
 export {ProfileModelStatus};

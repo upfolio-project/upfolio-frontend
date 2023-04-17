@@ -11,7 +11,7 @@ interface ProjectModel {
 
 
 export interface GetProjectsRequest {
-
+    userUuid: string
 }
 
 export interface GetProjectsSuccessResponse {
@@ -32,9 +32,21 @@ export interface CreateProjectSuccessResponse extends ProjectModel {
 
 
 export interface GetProjectRequest {
-
+    uuid: string
 }
 
 export interface GetProjectSuccessResponse extends ProjectModel {
 
 }
+
+
+export interface EditProjectRequest {
+    title: string
+    description: string
+    tags: string[]
+}
+
+export interface EditProjectSuccessResponse extends ProjectModel {
+
+}
+
