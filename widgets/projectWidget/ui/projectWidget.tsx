@@ -7,6 +7,7 @@ import {messengers, Messengers} from "@/shared/ui/messengers";
 import {Tags} from "@/shared/ui/tag";
 import React, {useState} from "react";
 import {ProjectImages} from "@/entities/projectImages";
+import {ProjectStats} from "@/entities/projectStats";
 
 interface ProjectWidgetProps {
     uuid?: string;
@@ -55,8 +56,8 @@ const mockMessengers = [
 ];
 
 interface ProjectContentProps {
-    children: React.ReactNode | React.ReactNode[]
-    imageCount: number
+    children: React.ReactNode | React.ReactNode[];
+    ic: number;
 }
 
 const ProjectContent = ({children, ...props}: ProjectContentProps) => {
@@ -64,32 +65,30 @@ const ProjectContent = ({children, ...props}: ProjectContentProps) => {
 };
 
 
-const ProjectResponsiveContent =
-    styled(ProjectContent)`
+const ProjectResponsiveContent = styled(ProjectContent)`
   & > * {
     word-wrap: anywhere;
     height: max-content;
   }
+
   width: 100%;
   column-gap: ${sizes.l};
   row-gap: ${sizes.m};
   align-items: flex-start;
   display: grid;
-  
-  grid-template-columns: ${props => props.imageCount === 3 ? "1fr 1fr" : "1fr"};
+
+  grid-template-columns: ${props => props.ic === 3 ? "1fr 1fr" : "1fr"};
   grid-template-rows: auto auto 1fr;
-  
-  grid-template-areas:
-  ${props => props.imageCount === 3 ?
+
+  grid-template-areas: ${props => props.ic === 3 ?
           '"A D"' +
           '"B D"' +
-          '"C D"' : 
-          '"A"' + 
-          '"D"' + 
-          '"B"' + 
+          '"C D"' :
+          '"A"' +
+          '"D"' +
+          '"B"' +
           '"C"'
-}
-          
+  }
 `;
 
 
@@ -105,26 +104,16 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
             <Wrapper>
                 <HeaderContainer>
                     <Header size="s">{projectData?.title || ""}</Header>
-                    <CustomMessengers
-
-                    >
+                    <CustomMessengers>
                         <Messengers messengers={mockMessengers}/>
                     </CustomMessengers>
                 </HeaderContainer>
-                <ProjectResponsiveContent imageCount={imageCount}>
+                <ProjectResponsiveContent ic={imageCount}>
                     <Box gridArea="A">
                         <Tags align="left" tags={projectData?.tags.map(tag => ({value: tag, link: "#"})) || []}/>
                     </Box>
-                    <Box
-                        gridArea="B"
-                        display="flex"
-                        flexDirection="column"
-                        gap={sizes.xs}
-                    >
-                        <Text type="defaultLight">Добавлен <Text as="span"
-                                                                 type="accent">{projectData?.created}</Text></Text>
-                        <Text type="defaultLight">Разработка <Text as="span" type="accent">{projectData?.updated}</Text></Text>
-
+                    <Box gridArea="B">
+                        <ProjectStats created={projectData?.created || ""} updated={projectData?.updated || ""}/>
                     </Box>
                     <Box gridArea="C">
                         <Text type="defaultLight">
@@ -138,7 +127,6 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
                             "/assets/no-img.png"
                         ].slice(3 - imageCount)}/>
                     </Box>
-
                 </ProjectResponsiveContent>
             </Wrapper>
         </ProjectWidgetContainer>
