@@ -10,7 +10,7 @@ import ProjectCreateWidget from "@/widgets/projectCreateWidget";
 function CreatePage() {
     const router = useRouter();
 
-    const {data: me, isLoading: getMeLoading, isError} = useGetMeQuery({});
+    const {isLoading: getMeLoading, isError} = useGetMeQuery({});
 
     const authToLogin = useCallback(function () {
         if (isError) {

@@ -5,8 +5,7 @@ import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {Profile, useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
-import type {ProfileModel} from "@/shared/api/entities";
+import {useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
@@ -18,7 +17,7 @@ function ProjectEditPage() {
     const router = useRouter();
 
     // TODO hook for this
-    const [username, projectUuid, _] = router.asPath.slice(1).split("/");
+    const [username, projectUuid] = router.asPath.slice(1).split("/");
 
     const {
         data: me,
@@ -30,7 +29,7 @@ function ProjectEditPage() {
         if (isError) {
             router.push("/login");
         }
-    }, [isError, username, router]);
+    }, [isError, router]);
 
     useEffect(() => {
         authToLogin();
@@ -42,7 +41,6 @@ function ProjectEditPage() {
 
     const {
         data: userData,
-        isLoading: getProfileLoading,
         isError: getProfileError
     } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
 
