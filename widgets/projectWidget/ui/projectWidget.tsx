@@ -115,7 +115,7 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
                     <Box gridArea="B">
                         <ProjectStats created={projectData?.created || ""} updated={projectData?.updated || ""}/>
                     </Box>
-                    <Box gridArea="C">
+                    <Box gridArea="C" sx={{whiteSpace: "pre-line"}}>
                         <Text type="defaultLight">
                             {projectData?.description}
                         </Text>
