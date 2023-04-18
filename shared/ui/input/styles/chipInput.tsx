@@ -56,6 +56,7 @@ const ChipInput = (props: ChipInputProps) => {
 
 
 const InputContainer = styled.label`
+  width: 100%;
   & p {
     margin-bottom: 4px;
   }
