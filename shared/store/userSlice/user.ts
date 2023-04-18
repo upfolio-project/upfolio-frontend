@@ -1,13 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GetMeSuccessResponse} from "@/shared/api/entities";
-import { HYDRATE } from "next-redux-wrapper";
 
 interface User {
     userState: "notLogin" | "login" | "notFetch"
     me?: GetMeSuccessResponse
 }
-
-
 
 const initialState: User = {
     userState: "notFetch"
