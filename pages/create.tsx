@@ -1,28 +1,15 @@
-import {useRouter} from "next/router";
 import {Meta} from "@/shared/seo";
 import {GetServerSideProps} from "next";
 import {PageLayout} from "@/layouts/pageLayout";
-import {useGetMeQuery} from "@/shared/api/profile/profile";
-import {useCallback, useEffect} from "react";
 import ProjectCreateWidget from "@/widgets/projectCreateWidget";
+import {useGetMe, useRedirectNotAuthToLoginPage} from "@/shared/hooks";
 
 
 function CreatePage() {
-    const router = useRouter();
+    const {me, loading} = useGetMe();
+    useRedirectNotAuthToLoginPage();
 
-    const {isLoading: getMeLoading, isError} = useGetMeQuery({});
-
-    const authToLogin = useCallback(function () {
-        if (isError) {
-            router.push("/login");
-        }
-    }, [isError, router]);
-
-    useEffect(() => {
-        authToLogin();
-    }, [authToLogin]);
-
-    if (getMeLoading) return <></>;
+    if (loading || !me) return <></>;
     return (
         <PageLayout>
             <ProjectCreateWidget/>

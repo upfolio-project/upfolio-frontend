@@ -10,6 +10,7 @@ import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
 import {sizes} from "@/shared/styles";
 import {Message} from "@/shared/ui/message";
+import {useGetMe} from "@/shared/hooks";
 
 
 export const RegisterFinishWidget = () => {
@@ -47,6 +48,9 @@ export const RegisterFinishWidget = () => {
     const passwordAgainRef = useRef<HTMLInputElement>(null);
 
     const [registerFinishHandler, registerData] = useFinishMutation();
+
+    const {me, loading} = useGetMe();
+    if (loading || me) return <></>;
 
     return (
         <FormFeature onSubmit={(e) => {

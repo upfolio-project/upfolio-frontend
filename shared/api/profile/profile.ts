@@ -8,6 +8,8 @@ import type {
     GetProfileSuccessResponse
 } from "@/shared/api/entities";
 import {getToken} from "@/shared/api/services/tokenServices";
+import {userSlice} from "@/shared/store/userSlice/user";
+
 
 export const Profile = commonApi.injectEndpoints({
     endpoints: build => ({
@@ -26,7 +28,6 @@ export const Profile = commonApi.injectEndpoints({
                     }
                 };
 
-
                 const result = await fetchWithBQ({
                     url: '/profile/getMe',
                     method: 'GET'
@@ -38,6 +39,16 @@ export const Profile = commonApi.injectEndpoints({
                     return {data};
                 }
                 return {error: {error: 'result.error.data', status: "CUSTOM_ERROR"}};
+            },
+            async onQueryStarted(data, {queryFulfilled, dispatch}) {
+                const {setUser} = userSlice.actions;
+                try {
+                    const result = await queryFulfilled;
+                    if (result.data) dispatch(setUser({userState: "login", me: result.data}));
+                    else dispatch(setUser({userState: "notLogin"}));
+                } catch (e: any) {
+                    dispatch(setUser({userState: "notFetch"}));
+                }
             }
         }),
         editProfile: build.mutation<EditProfileSuccessResponse, EditProfileRequest>({

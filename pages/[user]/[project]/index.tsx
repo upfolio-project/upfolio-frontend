@@ -5,12 +5,13 @@ import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
+import {useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {ProjectWidget} from "@/widgets/projectWidget";
 import {Projects} from "@/shared/api/projects/projects";
+import {useGetMe} from "@/shared/hooks";
 
 
 function ProjectPage() {
@@ -19,15 +20,13 @@ function ProjectPage() {
     // TODO hook for this
     const [username, projectUuid] = router.asPath.slice(1).split("/");
 
-    const {data: me,
-        isLoading: getMeLoading,
-        isError} = useGetMeQuery({});
+    const {me, loading} = useGetMe();
 
     const authToLogin = useCallback(function () {
-        if (isError && username === "me") {
+        if (!me && !loading && username === "me") {
             router.push("/login");
         }
-    }, [isError, username, router]);
+    }, [me, loading, username, router]);
 
     useEffect(() => {
         authToLogin();
@@ -39,7 +38,7 @@ function ProjectPage() {
 
     const {
         isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
+    } = useGetProfileQuery({"username": currentUsername}, {skip: loading});
 
     if (getProfileError) return <Box position="absolute" top="200px"><Error404Entity/></Box>;
 

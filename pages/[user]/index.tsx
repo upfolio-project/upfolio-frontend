@@ -6,13 +6,14 @@ import {ParsedUrlQuery} from "querystring";
 import {UserWidget} from "@/widgets/profileWidget";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {Profile, useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
+import {Profile, useGetProfileQuery} from "@/shared/api/profile/profile";
 import type {ProfileModel} from "@/shared/api/entities";
 import {sizes} from "@/shared/styles";
 import {PortfolioWidget} from "@/widgets/portfolioWidget";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
+import {useGetMe} from "@/shared/hooks";
 
 
 function OtherPages() {
@@ -21,14 +22,14 @@ function OtherPages() {
     // TODO hook for this
     const username = route.asPath.replace("/", "");
 
-    const {data: me, isLoading: getMeLoading, isError} = useGetMeQuery({});
+    const {me, loading} = useGetMe();
     const router = useRouter();
 
     const authToLogin = useCallback(function () {
-        if (isError && username === "me") {
+        if (!me && !loading && username === "me") {
             router.push("/login");
         }
-    }, [isError, username, router]);
+    }, [username, router, loading, me]);
 
     useEffect(() => {
         authToLogin();
@@ -42,11 +43,12 @@ function OtherPages() {
         data: userData,
         isLoading: getProfileLoading,
         isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
+    } = useGetProfileQuery({"username": currentUsername}, {skip: loading});
 
     const profile = userData?.profile;
 
-    if (getProfileError) return <Box position="absolute" top="200px"><Error404Entity/></Box>;
+    if (loading || !me) return <></>;
+    if (getProfileError) return <PageLayout><Error404Entity/></PageLayout>;
 
     return (
         <PageLayout>

@@ -5,12 +5,12 @@ import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
+import {useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
-import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {ProjectEditWidget} from "@/widgets/projectEditWidget";
 import {Projects} from "@/shared/api/projects/projects";
+import {useGetMe, useRedirectNotAuthToLoginPage} from "@/shared/hooks";
 
 
 function ProjectEditPage() {
@@ -19,22 +19,9 @@ function ProjectEditPage() {
     // TODO hook for this
     const [username, projectUuid] = router.asPath.slice(1).split("/");
 
-    const {
-        data: me,
-        isLoading: getMeLoading,
-        isError
-    } = useGetMeQuery({});
+    const {me} = useGetMe();
 
-    const authToLogin = useCallback(function () {
-        if (isError) {
-            router.push("/login");
-        }
-    }, [isError, router]);
-
-    useEffect(() => {
-        authToLogin();
-    }, [authToLogin]);
-
+    useRedirectNotAuthToLoginPage();
 
     const meString = me?.username || "";
     const currentUsername = username === "me" ? meString : username;
@@ -42,7 +29,7 @@ function ProjectEditPage() {
     const {
         data: userData,
         isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: getMeLoading});
+    } = useGetProfileQuery({"username": currentUsername}, {skip: !me});
 
     const profile = userData?.profile;
 
