@@ -6,11 +6,14 @@ import {ParsedUrlQuery} from "querystring";
 import {UserWidget} from "@/widgets/profileWidget";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {Profile} from "@/shared/api/profile/profile";
+import {Profile, useGetProfileQuery} from "@/shared/api/profile/profile";
 import type {ProfileModel} from "@/shared/api/entities";
 import {sizes} from "@/shared/styles";
 import {PortfolioWidget} from "@/widgets/portfolioWidget";
 import {Box} from "@mui/material";
+import {useCallback, useEffect} from "react";
+import {Error404Entity} from "@/entities/error404Entity";
+import {useGetMe} from "@/shared/hooks";
 
 
 function OtherPages() {
@@ -19,6 +22,34 @@ function OtherPages() {
     // TODO hook for this
     const username = route.asPath.replace("/", "");
 
+    const {me, loading} = useGetMe();
+    const router = useRouter();
+
+    const authToLogin = useCallback(function () {
+        if (!me && !loading && username === "me") {
+            router.push("/login");
+        }
+    }, [username, router, loading, me]);
+
+    useEffect(() => {
+        authToLogin();
+    }, [authToLogin]);
+
+
+    const meString = me?.username || "";
+    const currentUsername = username === "me" ? meString : username;
+
+    const {
+        data: userData,
+        isLoading: getProfileLoading,
+        isError: getProfileError
+    } = useGetProfileQuery({"username": currentUsername}, {skip: loading});
+
+    const profile = userData?.profile;
+
+    if (loading || !me) return <></>;
+    if (getProfileError) return <PageLayout><Error404Entity/></PageLayout>;
+
     return (
         <PageLayout>
             <Box
@@ -26,8 +57,8 @@ function OtherPages() {
                 gap={sizes.s}
                 justifyContent="center"
             >
-                <UserWidget username={username}/>
-                <PortfolioWidget/>
+                <UserWidget profile={profile} isLoading={getProfileLoading}/>
+                <PortfolioWidget username={profile?.username} userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
             </Box>
 
         </PageLayout>

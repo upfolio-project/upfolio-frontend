@@ -10,6 +10,7 @@ import {FormFeature} from "@/features/formFeature";
 import {sizes} from "@/shared/styles";
 import {Message} from "@/shared/ui/message";
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
+import {useGetMe} from "@/shared/hooks";
 
 export const RegisterPhoneWidget = () => {
     useEffect(() => {
@@ -35,6 +36,9 @@ export const RegisterPhoneWidget = () => {
         error: regError
     }] = useCommenceByPhoneNumberMutation();
     const error = regError as any;
+
+    const {me, loading} = useGetMe();
+    if (loading || me) return <></>;
     return (
         <FormFeature onSubmit={(e) => {
             e.preventDefault();

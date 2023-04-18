@@ -27,6 +27,10 @@ const customFetchBase: BaseQueryFn<string | FetchArgs,
     FetchBaseQueryError> = async (args, api, extraOptions) => {
     const result = await baseQuery(args, api, extraOptions);
     if (result?.error?.status == 401) {
+        if (!getToken("refreshToken")) {
+            return result;
+        }
+
         const refreshResult = await baseQuery({
             credentials: 'include',
             url: '/authorize/refresh',
