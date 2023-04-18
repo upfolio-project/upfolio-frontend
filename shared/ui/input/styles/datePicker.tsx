@@ -14,7 +14,7 @@ const DatePicker = (props: DatePickerProps) => {
     const [date, changeDate] = useState<string>(props.defaultValue || "");
 
     function onChange(e: any) {
-        const newDate = `${e["$y"]}-${e["$M"] + 1}-${e["$D"]}`;
+        const newDate = `${e["$y"]}-${(e["$M"] + 1).toString().padStart(2, "0")}-${e["$D"].toString().padStart(2, "0")}`;
         changeDate(newDate);
     }
 
