@@ -47,7 +47,7 @@ function OtherPages() {
 
     const profile = userData?.profile;
 
-    if (loading || !me) return <></>;
+    if (loading || (username === "me" && !me)) return <></>;
     if (getProfileError) return <PageLayout><Error404Entity/></PageLayout>;
 
     return (
