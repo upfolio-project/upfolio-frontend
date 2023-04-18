@@ -30,7 +30,7 @@ const UserWidget = ({profile, isLoading}: UserWidgetProps) => {
                     lastName={profile.realName.lastName}
                     bio={profile.bio}
                     dateOfBirth={profile.dateOfBirth}
-                    tags={profile.tags}
+                    tags={profile?.tags || []}
                     status={profile.status}
                     registered={profile.registered}
                 />
