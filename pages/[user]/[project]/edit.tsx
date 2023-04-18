@@ -10,8 +10,8 @@ import type {ProfileModel} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
-import {ProjectWidget} from "@/widgets/projectWidget";
 import {ProjectEditWidget} from "@/widgets/projectEditWidget";
+import {Projects} from "@/shared/api/projects/projects";
 
 
 function ProjectEditPage() {
@@ -20,9 +20,11 @@ function ProjectEditPage() {
     // TODO hook for this
     const [username, projectUuid, _] = router.asPath.slice(1).split("/");
 
-    const {data: me,
+    const {
+        data: me,
         isLoading: getMeLoading,
-        isError} = useGetMeQuery({});
+        isError
+    } = useGetMeQuery({});
 
     const authToLogin = useCallback(function () {
         if (isError) {
@@ -64,31 +66,23 @@ interface Props {
 
 interface Context extends ParsedUrlQuery {
     user?: string;
+    project?: string;
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext<Context>) => {
-    const username = context.params?.user || "";
-    if (username === "me") {
-        return {
-            props:
-                {
-                    meta: {
-                        title: `Личная страница — UpFolio`,
-                    }
-                }
-        };
-    }
+    const uuid = context.params?.project || "";
+
     const store = setupStore();
     const {res} = context;
-    let profile: undefined | ProfileModel = undefined;
+    let project: any = undefined;
     try {
-        await store.dispatch(Profile.endpoints.getProfile.initiate({
-            username: username
+        await store.dispatch(Projects.endpoints.getProject.initiate({
+            uuid: uuid
         }));
-        await Promise.all(store.dispatch(Profile.util.getRunningQueriesThunk()));
-        const {data} = await Profile.endpoints.getProfile.select({username: username})(store.getState());
-        profile = data?.profile;
-        if (!profile) {
+        await Promise.all(store.dispatch(Projects.util.getRunningQueriesThunk()));
+        const {data} = await Projects.endpoints.getProject.select({uuid: uuid})(store.getState());
+        project = data;
+        if (!project) {
             res.statusCode = 404;
             return {notFound: true};
         }
@@ -99,44 +93,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
     return {
         props: {
             meta: {
-                title: `${username} — UpFolio`,
-                tags: [
-                    {
-                        name: "title",
-                        content: `${username} — UpFolio`,
-                        key: "title"
-                    },
-                    {
-                        name: "description",
-                        content: profile?.bio || "",
-                        key: "description"
-                    },
-                    {
-                        property: "og:title",
-                        content: "UpFolio",
-                        key: "socialNetworkTitle"
-                    },
-                    {
-                        property: "og:site_name",
-                        content: `${profile?.realName?.firstName || ""} ${profile?.realName?.lastName || ""}`,
-                        key: "socialNetworkSiteName"
-                    },
-                    {
-                        property: "og:description",
-                        content: profile?.bio || "",
-                        key: "socialNetworkDescription"
-                    },
-                    {
-                        property: "og:type",
-                        content: "website",
-                        key: "socialNetworkType"
-                    },
-                    {
-                        property: "og:image",
-                        content: profile?.profilePhotoUrl || "",
-                        key: "socialNetworkImage"
-                    }
-                ]
+                title: `${project.title} — UpFolio`
             }
         }
     };
