@@ -18,7 +18,7 @@ const ChipInput = (props: ChipInputProps) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
-        if (e.code === "Enter" && !!inputRef.current) {
+        if (e.code === "Space" && !!inputRef.current) {
             const inputData = inputRef?.current?.value ? inputRef?.current?.value.trim() : undefined;
             if (!inputData) return;
             if (chips.includes(inputData)) return;
