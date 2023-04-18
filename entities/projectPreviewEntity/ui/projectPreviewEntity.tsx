@@ -42,7 +42,7 @@ const ProjectPreviewEntity = ({name, description, created, tags, projectHref}: P
                 <Text size="m" style="bold">{name}</Text>
                 {description.length > 0 && <Text size="s" type="defaultLight">{description}</Text>}
             </Box>
-            <Box zIndex="1" width="max-content">
+            <Box zIndex="1" width="max-content" maxWidth="100%">
                 {tags && <Tags tags={tags.map(tag => ({value: tag, link: "#"}))} align="left" tagType="accent"/>}
             </Box>
             <Text size="s" type="defaultLight">{registerDateToView(new Date(created))}</Text>

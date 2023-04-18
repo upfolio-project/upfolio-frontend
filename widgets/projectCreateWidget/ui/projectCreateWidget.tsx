@@ -34,7 +34,7 @@ export default function ProjectCreateWidget() {
         if (data?.uuid) {
             router.push(`${data.authorUsername}/${data.uuid}`);
         }
-    }, [data]);
+    }, [data, router]);
 
     const projectError = error as any;
     return (
