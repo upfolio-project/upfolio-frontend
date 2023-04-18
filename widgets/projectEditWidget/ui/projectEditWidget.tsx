@@ -6,9 +6,11 @@ import {FormFeature} from "@/features/formFeature";
 import {useRef} from "react";
 import {Button} from "@/shared/ui/button";
 import {Message} from "@/shared/ui/message";
+import {Link} from "@/shared/ui/link";
+import {Header} from "@/shared/ui/text";
 
 interface ProjectEditWidgetProps {
-    uuid: string
+    uuid: string;
 }
 
 const ProjectEditWidgetContainer = styled(Box)`
@@ -43,28 +45,38 @@ export function ProjectEditWidget({uuid}: ProjectEditWidgetProps) {
 
     return (
         <ProjectEditWidgetContainer>
-                <FormFeature onSubmit={(e) => {
-                    e.preventDefault();
-                    editHandler();
-                }}
+            <Box position="absolute">
+                <Link
+                    href={`/${projectData.authorUsername}/${projectData.uuid}`}
+                    type="defaultLight"
                 >
-                    {isError && <Message title="Произошла ошибка" description={projectError && projectError?.data?.text} severity="error"/>}
-                    {status === "fulfilled" && <Message title="Сохранено" description="Данные успешно сохранены" severity="success"/>}
-
-                    <Input
-                        label="Название проекта"
-                        placeholder={projectData.title}
-                        defaultValue={projectData.title}
-                        inputRef={titleRef}
-                    />
-                    <TextField
-                        label="Описание проекта"
-                        defaultValue={projectData.description}
-                        inputRef={descriptionRef}
-                    />
-                    <ChipInput chips={projectData.tags} inputRef={tagsRef}/>
-                    <Button width="container" type="accent" buttonType="submit">Сохранить</Button>
-                </FormFeature>
+                    {'<'} К проекту
+                </Link>
+            </Box>
+            <FormFeature onSubmit={(e) => {
+                e.preventDefault();
+                editHandler();
+            }}
+            >
+                {isError && <Message title="Произошла ошибка" description={projectError && projectError?.data?.text}
+                                     severity="error"/>}
+                {status === "fulfilled" &&
+                    <Message title="Сохранено" description="Данные успешно сохранены" severity="success"/>}
+                <Header size="s">Редактировать проект</Header>
+                <Input
+                    label="Название проекта"
+                    placeholder={projectData.title}
+                    defaultValue={projectData.title}
+                    inputRef={titleRef}
+                />
+                <TextField
+                    label="Описание проекта"
+                    defaultValue={projectData.description}
+                    inputRef={descriptionRef}
+                />
+                <ChipInput chips={projectData.tags} inputRef={tagsRef}/>
+                <Button width="container" type="accent" buttonType="submit">Сохранить</Button>
+            </FormFeature>
         </ProjectEditWidgetContainer>
     );
 }
