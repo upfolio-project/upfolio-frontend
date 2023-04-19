@@ -1,3 +1,13 @@
-import {HomeStyled} from "./_home/ui/styles";
+import {MainWidget} from "@/widgets/mainWidget";
+import {BaseLayout} from "@/layouts/baseLayout";
 
-export default HomeStyled;
+
+function Home() {
+    return (
+        <BaseLayout>
+            <MainWidget/>
+        </BaseLayout>
+    );
+}
+
+export default Home;

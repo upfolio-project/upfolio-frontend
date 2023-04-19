@@ -3,23 +3,45 @@ name: NodeJS DEV CD
 on:
   push:
     branches: [ dev ]
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: set up wireguard
+      run: |
+        sudo apt install wireguard -y
+        sudo apt install resolvconf -y
+        cat << EOF > wg0.conf
+        [Interface]
+        PrivateKey = ${{ secrets.WG_PRIVATE_KEY }}
+        Address = ${{ secrets.WG_ADDRESS }}
+        DNS = ${{ secrets.WG_DNS }}
+        [Peer]
+        PublicKey = ${{ secrets.WG_PUBLIC_KEY }}
+        Endpoint = ${{ secrets.WG_ENDPOINT }} 
+        AllowedIPs = ${{ secrets.WG_ALLOWED_IPS }}
+        PersistentKeepalive = ${{ secrets.WG_PERSISTENT_KEEPALIVE }}
+        PresharedKey = ${{ secrets.WG_PRESHARED_KEY }}
+        EOF
+        sudo cp wg0.conf /etc/wireguard/
+        wg-quick up wg0
     - name: Deploy using ssh
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
           cd /opt/upfolio-frontend
-          git reset –hard HEAD
+          git checkout -- *
           git checkout dev
           git pull
+          docker rmi $(docker images 'upfolio-dev' -a -q)
           sed -i 's/<tag>/${{ github.sha }}/' docker-compose.yml
+          
+          sed -i 's%<NEXT_PUBLIC_BASE_URL>%${{ secrets.NEXT_PUBLIC_BASE_URL }}%' docker-compose.yml
+          
           docker build . --tag upfolio-dev:${{ github.sha }}
           docker-compose up -d
