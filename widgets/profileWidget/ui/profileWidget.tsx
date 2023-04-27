@@ -17,6 +17,56 @@ interface UserWidgetProps {
     isLoading: boolean
 }
 
+const contacts = [
+    [
+        {
+            name: "Телеграм",
+            placeholder: "@gaskeo",
+            url: "#"
+        },
+        {
+            name: "Вконтакте",
+            placeholder: "@gasss",
+            url: "#"
+        }
+    ],
+    [
+        {
+            name: "Сайт",
+            placeholder: "zeytu.space",
+            url: "#"
+        },
+        {
+            name: "Почта",
+            placeholder: "tema@zeytu.space",
+            url: "#"
+        },
+        {
+            name: "Телефон",
+            placeholder: "+7 999 999 99 99",
+            url: "#"
+        }
+    ],
+    [
+        {
+            name: "Behance",
+            placeholder: "gaskeo",
+            url: "#"
+        },
+        {
+            name: "Dribbble",
+            placeholder: "gaskeo",
+            url: "#"
+        },
+        {
+            name: "Github",
+            placeholder: "gaskeo",
+            url: "#"
+        }
+    ]
+];
+
+
 const UserWidget = ({profile, isLoading}: UserWidgetProps) => {
 
     if (isLoading || !profile) return <Skeleton/>;
@@ -41,7 +91,7 @@ const UserWidget = ({profile, isLoading}: UserWidgetProps) => {
                     experience={""}
                     />
                 <UserBio bio={profile.bio}/>
-                <UserContacts/>
+                <UserContacts contacts={contacts}/>
             </UserDataStyled>
         </>
     );
