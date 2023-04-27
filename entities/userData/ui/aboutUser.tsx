@@ -36,38 +36,14 @@ interface AboutUserProps {
     profilePhotoUrl: string;
     firstName: string;
     lastName: string;
-    bio: string;
     dateOfBirth: string | null;
     tags: string[];
     status: ProfileModelStatus;
-    registered: string
 }
 
-const mockMessengers = [
-    {
-        name: messengers.dribbble,
-        url: "#"
-    },
-    {
-        name: messengers.behance,
-        url: "#"
-    },
-    {
-        name: messengers.github,
-        url: "#"
-    },
-    {
-        name: messengers.telegram,
-        url: "#"
-    },
-];
-
-const AboutUser = ({profilePhotoUrl, firstName, lastName, bio, dateOfBirth, tags, status, registered}: AboutUserProps) => {
+const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, status}: AboutUserProps) => {
     const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
         dateOfBirthToView(new Date(dateOfBirth || "")) : undefined;
-
-    const registeredHumanity = (new Date(registered).getDate()) ?
-        registerDateToView(new Date(registered)) : undefined;
 
     const statusString = userStatusToView(status);
 
@@ -83,13 +59,6 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, bio, dateOfBirth, tags
                 </Box>
                 {statusString && <StatusTag><Text size="s" type="success">{statusString}</Text></StatusTag>}
                 {tags.length > 0 && <Tags tags={tags.map(tag => ({value: tag, link: "#"}))}/>}
-                {bio && <BioText size="s" type="defaultLight">{bio}</BioText>}
-                {registeredHumanity &&
-                    <Text size="s" type="defaultLight" align="center">
-                        Зарегистрирован <Text size="s" type="accent" as="span">{registeredHumanity}</Text>
-                    </Text>
-                }
-                <Messengers messengers={mockMessengers}/>
             </InfoContainer>
         </Wrapper>
     );
