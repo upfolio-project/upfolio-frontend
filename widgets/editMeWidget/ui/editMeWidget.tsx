@@ -60,6 +60,7 @@ const EditMeWidget = () => {
     const bioRef = useRef<HTMLInputElement>(null);
     const dateRef = useRef<HTMLInputElement>(null);
     const statusRef = useRef<HTMLInputElement>(null);
+    const locationRef = useRef<HTMLInputElement>(null);
     const tagsRef = useRef<{ value: string[] | null } | null>(null);
 
     function onClick() {
@@ -73,8 +74,9 @@ const EditMeWidget = () => {
             status: statusRef?.current?.value as ProfileModelStatus,
             bio: bioRef?.current?.value || "",
             tags: tagsRef?.current?.value || [],
-            dateOfBirth: dateRef?.current?.value || null,
-            type: profile.type
+            dateOfBirth: dateRef?.current?.value || "",
+            type: profile.type,
+            location: locationRef?.current?.value || ""
         });
     }
 
@@ -118,6 +120,11 @@ const EditMeWidget = () => {
                         defaultValue={profile.status}
                     />
                 </Box>
+                <Input
+                    label="Город"
+                    defaultValue={profile.location}
+                    inputRef={locationRef}
+                />
                 <ChipInput chips={profile.tags} placeholder="Введите тег" inputRef={tagsRef} label="Теги" maxCount={15}/>
                 <Button width="container" type="accent" onClick={() => onClick()}>Сохранить</Button>
             </Box>
