@@ -57,6 +57,7 @@ export interface EditProfileRequest {
     bio: string
     tags: string[]
     dateOfBirth: string | null
+    location: string | null
 }
 
 export interface EditProfileSuccessResponse extends GetProfileSuccessResponse {

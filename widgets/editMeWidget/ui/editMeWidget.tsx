@@ -74,9 +74,9 @@ const EditMeWidget = () => {
             status: statusRef?.current?.value as ProfileModelStatus,
             bio: bioRef?.current?.value || "",
             tags: tagsRef?.current?.value || [],
-            dateOfBirth: dateRef?.current?.value || "",
+            dateOfBirth: dateRef?.current?.value || null,
             type: profile.type,
-            location: locationRef?.current?.value || ""
+            location: locationRef?.current?.value || null
         });
     }
 
