@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {colors, sizes} from "@/shared/styles";
 import {Logo} from "@/shared/ui/logo";
 import {useRouter} from "next/router";
+import {useGetMe} from "@/shared/hooks";
 
 const AppBarStyled = styled(AppBar)`
   display: flex;
@@ -36,6 +37,9 @@ const AppBarStyled = styled(AppBar)`
 export const Header = () => {
     const router = useRouter();
 
+    const {me, loading} = useGetMe();
+    const hasAccount = Boolean(!loading && me?.username);
+
     const path = router.asPath;
 
     return (
@@ -48,7 +52,8 @@ export const Header = () => {
                     <Link href="/partners" type={(path === "/partners" && "accent") || undefined}>Партнёры</Link>
                     <Link href="/about" type={(path === "/about" && "accent") || undefined}>О платформе</Link>
                 </div>
-                <Link href="/me">Личный кабинет</Link>
+                {hasAccount && <Link href={me?.username || "#"}>Моё портфолио</Link>}
+                {!hasAccount && <Link href="/login">Войти</Link>}
             </Toolbar>
         </AppBarStyled>
     );
