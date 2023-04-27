@@ -1,7 +1,7 @@
 import {Box} from "@mui/material";
 import styled from "styled-components";
 import {Skeleton} from "./skeleton";
-import {AboutUser, UserContacts, UserInformation} from "@/entities/userData";
+import {AboutUser, UserBio, UserContacts, UserInformation} from "@/entities/userData";
 import {sizes} from "@/shared/styles";
 import {ProfileModel} from "@/shared/api/entities";
 
@@ -40,6 +40,7 @@ const UserWidget = ({profile, isLoading}: UserWidgetProps) => {
                     specialization={"Специалист"}
                     experience={""}
                     />
+                <UserBio bio={profile.bio}/>
                 <UserContacts/>
             </UserDataStyled>
         </>
