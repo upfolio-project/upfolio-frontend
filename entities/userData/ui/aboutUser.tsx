@@ -9,7 +9,6 @@ import {dateOfBirthToView, userStatusToView} from "@/shared/utils/dataToView";
 import {Tag, Tags} from "@/shared/ui/tag";
 import {useGetMe} from "@/shared/hooks";
 import {useRouter} from "next/router";
-import {Link} from "@/shared/ui/link";
 
 const StatusTag = styled.div`
   height: 18px;
@@ -20,11 +19,6 @@ const StatusTag = styled.div`
   align-items: center;
   border-radius: ${borders.radius5};
 `;
-
-const BioText = styled(Text)`
-  white-space: pre-line;
-`;
-
 
 const InfoContainer = styled(Box)`
   display: flex;
