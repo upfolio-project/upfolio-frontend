@@ -52,7 +52,7 @@ export const Header = () => {
                     <Link href="/partners" type={(path === "/partners" && "accent") || undefined}>Партнёры</Link>
                     <Link href="/about" type={(path === "/about" && "accent") || undefined}>О платформе</Link>
                 </div>
-                {hasAccount && <Link href={me?.username || "#"}>Моё портфолио</Link>}
+                {hasAccount && <Link href={`/${me?.username}` || "#"}>Моё портфолио</Link>}
                 {!hasAccount && <Link href="/login">Войти</Link>}
             </Toolbar>
         </AppBarStyled>
