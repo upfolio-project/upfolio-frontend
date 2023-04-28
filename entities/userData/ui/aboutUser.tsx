@@ -5,9 +5,11 @@ import {ProfileModelStatus} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import styled from "styled-components";
 import {borders, colors, sizes} from "@/shared/styles";
-import {dateOfBirthToView, registerDateToView, userStatusToView} from "@/shared/utils/dataToView";
-import {Tags} from "@/shared/ui/tag";
-import {messengers, Messengers} from "@/shared/ui/messengers/styles/messengers";
+import {dateOfBirthToView, userStatusToView} from "@/shared/utils/dataToView";
+import {Tag, Tags} from "@/shared/ui/tag";
+import {useGetMe} from "@/shared/hooks";
+import {useRouter} from "next/router";
+import {Link} from "@/shared/ui/link";
 
 const StatusTag = styled.div`
   height: 18px;
@@ -32,6 +34,17 @@ const InfoContainer = styled(Box)`
   gap: ${sizes.s};
 `;
 
+const Settings = styled(Box)`
+  display: block;
+  width: max-content;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  transform: translateY(50%);
+`;
+
 interface AboutUserProps {
     profilePhotoUrl: string;
     firstName: string;
@@ -45,11 +58,18 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, sta
     const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
         dateOfBirthToView(new Date(dateOfBirth || "")) : undefined;
 
+    const route = useRouter();
+    const {me} = useGetMe();
+    const username = route.asPath.split("/")[1].split("?")[0].split("#")[0];
+
     const statusString = userStatusToView(status);
 
     return (
         <Wrapper>
-            <Avatar src={profilePhotoUrl}/>
+            <Box position="relative">
+                <Avatar src={profilePhotoUrl}/>
+                {me?.username === username && <Settings><Tag value="Редактировать" link="/edit/profile" tagType="accent"/></Settings>}
+            </Box>
             <InfoContainer>
                 <Box display="flex" flexDirection="column" gap={sizes.xxs} alignItems="center">
                     <Header size="s" style="bold" align="center">

@@ -4,7 +4,7 @@ import {sizes, Wrapper} from "@/shared/styles";
 import {Header, Text} from "@/shared/ui/text";
 import {useGetProjectQuery} from "@/shared/api/projects/projects";
 import {messengers, Messengers} from "@/shared/ui/messengers";
-import {Tags} from "@/shared/ui/tag";
+import {Tag, Tags} from "@/shared/ui/tag";
 import React, {useState} from "react";
 import {ProjectImages} from "@/entities/projectImages";
 import {ProjectStats} from "@/entities/projectStats";
@@ -103,7 +103,10 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
         <ProjectWidgetContainer>
             <Wrapper>
                 <HeaderContainer>
-                    <Header size="s">{projectData?.title || ""}</Header>
+                    <Box display="flex" gap={sizes.xs} alignItems="center">
+                        <Header size="s">{projectData?.title || ""}</Header>
+                        <Tag tagType="accent" value="Редактировать" link={`/${projectData?.authorUsername}/${projectData?.uuid}/edit`}/>
+                    </Box>
                     <CustomMessengers>
                         <Messengers messengers={mockMessengers}/>
                     </CustomMessengers>
