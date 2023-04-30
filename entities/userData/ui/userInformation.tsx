@@ -1,5 +1,4 @@
-import {Header, Text} from "@/shared/ui/text";
-import {Wrapper} from "@/shared/styles";
+import {Header, Text, Wrapper} from "@upfolio-project/upfolio-ui";
 import {Box} from "@mui/material";
 import styled from "styled-components";
 import {registerDateToView} from "@/shared/utils/dataToView";

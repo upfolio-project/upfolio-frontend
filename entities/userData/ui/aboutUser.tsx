@@ -1,12 +1,8 @@
-import {Avatar} from "@/shared/ui/avatar";
-import {Header, Text} from "@/shared/ui/text";
-import {Wrapper} from "@/shared/styles/wrapper";
+import {Avatar, Header, Text, Wrapper, Tags, Tag, borders, colors, sizes} from "@upfolio-project/upfolio-ui";
 import {ProfileModelStatus} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import styled from "styled-components";
-import {borders, colors, sizes} from "@/shared/styles";
 import {dateOfBirthToView, userStatusToView} from "@/shared/utils/dataToView";
-import {Tag, Tags} from "@/shared/ui/tag";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 
 const StatusTag = styled.div`

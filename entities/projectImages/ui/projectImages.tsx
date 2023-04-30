@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {Box} from "@mui/material";
-import {borders, colors, sizes} from "@/shared/styles";
+import {borders, colors, sizes} from "@upfolio-project/upfolio-ui";
 import React from "react";
 import Image from "next/image";
 

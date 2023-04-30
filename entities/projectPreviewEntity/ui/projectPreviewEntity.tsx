@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import {Box} from "@mui/material";
-import {borders, colors, sizes} from "@/shared/styles";
-import {Text} from "@/shared/ui/text";
-import {Tags} from "@/shared/ui/tag";
+import {Text, Tags, borders, colors, sizes} from "@upfolio-project/upfolio-ui";
 import {registerDateToView} from "@/shared/utils/dataToView";
 import Link from "next/link";
 
