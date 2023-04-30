@@ -27,7 +27,6 @@ const customFetchBase: BaseQueryFn<string | FetchArgs,
     FetchBaseQueryError> = async (args, api, extraOptions) => {
     const result = await baseQuery(args, api, extraOptions);
     if (result?.error?.status == 401) {
-        console.log(123);
         if (!getToken("refreshToken")) {
             return result;
         }

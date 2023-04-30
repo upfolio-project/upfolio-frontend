@@ -8,7 +8,6 @@ import {borders, colors, sizes} from "@/shared/styles";
 import {dateOfBirthToView, userStatusToView} from "@/shared/utils/dataToView";
 import {Tag, Tags} from "@/shared/ui/tag";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
-import {useRouter} from "next/router";
 
 const StatusTag = styled.div`
   height: 18px;
