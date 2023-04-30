@@ -5,8 +5,6 @@ import Head from "next/head";
 import {DefaultTags, Meta} from "@/shared/seo";
 import React from "react";
 import {StyledEngineProvider} from "@mui/styled-engine";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {LocalizationProvider} from "@mui/x-date-pickers";
 import {Provider} from "react-redux";
 
 interface MyAppProps {
@@ -28,11 +26,9 @@ export default function App({Component, ...rest}: AppProps<MyAppProps>) {
                     {meta && meta.map(prop => <meta {...prop} key={prop.key}/>)}
                     <title key="title">{title}</title>
                 </Head>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <StyledEngineProvider injectFirst>
                         <Component {...pageProps} />
                     </StyledEngineProvider>
-                </LocalizationProvider>
             </Provider>
         </>
     );
