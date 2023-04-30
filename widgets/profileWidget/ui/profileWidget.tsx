@@ -1,9 +1,12 @@
 import {Box} from "@mui/material";
 import styled from "styled-components";
+
+import {ProfileModel} from "@/shared/api/entities";
 import {Skeleton} from "./skeleton";
 import {AboutUser, UserBio, UserContacts, UserInformation} from "@/entities/userData";
-import {sizes} from "@/shared/styles";
-import {ProfileModel} from "@/shared/api/entities";
+
+import {sizes} from "@upfolio-project/upfolio-ui";
+
 
 const UserDataStyled = styled(Box)`
   width: 328px;

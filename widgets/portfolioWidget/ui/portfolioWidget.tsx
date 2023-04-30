@@ -1,11 +1,12 @@
 import styled from "styled-components";
-
 import {Box} from "@mui/material";
-import {Header} from "@/shared/ui/text";
-import {sizes, Wrapper} from "@/shared/styles";
+
 import {ProjectPreviewEntity} from "@/entities/projectPreviewEntity";
 import {useGetProjectsQuery} from "@/shared/api/projects/projects";
 import {Skeleton} from "./skeleton";
+
+import {Header, Wrapper, sizes} from "@upfolio-project/upfolio-ui";
+
 
 const PortfolioDataStyled = styled(Box)`
   width: 676px;
