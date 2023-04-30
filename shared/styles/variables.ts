@@ -9,16 +9,22 @@ export const colors = {
 
     colorSecondary: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, 1)`,
     colorSecondary50: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .5)`,
-    colorSecondary05: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .05)`,
-
+    colorSecondary50B: "#909090",
     colorSecondary20: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .2)`,
+    colorSecondary20B: "#D3D3D3",
+    colorSecondary05: `rgba(${secondaryR}, ${secondaryG}, ${secondaryB}, .05)`,
+    colorSecondary05B: "#F4F4F4",
+
 
     colorAccent: `rgba(${accentR}, ${accentG}, ${accentB}, 1)`,
     colorAccent50: `rgba(${accentR}, ${accentG}, ${accentB}, .5)`,
+    colorAccent50B: "#B081F7",
     colorAccent20: `rgba(${accentR}, ${accentG}, ${accentB}, .2)`,
+    colorAccent20B: "#DFCCFC",
 
     colorSuccess: `rgba(${successR}, ${successG}, ${successB}, 1)`,
     colorSuccess10: `rgba(${successR}, ${successG}, ${successB}, .1)`,
+    colorSuccess10B: "#E9f7EA",
 
     colorTransparent: "transparent"
 };

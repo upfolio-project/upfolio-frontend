@@ -4,10 +4,11 @@ import {sizes, Wrapper} from "@/shared/styles";
 import {Header, Text} from "@/shared/ui/text";
 import {useGetProjectQuery} from "@/shared/api/projects/projects";
 import {messengers, Messengers} from "@/shared/ui/messengers";
-import {Tags} from "@/shared/ui/tag";
+import {Tag, Tags} from "@/shared/ui/tag";
 import React, {useState} from "react";
 import {ProjectImages} from "@/entities/projectImages";
 import {ProjectStats} from "@/entities/projectStats";
+import {useGetMe} from "@/shared/hooks";
 
 interface ProjectWidgetProps {
     uuid?: string;
@@ -97,13 +98,17 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
     const {
         data: projectData,
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
-
+    const {me} = useGetMe();
 
     return (
         <ProjectWidgetContainer>
             <Wrapper>
                 <HeaderContainer>
-                    <Header size="s">{projectData?.title || ""}</Header>
+                    <Box display="flex" gap={sizes.xs} alignItems="center">
+                        <Header size="s">{projectData?.title || ""}</Header>
+                        {me?.username && me?.username === projectData?.authorUsername &&
+                            <Tag tagType="accent" value="Редактировать" link={`/${projectData?.authorUsername}/${projectData?.uuid}/edit`}/>}
+                    </Box>
                     <CustomMessengers>
                         <Messengers messengers={mockMessengers}/>
                     </CustomMessengers>

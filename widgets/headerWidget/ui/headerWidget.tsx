@@ -3,7 +3,7 @@ import {Link} from "@/shared/ui/link";
 import styled from "styled-components";
 import {colors, sizes} from "@/shared/styles";
 import {Logo} from "@/shared/ui/logo";
-import {useRouter} from "next/router";
+import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 
 const AppBarStyled = styled(AppBar)`
   display: flex;
@@ -34,21 +34,23 @@ const AppBarStyled = styled(AppBar)`
 
 
 export const Header = () => {
-    const router = useRouter();
+    const {me, loading} = useGetMe();
+    const hasAccount = Boolean(!loading && me?.username);
 
-    const path = router.asPath;
+    const path = useGetPathRoute();
 
     return (
         <AppBarStyled position="absolute">
             <Toolbar>
                 <Link href="/" as="span"><Logo withText size="s"/></Link>
                 <div>
-                    <Link href="/search" type={(path === "/search" && "accent") || undefined}>Портфолио</Link>
-                    <Link href="/companies" type={(path === "/companies" && "accent") || undefined}>Компании</Link>
-                    <Link href="/partners" type={(path === "/partners" && "accent") || undefined}>Партнёры</Link>
-                    <Link href="/about" type={(path === "/about" && "accent") || undefined}>О платформе</Link>
+                    <Link href="/search" type={(path === "search" && "accent") || undefined}>Портфолио</Link>
+                    <Link href="/companies" type={(path === "companies" && "accent") || undefined}>Компании</Link>
+                    <Link href="/partners" type={(path === "partners" && "accent") || undefined}>Партнёры</Link>
+                    <Link href="/about" type={(path === "about" && "accent") || undefined}>О платформе</Link>
                 </div>
-                <Link href="/me">Личный кабинет</Link>
+                {hasAccount && <Link href={`/${me?.username}` || "#"}>Моё портфолио</Link>}
+                {!hasAccount && <Link href="/login">Войти</Link>}
             </Toolbar>
         </AppBarStyled>
     );

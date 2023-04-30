@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import logoWithoutTextSizeS from "@/shared/elements/logo/logoSizeS.svg";
 import logoWithTextSizeS from "@/shared/elements/logo/logoWithTextSizeS.svg";
-import Image, {StaticImageData} from "next/image";
+import Image, {ImageProps, StaticImageData} from "next/image";
 
 interface LogoProps {
     size: 's' | 'm';
@@ -20,7 +20,7 @@ export const Logo = (props: LogoProps) => {
     switch (props.size) {
         case "s":
             return <LogoContainer
-                width="auto" height="24px"
+                width="104px" height="24px"
                 src={getSrc(props.withText,
                     logoWithTextSizeS,
                     logoWithoutTextSizeS)}
@@ -48,14 +48,19 @@ interface LogoContainerProps {
 const LogoContainer = ({width, height, src, alt}: LogoContainerProps) => {
     return (
         <ImgWrapper width={width} height={height}>
-            <ImgStyled src={src} alt={alt}/>
+            <ImgStyled src={src} alt={alt} w={width} h={height}/>
         </ImgWrapper>
     );
 };
 
-const ImgStyled = styled(Image)`
-  width: auto;
-  height: 100%;
+interface ImgStyledProps extends ImageProps {
+    w: string;
+    h: string;
+}
+
+const ImgStyled = styled(Image)<ImgStyledProps>`
+  width: ${props => props.w};
+  height: ${props => props.h};
 `;
 
 interface ImgWrapperProps {
