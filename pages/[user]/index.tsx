@@ -13,15 +13,11 @@ import {PortfolioWidget} from "@/widgets/portfolioWidget";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
-import {useGetMe} from "@/shared/hooks";
+import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 
 
 function OtherPages() {
-    const route = useRouter();
-
-    // TODO hook for this
-    const username = route.asPath.replace("/", "");
-
+    const username = useGetPathRoute();
     const {me, loading} = useGetMe();
     const router = useRouter();
 
@@ -47,7 +43,6 @@ function OtherPages() {
 
     const profile = userData?.profile;
 
-    if (loading || (username === "me" && !me)) return <></>;
     if (getProfileError) return <PageLayout><Error404Entity/></PageLayout>;
 
     return (

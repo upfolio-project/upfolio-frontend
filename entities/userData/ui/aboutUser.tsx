@@ -7,7 +7,7 @@ import styled from "styled-components";
 import {borders, colors, sizes} from "@/shared/styles";
 import {dateOfBirthToView, userStatusToView} from "@/shared/utils/dataToView";
 import {Tag, Tags} from "@/shared/ui/tag";
-import {useGetMe} from "@/shared/hooks";
+import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 import {useRouter} from "next/router";
 
 const StatusTag = styled.div`
@@ -52,17 +52,15 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, sta
     const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
         dateOfBirthToView(new Date(dateOfBirth || "")) : undefined;
 
-    const route = useRouter();
     const {me} = useGetMe();
-    const username = route.asPath.split("/")[1].split("?")[0].split("#")[0];
-
+    const username = useGetPathRoute();
     const statusString = userStatusToView(status);
 
     return (
         <Wrapper>
             <Box position="relative">
                 <Avatar src={profilePhotoUrl}/>
-                {me?.username === username && <Settings><Tag value="Редактировать" link="/edit/profile" tagType="accent"/></Settings>}
+                {me?.username && me?.username === username && <Settings><Tag value="Редактировать" link="/edit/profile" tagType="accent"/></Settings>}
             </Box>
             <InfoContainer>
                 <Box display="flex" flexDirection="column" gap={sizes.xxs} alignItems="center">

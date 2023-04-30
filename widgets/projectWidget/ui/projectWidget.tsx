@@ -8,6 +8,7 @@ import {Tag, Tags} from "@/shared/ui/tag";
 import React, {useState} from "react";
 import {ProjectImages} from "@/entities/projectImages";
 import {ProjectStats} from "@/entities/projectStats";
+import {useGetMe} from "@/shared/hooks";
 
 interface ProjectWidgetProps {
     uuid?: string;
@@ -97,7 +98,7 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
     const {
         data: projectData,
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
-
+    const {me} = useGetMe();
 
     return (
         <ProjectWidgetContainer>
@@ -105,7 +106,8 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
                 <HeaderContainer>
                     <Box display="flex" gap={sizes.xs} alignItems="center">
                         <Header size="s">{projectData?.title || ""}</Header>
-                        <Tag tagType="accent" value="Редактировать" link={`/${projectData?.authorUsername}/${projectData?.uuid}/edit`}/>
+                        {me?.username && me?.username === projectData?.authorUsername &&
+                            <Tag tagType="accent" value="Редактировать" link={`/${projectData?.authorUsername}/${projectData?.uuid}/edit`}/>}
                     </Box>
                     <CustomMessengers>
                         <Messengers messengers={mockMessengers}/>
