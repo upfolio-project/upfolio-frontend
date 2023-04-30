@@ -4,19 +4,19 @@ import React from "react";
 import Link from "next/link";
 import {Text} from "@/shared/ui/text";
 
-const TagItem = styled(Link)<{ tagType: "default" | "accent" }>`
+const TagItem = styled(Link)<{ tt: "default" | "accent" }>`
   text-decoration: none;
   display: flex;
   align-items: center;
   height: ${sizes.s};
-  background-color: ${p => p.tagType === "accent" ? colors.colorAccent : colors.colorSecondary05B};
+  background-color: ${p => p.tt === "accent" ? colors.colorAccent : colors.colorSecondary05B};
   padding-left: ${sizes.xs};
   padding-right: ${sizes.xs};
   border-radius: ${borders.radius5};
   transition: .3s;
 
   &, & * {
-    color: ${p => p.tagType === "accent" ? colors.colorDominant : colors.colorAccent};
+    color: ${p => p.tt === "accent" ? colors.colorDominant : colors.colorAccent};
     transition: .3s;
   }
   
@@ -25,8 +25,8 @@ const TagItem = styled(Link)<{ tagType: "default" | "accent" }>`
   }
 
   &:hover, a:hover span, & span:hover {
-    color: ${p => p.tagType === "accent" ? colors.colorDominant : colors.colorAccent} !important;
-    background-color: ${p => p.tagType === "accent" ? colors.colorAccent50B : colors.colorSecondary20B};
+    color: ${p => p.tt === "accent" ? colors.colorDominant : colors.colorAccent} !important;
+    background-color: ${p => p.tt === "accent" ? colors.colorAccent50B : colors.colorSecondary20B};
   }
 `;
 
@@ -39,7 +39,7 @@ export interface TagProps {
 
 const Tag = ({value, link, tagType}: TagProps) => {
     return (
-        <TagItem tagType={tagType || "default"} href={link || ""}>
+        <TagItem tt={tagType || "default"} href={link || ""}>
             <Text size="s" as="span">{value}</Text>
         </TagItem>
     );
