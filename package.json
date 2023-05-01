@@ -22,7 +22,6 @@
     "@typescript-eslint/parser": "^5.54.0",
     "@upfolio-project/upfolio-ui": "0.1.10",
     "cookies-next": "^2.1.1",
-    "dayjs": "^1.11.7",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",
     "eslint-plugin-import": "^2.27.5",
