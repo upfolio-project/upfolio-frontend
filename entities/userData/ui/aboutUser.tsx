@@ -1,13 +1,9 @@
-import {Avatar} from "@/shared/ui/avatar";
-import {Header, Text} from "@/shared/ui/text";
-import {Wrapper} from "@/shared/styles/wrapper";
+import {Avatar, Header, Text, Wrapper, Tags, Tag, borders, colors, sizes} from "@upfolio-project/upfolio-ui";
 import {ProfileModelStatus} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import styled from "styled-components";
-import {borders, colors, sizes} from "@/shared/styles";
-import {dateOfBirthToView, registerDateToView, userStatusToView} from "@/shared/utils/dataToView";
-import {Tags} from "@/shared/ui/tag";
-import {messengers, Messengers} from "@/shared/ui/messengers/styles/messengers";
+import {dateOfBirthToView, userStatusToView} from "@/shared/utils/dataToView";
+import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 
 const StatusTag = styled.div`
   height: 18px;
@@ -19,11 +15,6 @@ const StatusTag = styled.div`
   border-radius: ${borders.radius5};
 `;
 
-const BioText = styled(Text)`
-  white-space: pre-line;
-`;
-
-
 const InfoContainer = styled(Box)`
   display: flex;
   flex-direction: column;
@@ -32,48 +23,40 @@ const InfoContainer = styled(Box)`
   gap: ${sizes.s};
 `;
 
+const Settings = styled(Box)`
+  display: block;
+  width: max-content;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  transform: translateY(50%);
+`;
+
 interface AboutUserProps {
     profilePhotoUrl: string;
     firstName: string;
     lastName: string;
-    bio: string;
     dateOfBirth: string | null;
     tags: string[];
     status: ProfileModelStatus;
-    registered: string
 }
 
-const mockMessengers = [
-    {
-        name: messengers.dribbble,
-        url: "#"
-    },
-    {
-        name: messengers.behance,
-        url: "#"
-    },
-    {
-        name: messengers.github,
-        url: "#"
-    },
-    {
-        name: messengers.telegram,
-        url: "#"
-    },
-];
-
-const AboutUser = ({profilePhotoUrl, firstName, lastName, bio, dateOfBirth, tags, status, registered}: AboutUserProps) => {
+const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, status}: AboutUserProps) => {
     const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
         dateOfBirthToView(new Date(dateOfBirth || "")) : undefined;
 
-    const registeredHumanity = (new Date(registered).getDate()) ?
-        registerDateToView(new Date(registered)) : undefined;
-
+    const {me} = useGetMe();
+    const username = useGetPathRoute();
     const statusString = userStatusToView(status);
 
     return (
         <Wrapper>
-            <Avatar src={profilePhotoUrl}/>
+            <Box position="relative">
+                <Avatar src={profilePhotoUrl}/>
+                {me?.username && me?.username === username && <Settings><Tag value="Редактировать" link="/edit/profile" tagType="accent"/></Settings>}
+            </Box>
             <InfoContainer>
                 <Box display="flex" flexDirection="column" gap={sizes.xxs} alignItems="center">
                     <Header size="s" style="bold" align="center">
@@ -83,13 +66,6 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, bio, dateOfBirth, tags
                 </Box>
                 {statusString && <StatusTag><Text size="s" type="success">{statusString}</Text></StatusTag>}
                 {tags.length > 0 && <Tags tags={tags.map(tag => ({value: tag, link: "#"}))}/>}
-                {bio && <BioText size="s" type="defaultLight">{bio}</BioText>}
-                {registeredHumanity &&
-                    <Text size="s" type="defaultLight" align="center">
-                        Зарегистрирован <Text size="s" type="accent" as="span">{registeredHumanity}</Text>
-                    </Text>
-                }
-                <Messengers messengers={mockMessengers}/>
             </InfoContainer>
         </Wrapper>
     );

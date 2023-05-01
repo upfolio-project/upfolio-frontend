@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {borders, shadows} from "@/shared/styles";
+import {borders, shadows} from "@upfolio-project/upfolio-ui";
 import React from "react";
 import {Container} from "@mui/material";
 

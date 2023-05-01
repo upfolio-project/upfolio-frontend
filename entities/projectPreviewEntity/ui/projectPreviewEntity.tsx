@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import {Box} from "@mui/material";
-import {borders, colors, sizes} from "@/shared/styles";
-import {Text} from "@/shared/ui/text";
-import {Tags} from "@/shared/ui/tag";
+import {Text, Tags, borders, colors, sizes} from "@upfolio-project/upfolio-ui";
 import {registerDateToView} from "@/shared/utils/dataToView";
 import Link from "next/link";
 
@@ -11,7 +9,7 @@ interface ProjectPreviewEntityProps {
     description: string;
     tags: string[];
     created: string;
-    projectHref: string
+    projectHref: string;
 }
 
 const ProjectPreviewContainer = styled(Box)`
@@ -45,7 +43,7 @@ const ProjectPreviewEntity = ({name, description, created, tags, projectHref}: P
             <Box zIndex="1" width="max-content" maxWidth="100%">
                 {tags && <Tags tags={tags.map(tag => ({value: tag, link: "#"}))} align="left" tagType="accent"/>}
             </Box>
-            <Text size="s" type="defaultLight">{registerDateToView(new Date(created))}</Text>
+            <Text size="s" type="defaultLight">{registerDateToView(new Date(created)) + " назад"}</Text>
         </ProjectPreviewContainer>
     );
 };

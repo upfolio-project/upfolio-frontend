@@ -2,7 +2,7 @@ import React from "react";
 import {Header} from "@/widgets/headerWidget";
 import {FooterWidget} from "@/widgets/footerWidget";
 import styled from "styled-components";
-import {sizes} from "@/shared/styles";
+import {sizes} from "@upfolio-project/upfolio-ui";
 
 const Main = styled.main`
   box-sizing: border-box;

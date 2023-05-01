@@ -1,4 +1,3 @@
-import {useRouter} from "next/router";
 import {Meta} from "@/shared/seo";
 import {GetServerSideProps} from "next";
 import {GetServerSidePropsContext} from "next/types";
@@ -10,14 +9,12 @@ import {Box} from "@mui/material";
 import {Error404Entity} from "@/entities/error404Entity";
 import {ProjectEditWidget} from "@/widgets/projectEditWidget";
 import {Projects} from "@/shared/api/projects/projects";
-import {useGetMe, useRedirectNotAuthToLoginPage} from "@/shared/hooks";
+import {useGetMe, useGetPathRoute, useRedirectNotAuthToLoginPage} from "@/shared/hooks";
 
 
 function ProjectEditPage() {
-    const router = useRouter();
-
-    // TODO hook for this
-    const [username, projectUuid] = router.asPath.slice(1).split("/");
+    const username = useGetPathRoute();
+    const projectUuid = useGetPathRoute(2);
 
     const {me} = useGetMe();
 

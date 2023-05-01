@@ -11,14 +11,14 @@ import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {ProjectWidget} from "@/widgets/projectWidget";
 import {Projects} from "@/shared/api/projects/projects";
-import {useGetMe} from "@/shared/hooks";
+import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 
 
 function ProjectPage() {
     const router = useRouter();
 
-    // TODO hook for this
-    const [username, projectUuid] = router.asPath.slice(1).split("/");
+    const username = useGetPathRoute();
+    const projectUuid = useGetPathRoute(2);
 
     const {me, loading} = useGetMe();
 

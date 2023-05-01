@@ -1,13 +1,15 @@
-import {Box} from "@mui/material";
-import styled from "styled-components";
-import {useEditProfileMutation, useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
-import {ChipInput, DatePicker, Input, Select, TextField} from "@/shared/ui/input";
-import {ProfileModelStatus} from "@/shared/api/entities";
-import {Button} from "@/shared/ui/button";
 import React, {useCallback, useEffect, useRef} from "react";
 import {useRouter} from "next/router";
-import {Message} from "@/shared/ui/message";
+
+import {Box} from "@mui/material";
+import styled from "styled-components";
+
+import {useEditProfileMutation, useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
+import {ProfileModelStatus} from "@/shared/api/entities";
+
+import {Message, Button, ChipInput, DatePicker, Input, Select, TextField} from "@upfolio-project/upfolio-ui";
+
 
 const Container = styled(Box)`
   display: flex;
@@ -60,6 +62,7 @@ const EditMeWidget = () => {
     const bioRef = useRef<HTMLInputElement>(null);
     const dateRef = useRef<HTMLInputElement>(null);
     const statusRef = useRef<HTMLInputElement>(null);
+    const locationRef = useRef<HTMLInputElement>(null);
     const tagsRef = useRef<{ value: string[] | null } | null>(null);
 
     function onClick() {
@@ -74,7 +77,8 @@ const EditMeWidget = () => {
             bio: bioRef?.current?.value || "",
             tags: tagsRef?.current?.value || [],
             dateOfBirth: dateRef?.current?.value || null,
-            type: profile.type
+            type: profile.type,
+            location: locationRef?.current?.value || null
         });
     }
 
@@ -118,6 +122,11 @@ const EditMeWidget = () => {
                         defaultValue={profile.status}
                     />
                 </Box>
+                <Input
+                    label="Город"
+                    defaultValue={profile.location}
+                    inputRef={locationRef}
+                />
                 <ChipInput chips={profile.tags} placeholder="Введите тег" inputRef={tagsRef} label="Теги" maxCount={15}/>
                 <Button width="container" type="accent" onClick={() => onClick()}>Сохранить</Button>
             </Box>

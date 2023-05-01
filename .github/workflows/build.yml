@@ -22,6 +22,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm install yarn
+      - run: npm install --global yarn
+      - run: npm config set always-auth true
+      - run: echo '//npm.pkg.github.com/:_authToken=${{ secrets.REGISTRY_TOKEN }}' >> .npmrc
       - run: yarn install
       - run: yarn run build

@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import {sizes} from "@/shared/styles";
-import {Text} from "@/shared/ui/text";
+import {Text, sizes} from "@upfolio-project/upfolio-ui";
 import {Box} from "@mui/material";
 import React from "react";
 import {registerDateToView} from "@/shared/utils/dataToView";
@@ -23,7 +22,7 @@ export function ProjectStats({created, updated}: ProjectStatsProps) {
         <ProjectStatsContainer
         >
             <Text type="defaultLight">Добавлен <Text as="span" type="accent">
-                {registerDateToView(createdDate)}
+                {registerDateToView(createdDate) + " назад"}
             </Text></Text>
             <Text type="defaultLight">Разработка <Text as="span" type="accent">
                 {registerDateToView(updatedDate)}

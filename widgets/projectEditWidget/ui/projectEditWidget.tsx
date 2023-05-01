@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import {useRef} from "react";
+
 import {Box} from "@mui/material";
-import {ChipInput, Input, TextField} from "@/shared/ui/input";
+import styled from "styled-components";
+
 import {useEditProjectMutation, useGetProjectQuery} from "@/shared/api/projects/projects";
 import {FormFeature} from "@/features/formFeature";
-import {useRef} from "react";
-import {Button} from "@/shared/ui/button";
-import {Message} from "@/shared/ui/message";
-import {Link} from "@/shared/ui/link";
-import {Header} from "@/shared/ui/text";
+
+import {ChipInput, Input, TextField, Button, Message, Link, Header} from "@upfolio-project/upfolio-ui";
+
 
 interface ProjectEditWidgetProps {
     uuid: string;

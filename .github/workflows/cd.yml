@@ -42,6 +42,8 @@ jobs:
           sed -i 's/<tag>/${{ github.sha }}/' docker-compose.yml
           
           sed -i 's%<NEXT_PUBLIC_BASE_URL>%${{ secrets.NEXT_PUBLIC_BASE_URL }}%' docker-compose.yml
+          npm config set always-auth true
+          echo '//npm.pkg.github.com/:_authToken=${{ secrets.REGISTRY_TOKEN }}' >> .npmrc
           
           docker build . --tag upfolio-dev:${{ github.sha }}
           docker-compose up -d

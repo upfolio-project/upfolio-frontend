@@ -1,13 +1,15 @@
+import React, {useState} from "react";
+
 import styled from "styled-components";
 import {Box} from "@mui/material";
-import {sizes, Wrapper} from "@/shared/styles";
-import {Header, Text} from "@/shared/ui/text";
+
 import {useGetProjectQuery} from "@/shared/api/projects/projects";
-import {messengers, Messengers} from "@/shared/ui/messengers";
-import {Tags} from "@/shared/ui/tag";
-import React, {useState} from "react";
 import {ProjectImages} from "@/entities/projectImages";
 import {ProjectStats} from "@/entities/projectStats";
+import {useGetMe} from "@/shared/hooks";
+
+import {Header, Messengers, sizes, Tag, Tags, Text, Wrapper, messengers} from "@upfolio-project/upfolio-ui";
+
 
 interface ProjectWidgetProps {
     uuid?: string;
@@ -25,7 +27,7 @@ const HeaderContainer = styled(Box)`
 `;
 
 const CustomMessengers = styled(Box)`
-  & img {
+  & svg {
     opacity: .5;
     width: 28px;
     height: 28px;
@@ -97,13 +99,18 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
     const {
         data: projectData,
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
-
+    const {me} = useGetMe();
 
     return (
         <ProjectWidgetContainer>
             <Wrapper>
                 <HeaderContainer>
-                    <Header size="s">{projectData?.title || ""}</Header>
+                    <Box display="flex" gap={sizes.xs} alignItems="center">
+                        <Header size="s">{projectData?.title || ""}</Header>
+                        {me?.username && me?.username === projectData?.authorUsername &&
+                            <Tag tagType="accent" value="Редактировать"
+                                 link={`/${projectData?.authorUsername}/${projectData?.uuid}/edit`}/>}
+                    </Box>
                     <CustomMessengers>
                         <Messengers messengers={mockMessengers}/>
                     </CustomMessengers>
