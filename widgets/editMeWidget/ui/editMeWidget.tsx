@@ -1,13 +1,15 @@
-import {Box} from "@mui/material";
-import styled from "styled-components";
-import {useEditProfileMutation, useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
-import {ChipInput, DatePicker, Input, Select, TextField} from "@/shared/ui/input";
-import {ProfileModelStatus} from "@/shared/api/entities";
-import {Button} from "@/shared/ui/button";
 import React, {useCallback, useEffect, useRef} from "react";
 import {useRouter} from "next/router";
-import {Message} from "@/shared/ui/message";
+
+import {Box} from "@mui/material";
+import styled from "styled-components";
+
+import {useEditProfileMutation, useGetMeQuery, useGetProfileQuery} from "@/shared/api/profile/profile";
 import GetErrorDescription from "@/shared/api/services/getErrorDescription";
+import {ProfileModelStatus} from "@/shared/api/entities";
+
+import {Message, Button, ChipInput, DatePicker, Input, Select, TextField} from "@upfolio-project/upfolio-ui";
+
 
 const Container = styled(Box)`
   display: flex;

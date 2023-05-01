@@ -1,9 +1,10 @@
 import {AppBar, Toolbar} from "@mui/material";
-import {Link} from "@/shared/ui/link";
 import styled from "styled-components";
-import {colors, sizes} from "@/shared/styles";
-import {Logo} from "@/shared/ui/logo";
+
+
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
+
+import {Link, colors, sizes, Logo} from "@upfolio-project/upfolio-ui";
 
 const AppBarStyled = styled(AppBar)`
   display: flex;

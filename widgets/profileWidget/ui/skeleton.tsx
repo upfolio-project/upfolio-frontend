@@ -1,7 +1,8 @@
 import {Box, Skeleton as MUISkeleton} from "@mui/material";
-import {Header, Text} from "@/shared/ui/text";
 import styled from "styled-components";
-import {sizes, Wrapper } from "@/shared/styles";
+
+import {Header, Text, Wrapper, sizes} from "@upfolio-project/upfolio-ui";
+
 
 const UserDataStyled = styled(Box)`
   width: 328px;

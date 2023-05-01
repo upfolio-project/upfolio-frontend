@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import {sizes} from "@/shared/styles";
-import {Text} from "@/shared/ui/text";
+import {Text, sizes} from "@upfolio-project/upfolio-ui";
 import {Box} from "@mui/material";
 import React from "react";
 import {registerDateToView} from "@/shared/utils/dataToView";

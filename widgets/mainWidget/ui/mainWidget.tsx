@@ -1,9 +1,8 @@
-import {Container} from "@mui/material";
-import {Header, Text} from "@/shared/ui/text";
 import {Box} from "@mui/system";
-import {LinkButton} from "@/shared/ui/button";
+import {Container} from "@mui/material";
 import styled from "styled-components";
-import {sizes} from "@/shared/styles";
+
+import {Header, Text, LinkButton, sizes} from "@upfolio-project/upfolio-ui";
 
 
 export const ContainerStyled = styled(Container)`

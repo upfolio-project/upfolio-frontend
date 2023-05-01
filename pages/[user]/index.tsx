@@ -8,7 +8,7 @@ import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
 import {Profile, useGetProfileQuery} from "@/shared/api/profile/profile";
 import type {ProfileModel} from "@/shared/api/entities";
-import {sizes} from "@/shared/styles";
+import {sizes} from "@upfolio-project/upfolio-ui";
 import {PortfolioWidget} from "@/widgets/portfolioWidget";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";

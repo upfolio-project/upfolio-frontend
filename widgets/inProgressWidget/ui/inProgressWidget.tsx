@@ -1,7 +1,7 @@
 import {Box} from "@mui/material";
-import {Header, Text} from "@/shared/ui/text";
-import {LinkButton} from "@/shared/ui/button";
-import {sizes} from "@/shared/styles";
+
+import {Header, Text, LinkButton, sizes} from "@upfolio-project/upfolio-ui";
+
 
 export const InProgressWidget = () => {
     return (

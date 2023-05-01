@@ -1,8 +1,6 @@
 import {Box} from "@mui/material";
-import {Header, Text} from "@/shared/ui/text";
-import {LinkButton} from "@/shared/ui/button";
+import {Header, Text, LinkButton, sizes} from "@upfolio-project/upfolio-ui";
 import styled from "styled-components";
-import {sizes} from "@/shared/styles";
 
 export function Error404Entity() {
     return (

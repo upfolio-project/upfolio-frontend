@@ -1,15 +1,14 @@
-import {Box} from "@mui/material";
-import {Header, Text} from "@/shared/ui/text";
-import {Input} from "@/shared/ui/input";
-import {Button} from "@/shared/ui/button";
-import {Link} from "@/shared/ui/link";
 import {useEffect, useRef} from "react";
+import {useRouter} from "next/router";
+
+import {Box} from "@mui/material";
+
 import {useLoginByPasswordMutation} from "@/shared/api/auth/login";
 import {FormFeature} from "@/features/formFeature";
-import {useRouter} from "next/router";
-import {sizes} from "@/shared/styles";
-import {Message} from "@/shared/ui/message";
 import {useAppSelector} from "@/shared/hooks";
+
+import {Header, Text, Input, Button, Link, Message, sizes} from "@upfolio-project/upfolio-ui";
+
 
 export const LoginWidget = () => {
     useEffect(() => {

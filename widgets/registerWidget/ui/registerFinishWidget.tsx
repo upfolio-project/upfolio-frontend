@@ -1,15 +1,11 @@
 import {Box} from "@mui/material";
-import {Header} from "@/shared/ui/text";
-import {Input} from "@/shared/ui/input";
-import {Button} from "@/shared/ui/button";
 import React, {useEffect, useRef, useState} from "react";
 import {
     useGetRegisterTokenQuery, useFinishMutation
 } from "@/shared/api/auth/register";
 import {useRouter} from "next/router";
 import {FormFeature} from "@/features/formFeature";
-import {sizes} from "@/shared/styles";
-import {Message} from "@/shared/ui/message";
+import {Header, Input, Button, Message, sizes} from "@upfolio-project/upfolio-ui";
 import {useGetMe} from "@/shared/hooks";
 
 

@@ -1,13 +1,14 @@
-import styled from "styled-components";
-import {FormFeature} from "@/features/formFeature";
-import {Box} from "@mui/material";
-import {Header} from "@/shared/ui/text";
-import {Message} from "@/shared/ui/message";
-import {ChipInput, Input, TextField} from "@/shared/ui/input";
-import {Button} from "@/shared/ui/button";
-import {useCreateProjectMutation} from "@/shared/api/projects/projects";
 import {useEffect, useRef} from "react";
 import {useRouter} from "next/router";
+
+import styled from "styled-components";
+import {Box} from "@mui/material";
+
+import {useCreateProjectMutation} from "@/shared/api/projects/projects";
+import {FormFeature} from "@/features/formFeature";
+
+import {Header, Message, ChipInput, Input, TextField, Button} from "@upfolio-project/upfolio-ui";
+
 
 const ProjectCreateWidgetContainer = styled(Box)`
 
