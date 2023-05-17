@@ -2,10 +2,10 @@ import {useGetMeQuery} from "@/shared/api/profile/profile";
 import {useAppSelector} from "@/shared/hooks";
 
 
-export function useGetMe() {
+export function useGetMe(force = false) {
     const user = useAppSelector(state => state.user);
     const {data, isLoading} =
-        useGetMeQuery({}, {skip: user.userState !== "notFetch"});
+        useGetMeQuery({}, {skip: user.userState !== "notFetch" && !force});
 
     if (user.userState === "login") {
         return {me: user.me, loading: false};

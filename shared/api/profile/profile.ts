@@ -56,7 +56,24 @@ export const Profile = commonApi.injectEndpoints({
                 url: '/profile/edit',
                 method: 'POST',
                 body: body
-            })
+            }),
+            async onQueryStarted(data, {queryFulfilled, dispatch}) {
+                const {setUser} = userSlice.actions;
+                try {
+                    const result = await queryFulfilled;
+                    if (result.data) dispatch(setUser({
+                        userState: "login",
+                        me: {
+                            timestamp: result.data.timestamp,
+                            username: result.data.profile.username,
+                            url: `https://upfolio.ru/${result.data.profile.username}`
+                        }
+                    }));
+                    else dispatch(setUser({userState: "notLogin"}));
+                } catch (e: any) {
+                    dispatch(setUser({userState: "notFetch"}));
+                }
+            }
         })
     }),
     overrideExisting: false
