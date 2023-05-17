@@ -11,7 +11,6 @@ import {ProfileModelStatus} from "@/shared/api/entities";
 import {Message, Button, ChipInput, DatePicker, Input, Select, TextField} from "@upfolio-project/upfolio-ui";
 import {ProfileModelType} from "@/shared/api/entities/profile/profile";
 
-
 const Container = styled(Box)`
   display: flex;
   justify-content: center;
@@ -90,7 +89,7 @@ const EditMeWidget = () => {
     const locationRef = useRef<HTMLInputElement>(null);
     const tagsRef = useRef<{ value: string[] | null } | null>(null);
 
-    function onClick() {
+    function useOnClick() {
         if (!profile) return;
         editProfile({
             username: usernameRef?.current?.value || "",
@@ -162,7 +161,7 @@ const EditMeWidget = () => {
                 />
                 <ChipInput chips={profile.tags} placeholder="Введите тег" inputRef={tagsRef} label="Теги"
                            maxCount={15}/>
-                <Button width="container" type="accent" onClick={() => onClick()}>Сохранить</Button>
+                <Button width="container" type="accent" onClick={useOnClick}>Сохранить</Button>
             </Box>
         </Container>
     );
