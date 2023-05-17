@@ -9,6 +9,7 @@ import GetErrorDescription from "@/shared/api/services/getErrorDescription";
 import {ProfileModelStatus} from "@/shared/api/entities";
 
 import {Message, Button, ChipInput, DatePicker, Input, Select, TextField} from "@upfolio-project/upfolio-ui";
+import {ProfileModelType} from "@/shared/api/entities/profile/profile";
 
 
 const Container = styled(Box)`
@@ -31,6 +32,29 @@ const statuses = [
         value: ProfileModelStatus.FOUND_JOB,
         content: "Нашёл работу",
         key: ProfileModelStatus.FOUND_JOB
+    }
+];
+
+const types: { value: ProfileModelType, content: string, key: string }[] = [
+    {
+        value: "PUBLIC",
+        content: "Публичный",
+        key: "PUBLIC"
+    },
+    {
+        value: "CONTACTS_FOR_COMPANIES",
+        content: "Контакты открыты для компаний",
+        key: "CONTACTS_FOR_COMPANIES"
+    },
+    {
+        value: "CONTACTS_HIDDEN",
+        content: "Контакты скрыты",
+        key: "CONTACTS_HIDDEN"
+    },
+    {
+        value: "PRIVATE",
+        content: "Приватный",
+        key: "PRIVATE"
     }
 ];
 
@@ -62,6 +86,7 @@ const EditMeWidget = () => {
     const bioRef = useRef<HTMLInputElement>(null);
     const dateRef = useRef<HTMLInputElement>(null);
     const statusRef = useRef<HTMLInputElement>(null);
+    const typeRef = useRef<HTMLInputElement>(null);
     const locationRef = useRef<HTMLInputElement>(null);
     const tagsRef = useRef<{ value: string[] | null } | null>(null);
 
@@ -77,9 +102,10 @@ const EditMeWidget = () => {
             bio: bioRef?.current?.value || "",
             tags: tagsRef?.current?.value || [],
             dateOfBirth: dateRef?.current?.value || null,
-            type: profile.type,
+            type: (typeRef?.current?.value || profile.type) as ProfileModelType,
             location: locationRef?.current?.value || null
         });
+        router.push("/" + usernameRef?.current?.value || "");
     }
 
     if (!profile) return <></>;
@@ -87,8 +113,8 @@ const EditMeWidget = () => {
     return (
         <Container>
             {error && <Message title="Произошла ошибка"
-                                 description={GetErrorDescription(error?.data?.text)}
-                                 severity="error"/>}
+                               description={GetErrorDescription(error?.data?.text)}
+                               severity="error"/>}
             <Box width="600px" display="flex" flexDirection="column" gap="20px">
                 <Input
                     label="Username"
@@ -122,12 +148,20 @@ const EditMeWidget = () => {
                         defaultValue={profile.status}
                     />
                 </Box>
+                <Select<ProfileModelType>
+                    items={types}
+                    id="type-select"
+                    label="Тип профиля"
+                    inputRef={typeRef}
+                    defaultValue={profile.type}
+                />
                 <Input
                     label="Город"
                     defaultValue={profile.location}
                     inputRef={locationRef}
                 />
-                <ChipInput chips={profile.tags} placeholder="Введите тег" inputRef={tagsRef} label="Теги" maxCount={15}/>
+                <ChipInput chips={profile.tags} placeholder="Введите тег" inputRef={tagsRef} label="Теги"
+                           maxCount={15}/>
                 <Button width="container" type="accent" onClick={() => onClick()}>Сохранить</Button>
             </Box>
         </Container>

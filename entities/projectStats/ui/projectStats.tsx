@@ -22,7 +22,7 @@ export function ProjectStats({created, updated}: ProjectStatsProps) {
         <ProjectStatsContainer
         >
             <Text type="defaultLight">Добавлен <Text as="span" type="accent">
-                {registerDateToView(createdDate) + " назад"}
+                {registerDateToView(createdDate)}
             </Text></Text>
             <Text type="defaultLight">Разработка <Text as="span" type="accent">
                 {registerDateToView(updatedDate)}

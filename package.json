@@ -20,7 +20,7 @@
     "@types/react-redux": "^7.1.25",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
-    "@upfolio-project/upfolio-ui": "0.1.10",
+    "@upfolio-project/upfolio-ui": "^0.1.10",
     "cookies-next": "^2.1.1",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",

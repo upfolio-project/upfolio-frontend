@@ -5,7 +5,6 @@ import {Container} from "@mui/material";
 
 const FormContainer = styled(Container)`
   max-width: 451px;
-  max-height: 465px;
   box-sizing: content-box;
 `;
 

@@ -5,7 +5,8 @@ import {ProjectPreviewEntity} from "@/entities/projectPreviewEntity";
 import {useGetProjectsQuery} from "@/shared/api/projects/projects";
 import {Skeleton} from "./skeleton";
 
-import {Header, Wrapper, sizes} from "@upfolio-project/upfolio-ui";
+import {Header, Wrapper, sizes, LinkButton} from "@upfolio-project/upfolio-ui";
+import {useGetMe} from "@/shared/hooks";
 
 
 const PortfolioDataStyled = styled(Box)`
@@ -16,6 +17,8 @@ const PortfolioContainer = styled(Box)`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: ${sizes.s}
 `;
 
@@ -31,8 +34,8 @@ const PortfolioWidget = ({username, userUuid, isLoading}: PortfolioWidgetProps) 
         isLoading: getProjectsLoading
     } = useGetProjectsQuery({"userUuid": userUuid || ""}, {skip: !userUuid || isLoading});
 
+    const user = useGetMe();
     if (getProjectsLoading || isLoading) return <Skeleton/>;
-
     const projects = projectsData?.projects || [];
 
     return (
@@ -50,6 +53,7 @@ const PortfolioWidget = ({username, userUuid, isLoading}: PortfolioWidgetProps) 
                             key={project.title}
                         />
                     ))}
+                    {username === user?.me?.username && <LinkButton type="accent" href="/create">Добавить проект</LinkButton>}
                 </PortfolioContainer>
             </Wrapper>
         </PortfolioDataStyled>
