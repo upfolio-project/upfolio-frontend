@@ -15,6 +15,7 @@ interface ProjectPreviewEntityProps {
 const ProjectPreviewContainer = styled(Box)`
   position: relative;
   padding: ${sizes.m};
+  width: 100%;
   min-width: 5px;
   background-color: ${colors.colorSecondary05};
   display: flex;
@@ -43,7 +44,7 @@ const ProjectPreviewEntity = ({name, description, created, tags, projectHref}: P
             <Box zIndex="1" width="max-content" maxWidth="100%">
                 {tags && <Tags tags={tags.map(tag => ({value: tag, link: "#"}))} align="left" tagType="accent"/>}
             </Box>
-            <Text size="s" type="defaultLight">{registerDateToView(new Date(created)) + " назад"}</Text>
+            <Text size="s" type="defaultLight">{registerDateToView(new Date(created))}</Text>
         </ProjectPreviewContainer>
     );
 };

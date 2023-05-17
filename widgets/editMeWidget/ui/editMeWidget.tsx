@@ -105,6 +105,7 @@ const EditMeWidget = () => {
             type: (typeRef?.current?.value || profile.type) as ProfileModelType,
             location: locationRef?.current?.value || null
         });
+        router.push("/" + usernameRef?.current?.value || "");
     }
 
     if (!profile) return <></>;
