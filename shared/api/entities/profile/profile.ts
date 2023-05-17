@@ -1,4 +1,4 @@
-type ProfileModelType = 'PUBLIC' | 'PRIVATE' | 'CONTACTS_HIDDEN' | 'CONTACTS_FOR_COMPANIES'
+export type ProfileModelType = 'PUBLIC' | 'PRIVATE' | 'CONTACTS_HIDDEN' | 'CONTACTS_FOR_COMPANIES'
 
 export enum ProfileModelStatus {
     LOOKING_FOR_JOB = "LOOKING_FOR_JOB",
