@@ -9,9 +9,9 @@ import {FormFeature} from "@/features/formFeature";
 
 import {Header, Message, ChipInput, Input, TextField, Button} from "@upfolio-project/upfolio-ui";
 
-
-const ProjectCreateWidgetContainer = styled(Box)`
-
+const Container = styled(Box)`
+  display: flex;
+  justify-content: center;
 `;
 
 export default function ProjectCreateWidget() {
@@ -39,7 +39,7 @@ export default function ProjectCreateWidget() {
 
     const projectError = error as any;
     return (
-        <ProjectCreateWidgetContainer>
+        <Container>
             <FormFeature onSubmit={(e) => {
                 e.preventDefault();
                 createHandler();
@@ -61,8 +61,8 @@ export default function ProjectCreateWidget() {
                     inputRef={descriptionRef}
                 />
                 <ChipInput label="Теги" chips={[]} inputRef={tagsRef}/>
-                <Button width="container" type="accent" buttonType="submit">Создать проект</Button>
+                <Button width="container" type="accent" fill={false} buttonType="submit">Создать проект</Button>
             </FormFeature>
-        </ProjectCreateWidgetContainer>
+        </Container>
     );
 }

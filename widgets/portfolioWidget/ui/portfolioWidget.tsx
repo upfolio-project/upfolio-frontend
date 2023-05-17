@@ -5,7 +5,7 @@ import {ProjectPreviewEntity} from "@/entities/projectPreviewEntity";
 import {useGetProjectsQuery} from "@/shared/api/projects/projects";
 import {Skeleton} from "./skeleton";
 
-import {Header, Wrapper, sizes} from "@upfolio-project/upfolio-ui";
+import {Header, Wrapper, sizes, LinkButton} from "@upfolio-project/upfolio-ui";
 
 
 const PortfolioDataStyled = styled(Box)`
@@ -16,6 +16,8 @@ const PortfolioContainer = styled(Box)`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: ${sizes.s}
 `;
 
@@ -50,6 +52,7 @@ const PortfolioWidget = ({username, userUuid, isLoading}: PortfolioWidgetProps) 
                             key={project.title}
                         />
                     ))}
+                    <LinkButton type="accent" href="/create">Добавить проект</LinkButton>
                 </PortfolioContainer>
             </Wrapper>
         </PortfolioDataStyled>

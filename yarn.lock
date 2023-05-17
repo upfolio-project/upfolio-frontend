@@ -1904,7 +1904,7 @@
     "@typescript-eslint/types" "5.54.0"
     eslint-visitor-keys "^3.3.0"
 
-"@upfolio-project/upfolio-ui@0.1.10":
+"@upfolio-project/upfolio-ui@^0.1.10":
   version "0.1.10"
   resolved "https://npm.pkg.github.com/download/@upfolio-project/upfolio-ui/0.1.10/1ccfd86564f9ce8da7380f12cbd180a1c82aa333#1ccfd86564f9ce8da7380f12cbd180a1c82aa333"
   integrity sha512-OXnqWet5z7d8WM58WF4sX2TSYKa2zuWYVSGxgP1efpwSCETbRqPBr0bVjFOk2xtbIyVyKg489LHn4HVExc2Uyw==
