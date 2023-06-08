@@ -11,8 +11,9 @@ const AppBarStyled = styled(AppBar)`
   justify-content: center;
   align-items: center;
   box-shadow: none;
+  box-sizing: border-box;
   background-color: ${colors.colorDominant};
-  margin-top: ${sizes.m};
+  margin-top: ${sizes.s};
   width: 100%;
 
   & * {
@@ -24,11 +25,20 @@ const AppBarStyled = styled(AppBar)`
     justify-content: space-between;
     width: 100%;
     padding: 0;
-    
+
+    @media screen and (max-width: 1023px) {
+      align-items: start !important;
+    }
+
     & > div {
       display: flex;
       justify-content: space-between;
-      gap: ${sizes.m}
+      gap: ${sizes.m};
+
+      @media screen and (max-width: 1023px) {
+        flex-direction: column;
+        gap: 0;
+      }
     }
   }
 `;
