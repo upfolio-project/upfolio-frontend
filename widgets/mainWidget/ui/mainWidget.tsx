@@ -7,6 +7,7 @@ import {Header, Text, LinkButton, sizes} from "@upfolio-project/upfolio-ui";
 
 
 export const ContainerStyled = styled(Container)`
+  padding: 0;
   display: grid;
 
   @media screen and (min-width: 834px) {
