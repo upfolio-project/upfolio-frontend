@@ -1,23 +1,10 @@
 import {Box} from "@mui/system";
-import {Container} from "@mui/material";
 import Image from "next/image";
 import styled from "styled-components";
 
 import {Header, Text, LinkButton, sizes} from "@upfolio-project/upfolio-ui";
 
 
-export const ContainerStyled = styled(Container)`
-  padding: 0;
-  display: grid;
-
-  @media screen and (min-width: 834px) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media screen and (max-width: 833px) {
-    grid-template-columns: 1fr;
-  }
-`;
 
 const TextContent = styled(Box)`
   width: 100%;
@@ -34,6 +21,8 @@ const TextContent = styled(Box)`
 const ImageContainer = styled(Box)`
   display: flex;
   justify-content: center;
+  width: 100%;
+  
   @media screen and (min-width: 1024px) {
     & > img {
       width: 400px;
@@ -51,7 +40,7 @@ const ImageContainer = styled(Box)`
 
 export const MainWidget = () => {
     return (
-        <ContainerStyled>
+        <>
             <ImageContainer><Image alt="hello" src="/assets/images/hello.png" width={400} height={230}/></ImageContainer>
             <TextContent>
                 <Box maxWidth="420px">
@@ -78,6 +67,6 @@ export const MainWidget = () => {
                     </LinkButton>
                 </Box>
             </TextContent>
-        </ContainerStyled>
+        </>
     );
 };

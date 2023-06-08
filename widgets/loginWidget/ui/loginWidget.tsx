@@ -38,7 +38,7 @@ export const LoginWidget = () => {
         }>
             {isError && <Message title="Произошла ошибка" description={error} severity="error"/>}
             <Header size="s">Войдите в свой аккаунт</Header>
-            <Text type="defaultLight" align="center">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
+            <Text type="defaultLight">Добро пожаловать!<br/>Пожалуйста, введите свои данные.</Text>
             <Box display="flex" flexDirection="column" gap={sizes.s} width="320px">
                 <Input inputRef={phoneRef} type="phone" label="Телефон" placeholder="929-789-98-88"/>
                 <Input inputRef={passwordRef} type="password" label="Пароль"
@@ -47,7 +47,7 @@ export const LoginWidget = () => {
                 <Button type="accent" buttonType="submit"
                         width="container">Войти</Button>
             </Box>
-            <Box display="flex" gap={sizes.xs}>
+            <Box display="flex" gap={sizes.xs} justifyContent="center">
                 <Text type="defaultLight" size="s">У вас нет аккаунта?</Text>
                 <Link href="/register/enterPhone" type="accent" size="s">Регистрация</Link>
             </Box>
