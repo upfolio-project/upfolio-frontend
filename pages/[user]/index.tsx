@@ -14,6 +14,7 @@ import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
+import {BaseLayout} from "@/layouts/baseLayout";
 
 
 function OtherPages() {
@@ -44,19 +45,12 @@ function OtherPages() {
     const profile = userData?.profile;
 
     if (getProfileError) return <PageLayout><Error404Entity/></PageLayout>;
-
+//<PortfolioWidget username={profile?.username} userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
     return (
-        <PageLayout>
-            <Box
-                display="flex"
-                gap={sizes.s}
-                justifyContent="center"
-            >
+        <BaseLayout>
                 <UserWidget profile={profile} isLoading={getProfileLoading}/>
-                <PortfolioWidget username={profile?.username} userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
-            </Box>
 
-        </PageLayout>
+        </BaseLayout>
     );
 }
 

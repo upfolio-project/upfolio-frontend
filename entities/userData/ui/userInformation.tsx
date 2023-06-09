@@ -1,7 +1,15 @@
-import {Header, Text, Wrapper} from "@upfolio-project/upfolio-ui";
+import {Header, sizes, Text, Wrapper} from "@upfolio-project/upfolio-ui";
 import {Box} from "@mui/material";
 import styled from "styled-components";
 import {registerDateToView} from "@/shared/utils/dataToView";
+
+
+const UserInformationBox = styled(Box)`
+    display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: ${sizes.xs};
+`;
 
 interface UserContactsProps {
     location?: string;
@@ -18,9 +26,10 @@ const InfoContainer = styled(Box)`
 `;
 
 const InfoRow = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  display: block;
+  & > * {
+    display: inline;
+  }
 `;
 
 
@@ -28,23 +37,23 @@ const UserInformation = ({location, registered, specialization, experience}: Use
     const registeredHumanity = (new Date(registered).getDate()) ?
         registerDateToView(new Date(registered)) : undefined;
     return (
-        <Wrapper>
+        <UserInformationBox>
             <Header size="s">Информация</Header>
             <InfoContainer>
                 {Boolean(location?.length) &&
                     <InfoRow>
-                        <Text size="s" type="defaultLight">Город</Text>
+                        <Text size="s" type="defaultLight">Город: </Text>
                         <Text size="s" type="accent">{location}</Text>
                     </InfoRow>
                 }
                 <InfoRow>
-                    <Text size="s" type="defaultLight">На сайте</Text>
+                    <Text size="s" type="defaultLight">На сайте: </Text>
                     <Text size="s" type="accent">{registeredHumanity}</Text>
                 </InfoRow>
 
                 {Boolean(specialization?.length) &&
                     <InfoRow>
-                        <Text size="s" type="defaultLight">Специализация</Text>
+                        <Text size="s" type="defaultLight">Специализация: </Text>
                         <Text size="s" type="accent">{specialization}</Text>
                     </InfoRow>
                 }
@@ -55,7 +64,7 @@ const UserInformation = ({location, registered, specialization, experience}: Use
                     </InfoRow>
                 }
             </InfoContainer>
-        </Wrapper>
+        </UserInformationBox>
     );
 };
 

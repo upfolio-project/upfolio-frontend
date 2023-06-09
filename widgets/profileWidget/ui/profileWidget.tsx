@@ -7,17 +7,9 @@ import {AboutUser, UserBio, UserContacts, UserInformation} from "@/entities/user
 
 import {sizes} from "@upfolio-project/upfolio-ui";
 
-
-const UserDataStyled = styled(Box)`
-  width: 328px;
-  display: flex;
-  flex-direction: column;
-  gap: ${sizes.s};
-`;
-
 interface UserWidgetProps {
     profile: ProfileModel | undefined;
-    isLoading: boolean
+    isLoading: boolean;
 }
 
 const contacts = [
@@ -69,6 +61,16 @@ const contacts = [
     ]
 ];
 
+const RightUserInfo = styled(Box)`
+  display: flex;
+  gap: ${sizes.m};
+  flex-direction: column;
+  
+  @media screen and (max-width: 834px) {
+    margin-top: ${sizes.m};
+  }
+`;
+
 
 const UserWidget = ({profile, isLoading}: UserWidgetProps) => {
 
@@ -76,24 +78,24 @@ const UserWidget = ({profile, isLoading}: UserWidgetProps) => {
 
     return (
         <>
-            <UserDataStyled>
-                <AboutUser
-                    profilePhotoUrl={profile.profilePhotoUrl}
-                    firstName={profile.realName.firstName}
-                    lastName={profile.realName.lastName}
-                    dateOfBirth={profile.dateOfBirth}
-                    tags={profile?.tags || []}
-                    status={profile.status}
-                />
+            <AboutUser
+                profilePhotoUrl={profile.profilePhotoUrl}
+                firstName={profile.realName.firstName}
+                lastName={profile.realName.lastName}
+                dateOfBirth={profile.dateOfBirth}
+                tags={profile?.tags || []}
+                status={profile.status}
+                specialization={"Специалист"}
+            />
+            <RightUserInfo>
                 <UserInformation
                     location={profile.location}
                     registered={profile.registered}
-                    specialization={"Специалист"}
                     experience={""}
-                    />
+                />
                 <UserBio bio={profile.bio}/>
                 <UserContacts contacts={contacts}/>
-            </UserDataStyled>
+            </RightUserInfo>
         </>
     );
 };

@@ -1,4 +1,4 @@
-import {Header, Text, Wrapper} from "@upfolio-project/upfolio-ui";
+import {Header, sizes, Text, Wrapper} from "@upfolio-project/upfolio-ui";
 import styled from "styled-components";
 import {Box} from "@mui/material";
 import Link from "next/link";
@@ -24,15 +24,23 @@ const InfoContainer = styled(Box)`
 `;
 
 const InfoRow = styled(Box)`
+  display: block;
+  
+  & > * {
+    display: inline;
+  }
+`;
+
+const UserContactsBox = styled(Box)`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  gap: ${sizes.xs};
+  flex-direction: column;
 `;
 
 
 const UserContacts = ({contacts}: UserContactsProps) => {
     return (
-        <Wrapper>
+        <UserContactsBox>
             <Header size="s">Контакты</Header>
             <InfoContainer>
                 {
@@ -42,8 +50,8 @@ const UserContacts = ({contacts}: UserContactsProps) => {
                                 contactBlock.map(contact => (
                                     <Link key={contact.name} href={contact.url}>
                                         <InfoRow>
-                                            <Text size="s" type="defaultLight">{contact.name}</Text>
-                                            <Text size="s" type="accent">{contact.placeholder}</Text>
+                                            <Text size="m">{contact.name}: </Text>
+                                            <Text size="m" type="accent">{contact.placeholder}</Text>
                                         </InfoRow>
                                     </Link>
                                 ))
@@ -52,7 +60,7 @@ const UserContacts = ({contacts}: UserContactsProps) => {
                     ))
                 }
             </InfoContainer>
-        </Wrapper>
+        </UserContactsBox>
     );
 };
 
