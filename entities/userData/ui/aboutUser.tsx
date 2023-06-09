@@ -1,4 +1,4 @@
-import {Avatar, Header, Text, Wrapper, Tags, Tag, borders, colors, sizes} from "@upfolio-project/upfolio-ui";
+import {Avatar, Header, Text, Tag, sizes} from "@upfolio-project/upfolio-ui";
 import {ProfileModelStatus} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import styled from "styled-components";

@@ -8,9 +8,7 @@ import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
 import {Profile, useGetProfileQuery} from "@/shared/api/profile/profile";
 import type {ProfileModel} from "@/shared/api/entities";
-import {sizes} from "@upfolio-project/upfolio-ui";
 import {PortfolioWidget} from "@/widgets/portfolioWidget";
-import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
@@ -45,11 +43,11 @@ function OtherPages() {
     const profile = userData?.profile;
 
     if (getProfileError) return <PageLayout><Error404Entity/></PageLayout>;
-//<PortfolioWidget username={profile?.username} userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
+
     return (
         <BaseLayout>
                 <UserWidget profile={profile} isLoading={getProfileLoading}/>
-
+            <PortfolioWidget username={profile?.username} userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
         </BaseLayout>
     );
 }

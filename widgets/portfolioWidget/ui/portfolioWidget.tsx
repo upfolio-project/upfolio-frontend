@@ -39,24 +39,19 @@ const PortfolioWidget = ({username, userUuid, isLoading}: PortfolioWidgetProps) 
     const projects = projectsData?.projects || [];
 
     return (
-        <PortfolioDataStyled>
-            <Wrapper>
-                <PortfolioContainer>
-                    <Box width="100%" justifyContent="left"><Header size="s">Портфолио</Header></Box>
-                    {projects.map(project => (
-                        <ProjectPreviewEntity
-                            name={project.title}
-                            description={project.description}
-                            created={project.created}
-                            tags={project.tags}
-                            projectHref={`${username}/${project.uuid}`}
-                            key={project.title}
-                        />
-                    ))}
-                    {username === user?.me?.username && <LinkButton type="accent" href="/create">Добавить проект</LinkButton>}
-                </PortfolioContainer>
-            </Wrapper>
-        </PortfolioDataStyled>
+        <>
+            {projects.map(project => (
+                <ProjectPreviewEntity
+                    name={project.title}
+                    description={project.description}
+                    created={project.created}
+                    tags={project.tags}
+                    projectHref={`${username}/${project.uuid}`}
+                    key={project.title}
+                />
+            ))}
+            {username === user?.me?.username && <LinkButton type="accent" href="/create">Добавить проект</LinkButton>}
+        </>
     );
 };
 
