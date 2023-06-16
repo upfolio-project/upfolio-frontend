@@ -29,7 +29,7 @@ export const Profile = commonApi.injectEndpoints({
                 };
 
                 const result = await fetchWithBQ({
-                    url: '/profile/getMe',
+                    url: '/getMe',
                     method: 'GET'
                 });
 
@@ -53,7 +53,7 @@ export const Profile = commonApi.injectEndpoints({
         }),
         editProfile: build.mutation<EditProfileSuccessResponse, EditProfileRequest>({
             query: (body) => ({
-                url: '/profile/edit',
+                url: '/specialist/edit',
                 method: 'POST',
                 body: body
             }),

@@ -10,6 +10,7 @@ import {ProfileModelStatus} from "@/shared/api/entities";
 
 import {Message, Button, ChipInput, DatePicker, Input, Select, TextField} from "@upfolio-project/upfolio-ui";
 import {ProfileModelType} from "@/shared/api/entities/profile/profile";
+import {useGetByUsernameQuery} from "@/shared/api/getByUsername/getByUsername";
 
 const Container = styled(Box)`
   display: flex;
@@ -73,8 +74,8 @@ const EditMeWidget = () => {
 
     const {
         data: userData,
-    } = useGetProfileQuery({"username": me?.username || ""}, {skip: getMeLoading || !me});
-    const profile = userData?.profile;
+    } = useGetByUsernameQuery({"username": me?.username || ""}, {skip: getMeLoading || !me});
+    const profile = userData && userData.userType === "SPECIALIST" && userData.specialist;
 
     const [editProfile, {error: regError}] = useEditProfileMutation();
     const error = regError as any;

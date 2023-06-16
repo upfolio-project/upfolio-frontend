@@ -94,7 +94,7 @@ const UserWidget = ({profile, isLoading}: UserWidgetProps) => {
                     experience={""}
                 />
                 <UserBio bio={profile.bio}/>
-                <UserContacts contacts={contacts}/>
+                {false && <UserContacts contacts={contacts}/>}
             </RightUserInfo>
         </>
     );
