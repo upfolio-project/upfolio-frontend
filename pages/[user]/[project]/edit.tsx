@@ -4,12 +4,12 @@ import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
 import {Error404Entity} from "@/entities/error404Entity";
 import {ProjectEditWidget} from "@/widgets/projectEditWidget";
 import {Projects} from "@/shared/api/projects/projects";
 import {useGetMe, useGetPathRoute, useRedirectNotAuthToLoginPage} from "@/shared/hooks";
+import {useGetByUsernameQuery} from "@/shared/api/username/username";
 
 
 function ProjectEditPage() {
@@ -26,12 +26,10 @@ function ProjectEditPage() {
     const {
         data: userData,
         isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: !me});
-
-    const profile = userData?.profile;
+    } = useGetByUsernameQuery({"username": currentUsername}, {skip: !me});
 
     if (getProfileError) return <Box position="absolute" top="200px"><Error404Entity/></Box>;
-    if ((profile && profile.username != me?.username)) return <>Доступа нет</>;
+    if ((userData && userData.username != me?.username)) return <>Доступа нет</>;
 
     return (
         <PageLayout>

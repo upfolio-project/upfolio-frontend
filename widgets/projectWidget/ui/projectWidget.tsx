@@ -8,6 +8,7 @@ import {ProjectStats} from "@/entities/projectStats";
 import {useGetMe} from "@/shared/hooks";
 
 import {Header, sizes, Tag, Text} from "@upfolio-project/upfolio-ui";
+import {useGetByUsernameQuery} from "@/shared/api/username/username";
 
 
 interface ProjectWidgetProps {
@@ -63,16 +64,20 @@ export function ProjectWidget({uuid}: ProjectWidgetProps) {
     const {
         data: projectData,
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
-    const {me} = useGetMe();
+    const {me, loading} = useGetMe();
+
+    const {
+        data: userData,
+    } = useGetByUsernameQuery({"username": me?.username || ""}, {skip: loading || !me?.username});
 
     return (
         <>
             <HeaderContainer>
                 <Box display="flex" gap={sizes.xs} alignItems="center">
                     <Header size="s">{projectData?.title || ""}</Header>
-                    {me?.username && me?.username === projectData?.authorUsername &&
+                    {userData?.username && userData?.userUuid === projectData?.authorUuid &&
                         <Tag tagType="accent" value="Редактировать"
-                             link={`/${projectData?.authorUsername}/${projectData?.uuid}/edit`}/>}
+                             link={`/${me?.username}/${projectData?.uuid}/edit`}/>}
                 </Box>
                 <ProjectStats created={projectData?.created}/>
             </HeaderContainer>
