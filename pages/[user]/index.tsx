@@ -12,7 +12,7 @@ import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 import {BaseLayout} from "@/layouts/baseLayout";
-import {GetByUsername, useGetByUsernameQuery} from "@/shared/api/getByUsername/getByUsername";
+import {useGetByUsernameQuery, Username} from "@/shared/api/username/username";
 import {OrganizationModel, UserType} from "@/shared/api/entities/profile/profile";
 
 
@@ -50,7 +50,7 @@ function OtherPages() {
         <BaseLayout>
             <UserWidget profile={profile as ProfileModel} isLoading={getProfileLoading}/>
             <PortfolioWidget
-                username={(profile as ProfileModel)?.username}
+                username={userData?.username}
                 userUuid={profile?.userUuid}
                 isLoading={getProfileLoading}/>
         </BaseLayout>
@@ -81,11 +81,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
     const {res} = context;
     let profile: undefined | ProfileModel | OrganizationModel = undefined;
     try {
-        await store.dispatch(GetByUsername.endpoints.getByUsername.initiate({
+        await store.dispatch(Username.endpoints.getByUsername.initiate({
             username: username
         }));
-        await Promise.all(store.dispatch(GetByUsername.util.getRunningQueriesThunk()));
-        const {data} = await GetByUsername.endpoints.getByUsername.select({username: username})(store.getState());
+        await Promise.all(store.dispatch(Username.util.getRunningQueriesThunk()));
+        const {data} = await Username.endpoints.getByUsername.select({username: username})(store.getState());
         profile = data?.userType === UserType.SPECIALIST ? data?.specialist : data?.organization;
         if (!profile) {
             res.statusCode = 404;

@@ -1,4 +1,4 @@
-import {useGetMeQuery} from "@/shared/api/profile/profile";
+import {useGetMeQuery} from "@/shared/api/username/username";
 import {useAppSelector} from "@/shared/hooks";
 
 

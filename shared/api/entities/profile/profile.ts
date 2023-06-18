@@ -82,7 +82,6 @@ interface GetOrganizationSuccessResponse extends GetProfileSuccessResponseBase {
 export type GetProfileSuccessResponse = GetSpecialistSuccessResponse | GetOrganizationSuccessResponse;
 
 export interface EditProfileRequest {
-    username: string;
     realName: UserRealNameModel;
     type: ProfileModelType;
     status: ProfileModelStatus;
