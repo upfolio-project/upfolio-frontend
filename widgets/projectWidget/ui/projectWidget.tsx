@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 import styled from "styled-components";
 import {Box} from "@mui/material";
@@ -13,11 +13,6 @@ import {Header, sizes, Tag, Text} from "@upfolio-project/upfolio-ui";
 interface ProjectWidgetProps {
     uuid?: string;
 }
-
-const ProjectWidgetContainer = styled(Box)`
-  width: 1024px;
-
-`;
 
 const HeaderContainer = styled(Box)`
   width: 100%;
@@ -65,7 +60,6 @@ const Description = styled(Box)`
 `;
 
 export function ProjectWidget({uuid}: ProjectWidgetProps) {
-    const [imageCount, changeImageCount] = useState(3);
     const {
         data: projectData,
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
