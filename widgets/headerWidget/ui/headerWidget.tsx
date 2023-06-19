@@ -19,16 +19,6 @@ const AppBar = styled(AppBarMUI)`
   & * {
     min-height: max-content;
   }
-
-  & > * {
-    & > div {
-      
-    }
-
-    & > div > div {
-      
-    }
-  }
 `;
 
 const Toolbar = styled(ToolbarMUI)`
@@ -65,7 +55,9 @@ const Menu = styled(Box)`
 
   @media screen and (max-width: 1023px) {
     flex-direction: column;
+    width: max-content;
     gap: 0;
+    flex-grow: 0;
   }
 `;
 
