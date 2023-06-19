@@ -95,3 +95,15 @@ export interface EditProfileSuccessResponse {
     timestamp: string;
     profile: ProfileModel;
 }
+
+export interface UploadImageRequest {
+    cropX: number;
+    cropY: number;
+    side: number;
+    form: FormData;
+}
+
+export interface UploadImageSuccessResponse {
+    timestamp: string;
+    success: true;
+}

@@ -11,6 +11,7 @@ import {Message, Button, ChipInput, DatePicker, Input, Select, TextField} from "
 import {ProfileModelType} from "@/shared/api/entities/profile/profile";
 import {useChangeUsernameMutation, useGetByUsernameQuery, useGetMeQuery} from "@/shared/api/username/username";
 import {useEditSpecialistMutation} from "@/shared/api/specialist/specialist";
+import {useUploadPhotoMutation} from "@/shared/api/photoUpload/uploadPhoto";
 
 const Container = styled(Box)`
   display: flex;
@@ -59,6 +60,7 @@ const types: { value: ProfileModelType, content: string, key: string }[] = [
 ];
 
 interface Fields {
+    imageRef: RefObject<HTMLInputElement>
     usernameRef: RefObject<HTMLInputElement>;
     firstNameRef: RefObject<HTMLInputElement>;
     lastNameRef: RefObject<HTMLInputElement>;
@@ -71,6 +73,7 @@ interface Fields {
 }
 
 function useFields(): Fields {
+    const imageRef = useRef<HTMLInputElement>(null);
     const usernameRef = useRef<HTMLInputElement>(null);
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);
@@ -81,6 +84,7 @@ function useFields(): Fields {
     const locationRef = useRef<HTMLInputElement>(null);
     const tagsRef = useRef<{ value: string[] | null } | null>(null);
     return {
+        imageRef,
         usernameRef,
         firstNameRef,
         lastNameRef,
@@ -90,7 +94,7 @@ function useFields(): Fields {
         typeRef,
         locationRef,
         tagsRef,
-    }
+    };
 }
 
 const EditMeWidget = () => {
@@ -110,10 +114,12 @@ const EditMeWidget = () => {
     const {
         data: userData,
     } = useGetByUsernameQuery({"username": me?.username || ""}, {skip: getMeLoading || !me});
+
     const profile = userData && userData.userType === "SPECIALIST" && userData.specialist;
 
     const [editProfile, {error: regError}] = useEditSpecialistMutation();
     const [editUsername, {error: usernameError}] = useChangeUsernameMutation();
+    const [uploadPhoto] = useUploadPhotoMutation();
 
     const error = regError as any || usernameError as any;
 
@@ -121,7 +127,9 @@ const EditMeWidget = () => {
 
     function useOnClick() {
         if (!profile) return;
-        editUsername({newUsername: fieldRefs.usernameRef?.current?.value || ""});
+        if (fieldRefs.usernameRef?.current?.value && fieldRefs.usernameRef?.current?.value !== me?.username) {
+            editUsername({newUsername: fieldRefs.usernameRef?.current?.value || ""});
+        }
         editProfile({
             realName: {
                 firstName: fieldRefs.firstNameRef?.current?.value || "",
@@ -134,7 +142,29 @@ const EditMeWidget = () => {
             type: (fieldRefs.typeRef?.current?.value || profile.type) as ProfileModelType,
             location: fieldRefs.locationRef?.current?.value || null
         });
-        router.push("/" + fieldRefs.usernameRef?.current?.value || "");
+
+        if (fieldRefs.imageRef.current?.files?.length) {
+            const fr = new FileReader();
+            fr.onload = () => {
+                const image = new Image();
+                image.onload = () => {
+                    if (fieldRefs.imageRef.current?.files?.[0] && fieldRefs.imageRef.current.files[0] !== null) {
+                        const [width, height] = [image.width, image.height];
+                        const minDimension = Math.min(width, height);
+                        const offsetX = Math.round((width - minDimension) / 2);
+                        const offsetY = Math.round((height - minDimension) / 2);
+                        const form = new FormData();
+                        form.append("file", fieldRefs.imageRef.current.files[0], fieldRefs.imageRef.current.files[0].name);
+                        uploadPhoto({cropX: offsetX, cropY: offsetY, side: minDimension, form: form});
+                    }
+                };
+
+                image.src = fr.result as string;
+            };
+            fr.readAsDataURL(fieldRefs.imageRef.current.files[0]);
+        } else {
+            router.push("/" + fieldRefs.usernameRef?.current?.value || "");
+        }
     }
 
     if (!profile) return <></>;
@@ -145,6 +175,7 @@ const EditMeWidget = () => {
                                description={GetErrorDescription(error?.data?.text)}
                                severity="error"/>}
             <Box width="600px" display="flex" flexDirection="column" gap="20px">
+                <input type="file" accept="image/png, image/jpeg" ref={fieldRefs.imageRef}/>
                 <Input
                     label="Username"
                     defaultValue={userData.username}
