@@ -14,12 +14,12 @@ const ContainerStyled = styled(Container)`
     
     & > * {
       margin-left: 0;
-      margin-right: auto;
     }
   }
 
   @media screen and (max-width: 833px) {
     grid-template-columns: 1fr;
+    justify-content: left;
   }
 `;
 

@@ -1,10 +1,10 @@
-import {PageLayout} from "@/layouts/pageLayout";
 import {EditMeWidget} from "@/widgets/editMeWidget";
+import {BaseLayout} from "@/layouts/baseLayout";
 
 export default function EditProfile() {
     return (
-        <PageLayout>
+        <BaseLayout>
             <EditMeWidget/>
-        </PageLayout>
+        </BaseLayout>
     );
 }

@@ -42,25 +42,25 @@ const UserInformation = ({location, registered, specialization, experience}: Use
             <InfoContainer>
                 {Boolean(location?.length) &&
                     <InfoRow>
-                        <Text size="s" type="defaultLight">Город: </Text>
-                        <Text size="s" type="accent">{location}</Text>
+                        <Text size="m">Город: </Text>
+                        <Text size="m">{location}</Text>
                     </InfoRow>
                 }
                 <InfoRow>
-                    <Text size="s" type="defaultLight">На сайте: </Text>
-                    <Text size="s" type="accent">{registeredHumanity}</Text>
+                    <Text size="m">На сайте: </Text>
+                    <Text size="m">{registeredHumanity}</Text>
                 </InfoRow>
 
                 {Boolean(specialization?.length) &&
                     <InfoRow>
-                        <Text size="s" type="defaultLight">Специализация: </Text>
-                        <Text size="s" type="accent">{specialization}</Text>
+                        <Text size="m">Специализация: </Text>
+                        <Text size="m">{specialization}</Text>
                     </InfoRow>
                 }
                 {Boolean(experience) &&
                     <InfoRow>
-                        <Text size="s" type="defaultLight">Опыт</Text>
-                        <Text size="s" type="accent">{experience}</Text>
+                        <Text size="m">Опыт</Text>
+                        <Text size="m">{experience}</Text>
                     </InfoRow>
                 }
             </InfoContainer>

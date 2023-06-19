@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import {borders, shadows} from "@upfolio-project/upfolio-ui";
 import React from "react";
 import {Container} from "@mui/material";
 
 const FormContainer = styled(Container)`
-  max-width: 320px;
+  max-width: 500px;
   box-sizing: content-box;
   padding: 0;
+  margin: 0;
 `;
 
 const Form = styled.form`
