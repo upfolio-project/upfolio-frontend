@@ -3,15 +3,15 @@ import {Meta} from "@/shared/seo";
 import {GetServerSideProps} from "next";
 import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
-import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {useGetProfileQuery} from "@/shared/api/profile/profile";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {ProjectWidget} from "@/widgets/projectWidget";
 import {Projects} from "@/shared/api/projects/projects";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
+import {useGetByUsernameQuery} from "@/shared/api/username/username";
+import {BaseLayout} from "@/layouts/baseLayout";
 
 
 function ProjectPage() {
@@ -36,18 +36,16 @@ function ProjectPage() {
     const meString = me?.username || "";
     const currentUsername = username === "me" ? meString : username;
 
-    const {
-        isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: loading});
+    const {isError: getProfileError} = useGetByUsernameQuery({"username": currentUsername}, {skip: loading});
 
     if (getProfileError) return <Box position="absolute" top="200px"><Error404Entity/></Box>;
 
     return (
-        <PageLayout>
+        <BaseLayout>
             <ProjectWidget
               uuid={projectUuid}
             />
-        </PageLayout>
+        </BaseLayout>
     );
 }
 

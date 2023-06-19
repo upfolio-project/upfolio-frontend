@@ -1,26 +1,31 @@
-import {Avatar, Header, Text, Wrapper, Tags, Tag, borders, colors, sizes} from "@upfolio-project/upfolio-ui";
+import {Avatar, Header, Text, Tag, sizes} from "@upfolio-project/upfolio-ui";
 import {ProfileModelStatus} from "@/shared/api/entities";
 import {Box} from "@mui/material";
 import styled from "styled-components";
 import {dateOfBirthToView, userStatusToView} from "@/shared/utils/dataToView";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
 
-const StatusTag = styled.div`
-  height: 18px;
-  background-color: ${colors.colorSuccess10};
-  padding-left: ${sizes.xs};
-  padding-right: ${sizes.xs};
-  display: flex;
-  align-items: center;
-  border-radius: ${borders.radius5};
+const UserInfo = styled(Box)`
+  display: grid;  
+  gap: ${sizes.s};
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: auto auto;
+    grid-template-rows: fit-content(0);
+  }
+
+  @media screen and (max-width: 1023px) {
+    grid-template-columns: auto;
+    grid-template-rows: fit-content(0);
+  }
 `;
 
 const InfoContainer = styled(Box)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: ${sizes.s};
+  justify-content: left;
+  align-items: start;
+  gap: ${sizes.xs};
 `;
 
 const Settings = styled(Box)`
@@ -41,9 +46,18 @@ interface AboutUserProps {
     dateOfBirth: string | null;
     tags: string[];
     status: ProfileModelStatus;
+    specialization: string;
 }
 
-const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, status}: AboutUserProps) => {
+const AboutUser = ({
+                       profilePhotoUrl,
+                       firstName,
+                       lastName,
+                       dateOfBirth,
+                       tags,
+                       status,
+                       specialization
+                   }: AboutUserProps) => {
     const ageHumanity = (new Date(dateOfBirth || "").getDate()) ?
         dateOfBirthToView(new Date(dateOfBirth || "")) : undefined;
 
@@ -52,22 +66,23 @@ const AboutUser = ({profilePhotoUrl, firstName, lastName, dateOfBirth, tags, sta
     const statusString = userStatusToView(status);
 
     return (
-        <Wrapper>
-            <Box position="relative">
+        <UserInfo>
+            <Box position="relative" width="max-content" height="max-content">
                 <Avatar src={profilePhotoUrl}/>
-                {me?.username && me?.username === username && <Settings><Tag value="Редактировать" link="/edit/profile" tagType="accent"/></Settings>}
+                {me?.username && me?.username === username &&
+                    <Settings><Tag value="Редактировать" link="/edit/profile" tagType="accent"/></Settings>}
             </Box>
             <InfoContainer>
-                <Box display="flex" flexDirection="column" gap={sizes.xxs} alignItems="center">
-                    <Header size="s" style="bold" align="center">
-                        {firstName} {lastName}
-                    </Header>
-                    {ageHumanity && <Text size="m">{ageHumanity}</Text>}
-                </Box>
-                {statusString && <StatusTag><Text size="s" type="success">{statusString}</Text></StatusTag>}
-                {tags.length > 0 && <Tags tags={tags.map(tag => ({value: tag, link: "#"}))}/>}
+                <Header size="s">
+                    {firstName} {lastName}
+                </Header>
+                {ageHumanity && <Text size="m">{ageHumanity}</Text>}
+                {(statusString && specialization) &&
+                    <span><Text size="m" as="span">{specialization} — </Text><Text size="m" type="accent"
+                                                                                   as="span">{statusString}</Text></span>}
+                {tags.length > 0 && <Text>{tags.join(", ")}</Text>}
             </InfoContainer>
-        </Wrapper>
+        </UserInfo>
     );
 };
 

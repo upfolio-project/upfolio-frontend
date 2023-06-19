@@ -6,14 +6,14 @@ import {ParsedUrlQuery} from "querystring";
 import {UserWidget} from "@/widgets/profileWidget";
 import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
-import {Profile, useGetProfileQuery} from "@/shared/api/profile/profile";
 import type {ProfileModel} from "@/shared/api/entities";
-import {sizes} from "@upfolio-project/upfolio-ui";
 import {PortfolioWidget} from "@/widgets/portfolioWidget";
-import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
 import {Error404Entity} from "@/entities/error404Entity";
 import {useGetMe, useGetPathRoute} from "@/shared/hooks";
+import {BaseLayout} from "@/layouts/baseLayout";
+import {useGetByUsernameQuery, Username} from "@/shared/api/username/username";
+import {OrganizationModel, UserType} from "@/shared/api/entities/profile/profile";
 
 
 function OtherPages() {
@@ -39,24 +39,21 @@ function OtherPages() {
         data: userData,
         isLoading: getProfileLoading,
         isError: getProfileError
-    } = useGetProfileQuery({"username": currentUsername}, {skip: loading});
+    } = useGetByUsernameQuery({"username": currentUsername}, {skip: loading});
 
-    const profile = userData?.profile;
+    const profile = userData && userData.userType === "SPECIALIST" ? userData.specialist : userData?.organization;
 
     if (getProfileError) return <PageLayout><Error404Entity/></PageLayout>;
 
+    if (userData?.userType === "ORGANIZATION") return <></>;
     return (
-        <PageLayout>
-            <Box
-                display="flex"
-                gap={sizes.s}
-                justifyContent="center"
-            >
-                <UserWidget profile={profile} isLoading={getProfileLoading}/>
-                <PortfolioWidget username={profile?.username} userUuid={profile?.userUuid} isLoading={getProfileLoading}/>
-            </Box>
-
-        </PageLayout>
+        <BaseLayout>
+            <UserWidget profile={profile as ProfileModel} isLoading={getProfileLoading}/>
+            <PortfolioWidget
+                username={userData?.username}
+                userUuid={profile?.userUuid}
+                isLoading={getProfileLoading}/>
+        </BaseLayout>
     );
 }
 
@@ -82,14 +79,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
     }
     const store = setupStore();
     const {res} = context;
-    let profile: undefined | ProfileModel = undefined;
+    let profile: undefined | ProfileModel | OrganizationModel = undefined;
     try {
-        await store.dispatch(Profile.endpoints.getProfile.initiate({
+        await store.dispatch(Username.endpoints.getByUsername.initiate({
             username: username
         }));
-        await Promise.all(store.dispatch(Profile.util.getRunningQueriesThunk()));
-        const {data} = await Profile.endpoints.getProfile.select({username: username})(store.getState());
-        profile = data?.profile;
+        await Promise.all(store.dispatch(Username.util.getRunningQueriesThunk()));
+        const {data} = await Username.endpoints.getByUsername.select({username: username})(store.getState());
+        profile = data?.userType === UserType.SPECIALIST ? data?.specialist : data?.organization;
         if (!profile) {
             res.statusCode = 404;
             return {notFound: true};
@@ -120,7 +117,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
                     },
                     {
                         property: "og:site_name",
-                        content: `${profile?.realName?.firstName || ""} ${profile?.realName?.lastName || ""}`,
+                        content: "UpFolio",
                         key: "socialNetworkSiteName"
                     },
                     {

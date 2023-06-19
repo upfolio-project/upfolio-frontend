@@ -1,141 +1,106 @@
-import React, {useState} from "react";
+import React from "react";
 
 import styled from "styled-components";
 import {Box} from "@mui/material";
 
 import {useGetProjectQuery} from "@/shared/api/projects/projects";
-import {ProjectImages} from "@/entities/projectImages";
 import {ProjectStats} from "@/entities/projectStats";
 import {useGetMe} from "@/shared/hooks";
 
-import {Header, Messengers, sizes, Tag, Tags, Text, Wrapper, messengers} from "@upfolio-project/upfolio-ui";
+import {Header, sizes, Tag, Text} from "@upfolio-project/upfolio-ui";
+import {useGetByUsernameQuery} from "@/shared/api/username/username";
 
 
 interface ProjectWidgetProps {
     uuid?: string;
 }
 
-const ProjectWidgetContainer = styled(Box)`
-  width: 1024px;
-
-`;
-
 const HeaderContainer = styled(Box)`
   width: 100%;
   display: flex;
-  justify-content: space-between;
-`;
-
-const CustomMessengers = styled(Box)`
-  & svg {
-    opacity: .5;
-    width: 28px;
-    height: 28px;
-  }
-
-  & > * {
-    gap: ${sizes.xs}
+  flex-direction: column;
+  gap: ${sizes.xs};
+  
+  @media screen and (max-width: 833px) {
+    margin-bottom: ${sizes.m};
   }
 `;
 
-const mockMessengers = [
-    {
-        name: messengers.dribbble,
-        url: "#"
-    },
-    {
-        name: messengers.behance,
-        url: "#"
-    },
-    {
-        name: messengers.github,
-        url: "#"
-    },
-    {
-        name: messengers.telegram,
-        url: "#"
-    },
-];
 
-interface ProjectContentProps {
-    children: React.ReactNode | React.ReactNode[];
-    ic: number;
-}
+const ProjectContent = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  gap: ${sizes.m};
+`;
 
-const ProjectContent = ({children, ...props}: ProjectContentProps) => {
-    return <Box {...props}>{children}</Box>;
-};
+const LinksAndTagsContainer = styled(Box)`
+  display: flex;
+  gap: ${sizes.m};
 
-
-const ProjectResponsiveContent = styled(ProjectContent)`
-  & > * {
-    word-wrap: anywhere;
-    height: max-content;
-  }
-
-  width: 100%;
-  column-gap: ${sizes.l};
-  row-gap: ${sizes.m};
-  align-items: flex-start;
-  display: grid;
-
-  grid-template-columns: ${props => props.ic === 3 ? "1fr 1fr" : "1fr"};
-  grid-template-rows: auto auto 1fr;
-
-  grid-template-areas: ${props => props.ic === 3 ?
-          '"A D"' +
-          '"B D"' +
-          '"C D"' :
-          '"A"' +
-          '"D"' +
-          '"B"' +
-          '"C"'
+  @media screen and (max-width: 833px) {
+    flex-direction: column;
   }
 `;
 
+const LinksContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  gap: ${sizes.s};
+`;
+
+const TagsContainer = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  gap: ${sizes.s};
+`;
+
+const Description = styled(Box)` 
+  display: flex;
+  flex-direction: column;
+  gap: ${sizes.s};
+`;
 
 export function ProjectWidget({uuid}: ProjectWidgetProps) {
-    const [imageCount, changeImageCount] = useState(3);
     const {
         data: projectData,
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
-    const {me} = useGetMe();
+    const {me, loading} = useGetMe();
+
+    const {
+        data: userData,
+    } = useGetByUsernameQuery({"username": me?.username || ""}, {skip: loading || !me?.username});
 
     return (
-        <ProjectWidgetContainer>
-            <Wrapper>
-                <HeaderContainer>
-                    <Box display="flex" gap={sizes.xs} alignItems="center">
-                        <Header size="s">{projectData?.title || ""}</Header>
-                        {me?.username && me?.username === projectData?.authorUsername &&
-                            <Tag tagType="accent" value="Редактировать"
-                                 link={`/${projectData?.authorUsername}/${projectData?.uuid}/edit`}/>}
-                    </Box>
-                    <CustomMessengers>
-                        <Messengers messengers={mockMessengers}/>
-                    </CustomMessengers>
-                </HeaderContainer>
-                <ProjectResponsiveContent ic={imageCount}>
-                    <Box gridArea="A">
-                        <Tags align="left" tags={projectData?.tags.map(tag => ({value: tag, link: "#"})) || []}/>
-                    </Box>
-                    <Box gridArea="B">
-                        <ProjectStats created={projectData?.created || ""} updated={projectData?.updated || ""}/>
-                    </Box>
-                    <Box gridArea="C" sx={{whiteSpace: "pre-line"}}>
-                        <Text type="defaultLight">
-                            {projectData?.description}
-                        </Text>
-                    </Box>
-                    <Box gridArea="D" width="100%" onClick={() => changeImageCount((imageCount + 1) % 3 + 1)}>
-                        <ProjectImages images={[
-                            "/assets/no-img.png",
-                            "/assets/no-img.png",
-                            "/assets/no-img.png"
-                        ].slice(3 - imageCount)}/>
-                    </Box>
-                </ProjectResponsiveContent>
-            </Wrapper>
-        </ProjectWidgetContainer>
+        <>
+            <HeaderContainer>
+                <Box display="flex" gap={sizes.xs} alignItems="center">
+                    <Header size="s">{projectData?.title || ""}</Header>
+                    {userData?.username && userData?.userUuid === projectData?.authorUuid &&
+                        <Tag tagType="accent" value="Редактировать"
+                             link={`/${me?.username}/${projectData?.uuid}/edit`}/>}
+                </Box>
+                <ProjectStats created={projectData?.created}/>
+            </HeaderContainer>
+            <ProjectContent>
+                <LinksAndTagsContainer>
+                    <LinksContainer>
+                        <Header size="s">Ссылки</Header>
+                        <Box>
+                            <Text type="accent">GitHub</Text>
+                            <Text type="accent">Behance</Text>
+                            <Text type="accent">Dribbble</Text>
+                        </Box>
+                    </LinksContainer>
+                    <TagsContainer>
+                        <Header size="s">Тэги</Header>
+                        <Text type="accent">{projectData?.tags.join(", ")}</Text>
+                    </TagsContainer>
+                </LinksAndTagsContainer>
+                <Description>
+                    <Header size="s">Описание</Header>
+                    <Text>{projectData?.description}</Text>
+                </Description>
+            </ProjectContent>
+        </>
     );
 }

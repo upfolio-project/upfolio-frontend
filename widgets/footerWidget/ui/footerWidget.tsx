@@ -9,14 +9,32 @@ const Col = styled(Box)`
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  max-width: 152px;
+  & * {
+    max-width: 152px;
+    overflow-wrap: anywhere;
+    word-wrap: anywhere;
+  }
 `;
 
 const ColWrapper = styled(Box)`
-  display: flex;
+  display: grid;
   flex-direction: row;
   align-items: start;
-  justify-content: space-between;
   width: 100%;
+  grid-template-columns: 1fr 1fr;
+  
+  & > * {
+    width: 100%;
+  }
+  @media screen and (max-width: 833px) {
+    flex-direction: column;
+  }
+  
+  @media screen and (max-width: 440px) {
+    grid-template-columns: 1fr;
+    gap: ${sizes.m};
+  }
 `;
 
 const Row = styled(Box)`
@@ -24,8 +42,11 @@ const Row = styled(Box)`
 
   & * {
     width: auto;
-    display: inline;
     word-wrap: normal;
+  }
+
+  @media screen and (max-width: 833px) {
+    flex-direction: column;
   }
 `;
 
@@ -34,6 +55,10 @@ const LinksWrapper = styled(Box)`
   justify-content: space-between;
   align-items: start;
   gap: ${sizes.m};
+
+  @media screen and (max-width: 833px) {
+    flex-direction: column;
+  }
 `;
 
 const FooterStyled = styled("footer")`
@@ -67,7 +92,7 @@ export const FooterWidget = () => {
                 </Col>
                 <LinksWrapper>
                     <Col gap={sizes.s}>
-                        <Text style="bold" size="m">
+                        <Text type="accent" size="m">
                             UpFolio
                         </Text>
                         <Col gap={sizes.xs}>
@@ -83,7 +108,7 @@ export const FooterWidget = () => {
                         </Col>
                     </Col>
                     <Col gap={sizes.s}>
-                        <Text style="bold" size="m">
+                        <Text type="accent" size="m">
                             Помощь
                         </Text>
                         <Col gap={sizes.xs}>
@@ -99,10 +124,10 @@ export const FooterWidget = () => {
                         </Col>
                     </Col>
                     <Col gap={sizes.s}>
-                        <Text style="bold" size="m">
+                        <Text type="accent" size="m">
                             Документы
                         </Text>
-                        <Col gap="10px">
+                        <Col>
                             <Link href="#">
                                 Соглашение с пользователем
                             </Link>
@@ -115,10 +140,10 @@ export const FooterWidget = () => {
             </ColWrapper>
             <ColWrapper>
                 <Row>
-                    <Text>
-                        <Link href="/" size="m" type="accent" as="span">UpFolio</Link><span>, </span>
-                        <Link href="mailto:inbox@upfolio.ru" size="m" as="span">inbox@upfolio.ru</Link>
-                    </Text>
+                    <Box display="flex" flexDirection="row">
+                        <Link href="/" size="m" type="accent">UpFolio</Link><Text size="m">,&nbsp;</Text>
+                        <Link href="mailto:inbox@upfolio.ru" size="m">inbox@upfolio.ru</Link>
+                    </Box>
                 </Row>
                 <Row>
                     <Text size="m">Сейчас на сайте <MarkStyled>123</MarkStyled> портфолио

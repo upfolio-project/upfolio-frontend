@@ -1,25 +1,21 @@
 import styled from "styled-components";
-import {borders, shadows} from "@upfolio-project/upfolio-ui";
 import React from "react";
 import {Container} from "@mui/material";
 
 const FormContainer = styled(Container)`
-  max-width: 451px;
+  max-width: 500px;
   box-sizing: content-box;
+  padding: 0;
+  margin: 0;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
   gap: 20px;
-  padding: 40px;
   width: 100%;
   height: 100%;
-  box-shadow: ${shadows.defaultShadow};
-  border-radius: ${borders.radius10};
 `;
 
 interface FormProps extends Omit<React.FormHTMLAttributes<HTMLFormElement>, "children"> {

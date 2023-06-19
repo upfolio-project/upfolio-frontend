@@ -7,6 +7,7 @@ import {useEditProjectMutation, useGetProjectQuery} from "@/shared/api/projects/
 import {FormFeature} from "@/features/formFeature";
 
 import {ChipInput, Input, TextField, Button, Message, Link, Header} from "@upfolio-project/upfolio-ui";
+import {useGetMe} from "@/shared/hooks";
 
 
 interface ProjectEditWidgetProps {
@@ -34,6 +35,8 @@ export function ProjectEditWidget({uuid}: ProjectEditWidgetProps) {
         isLoading: getProjectLoading
     } = useGetProjectQuery({"uuid": uuid || ""}, {skip: !uuid});
 
+    const {me} = useGetMe();
+
     const titleRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLInputElement>(null);
     const tagsRef = useRef<{ value: string[] | null } | null>(null);
@@ -47,7 +50,7 @@ export function ProjectEditWidget({uuid}: ProjectEditWidgetProps) {
         <ProjectEditWidgetContainer>
             <Box position="absolute">
                 <Link
-                    href={`/${projectData.authorUsername}/${projectData.uuid}`}
+                    href={`/${me?.username}/${projectData.uuid}`}
                     type="defaultLight"
                 >
                     {'<'} К проекту

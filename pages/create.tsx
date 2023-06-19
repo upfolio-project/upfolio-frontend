@@ -1,8 +1,8 @@
 import {Meta} from "@/shared/seo";
 import {GetServerSideProps} from "next";
-import {PageLayout} from "@/layouts/pageLayout";
 import ProjectCreateWidget from "@/widgets/projectCreateWidget";
 import {useGetMe, useRedirectNotAuthToLoginPage} from "@/shared/hooks";
+import {BaseLayout} from "@/layouts/baseLayout";
 
 
 function CreatePage() {
@@ -11,9 +11,9 @@ function CreatePage() {
 
     if (loading || !me) return <></>;
     return (
-        <PageLayout>
+        <BaseLayout>
             <ProjectCreateWidget/>
-        </PageLayout>
+        </BaseLayout>
     );
 }
 

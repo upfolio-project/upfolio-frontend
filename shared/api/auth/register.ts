@@ -104,7 +104,7 @@ export const Register = commonApi.injectEndpoints({
                 };
 
                 const result = await fetchWithBQ({
-                    url: '/register/finish',
+                    url: '/register/finishSpecialistRegistration',
                     method: 'POST',
                     body: arg
                 });

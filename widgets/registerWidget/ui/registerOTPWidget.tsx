@@ -46,7 +46,7 @@ export const RegisterOTPWidget = () => {
                 <Input inputRef={OTPRef} label="Код подтверждения" placeholder="xxxx"/>
                 <Button type="accent" buttonType="submit" width="container">Отправить</Button>
             </Box>
-            <Box display="flex" gap={sizes.xs}>
+            <Box display="flex" gap={sizes.xs} justifyContent="center">
                 <Text type="defaultLight" size="s">Не пришёл код?</Text>
                 <Link href="/login" type="accent" size="s">Отправить повторно</Link>
             </Box>

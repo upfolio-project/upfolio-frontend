@@ -8,10 +8,9 @@ import {useCreateProjectMutation} from "@/shared/api/projects/projects";
 import {FormFeature} from "@/features/formFeature";
 
 import {Header, Message, ChipInput, Input, TextField, Button} from "@upfolio-project/upfolio-ui";
+import {useGetMe} from "@/shared/hooks";
 
 const Container = styled(Box)`
-  display: flex;
-  justify-content: center;
 `;
 
 export default function ProjectCreateWidget() {
@@ -28,14 +27,15 @@ export default function ProjectCreateWidget() {
     const titleRef = useRef<HTMLInputElement>(null);
     const descriptionRef = useRef<HTMLInputElement>(null);
     const tagsRef = useRef<{ value: string[] | null } | null>(null);
+    const {me} = useGetMe();
 
     const [createProject, {data, status, isError, error}] = useCreateProjectMutation();
 
     useEffect(() => {
         if (data?.uuid) {
-            router.push(`${data.authorUsername}/${data.uuid}`);
+            router.push(`${me?.username}/${data.uuid}`);
         }
-    }, [data, router]);
+    }, [data, router, me?.username]);
 
     const projectError = error as any;
     return (
@@ -61,7 +61,7 @@ export default function ProjectCreateWidget() {
                     inputRef={descriptionRef}
                 />
                 <ChipInput label="Теги" chips={[]} inputRef={tagsRef}/>
-                <Button width="container" type="accent" fill={false} buttonType="submit">Создать проект</Button>
+                <Button width="container" fill={false} type="accent" buttonType="submit">Создать проект</Button>
             </FormFeature>
         </Container>
     );

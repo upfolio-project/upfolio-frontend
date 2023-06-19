@@ -6,7 +6,6 @@ import {registerDateToView} from "@/shared/utils/dataToView";
 
 interface ProjectStatsProps {
     created?: string;
-    updated?: string;
 }
 
 const ProjectStatsContainer = styled(Box)`
@@ -15,18 +14,13 @@ const ProjectStatsContainer = styled(Box)`
   gap: ${sizes.xs}
 `;
 
-export function ProjectStats({created, updated}: ProjectStatsProps) {
+export function ProjectStats({created}: ProjectStatsProps) {
     const createdDate = new Date(created || "");
-    const updatedDate = new Date(updated || "");
+    const createdDateString = registerDateToView(createdDate);
     return (
-        <ProjectStatsContainer
-        >
-            <Text type="defaultLight">Добавлен <Text as="span" type="accent">
-                {registerDateToView(createdDate)}
-            </Text></Text>
-            <Text type="defaultLight">Разработка <Text as="span" type="accent">
-                {registerDateToView(updatedDate)}
-            </Text></Text>
+        <ProjectStatsContainer>
+            <Text>Добавлен {createdDateString} {createdDateString !== "сегодня" && "назад"}
+            </Text>
         </ProjectStatsContainer>
 
     );
