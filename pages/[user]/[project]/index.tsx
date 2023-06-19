@@ -3,7 +3,6 @@ import {Meta} from "@/shared/seo";
 import {GetServerSideProps} from "next";
 import {GetServerSidePropsContext} from "next/types";
 import {ParsedUrlQuery} from "querystring";
-import {PageLayout} from "@/layouts/pageLayout";
 import {setupStore} from "@/shared/store";
 import {Box} from "@mui/material";
 import {useCallback, useEffect} from "react";
